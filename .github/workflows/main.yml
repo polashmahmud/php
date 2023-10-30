@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@master
       - run: npm install
       - run: npm run docs:build
-      - run: tar -czvf dist_app.tar.gz docs/.vuepress/dist
+      - run: tar -czvf dist_app.tar.gz docs/.vitepress/dist
       - uses: actions/upload-artifact@v3
         with:
           name: dist_app
