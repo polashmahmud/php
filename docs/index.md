@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "পিএইচপি বেসিক কোর্স"
   text: "একটি বিগেনার ফ্রেন্ডলি পিএইচপি কোর্স"
-  tagline: সৌজন‍্যেঃ Larn with Polash Mahmud
+  tagline: সৌজন‍্যেঃ Learn with Polash Mahmud
   actions:
     - theme: brand
       text: চলুন শুরু করি
