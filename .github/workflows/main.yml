@@ -1,0 +1,76 @@
+name: Deploy Application
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  create-deployment-artifacts:
+    name: Create deployment artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+      - run: npm install
+      - run: npm run docs:build
+      - run: tar -czvf dist_app.tar.gz docs/.vuepress/dist
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist_app
+          path: dist_app.tar.gz
+
+  prepare-release-on-servers:
+    name: Upload file on Server
+    runs-on: ubuntu-latest
+    needs: create-deployment-artifacts
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist_app
+
+      - name: Upload
+        uses: appleboy/scp-action@master
+        with:
+          host: polashmahmud.com
+          username: deploy
+          port: 22
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: dist_app.tar.gz
+          target: /home/deploy
+
+  remove-dist-folder-on-server:
+    name: Delete dist folder on server
+    runs-on: ubuntu-latest
+    needs: prepare-release-on-servers
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: polashmahmud.com
+          username: deploy
+          port: 22
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd php
+            rm -r dist
+  extract-new-dist-folder-on-server:
+    name: Extract new dist folder
+    runs-on: ubuntu-latest
+    needs: remove-dist-folder-on-server
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: polashmahmud.com
+          username: deploy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            tar xzf /home/deploy/dist_app.tar.gz -C /home/deploy/php
+            rm -r dist_app.tar.gz
+  cleanup_job:
+    name: Cleanup Job
+    needs: prepare-release-on-servers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: dist_app
