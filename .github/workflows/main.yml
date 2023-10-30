@@ -51,7 +51,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd php
-            rm -r dist
+            rm -r docs
   extract-new-dist-folder-on-server:
     name: Extract new dist folder
     runs-on: ubuntu-latest
