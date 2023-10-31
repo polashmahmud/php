@@ -8,21 +8,24 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'হোম পেজ', link: '/' },
-      { text: 'ডকুমেন্টেশন', link: '/markdown-examples' }
+      { text: 'ডকুমেন্টেশন', link: '/class-01' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'ক্লাস সমূহ',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'প্রথম ক্লাস', link: '/class-01' },
+          { text: 'দ্বিতীয় ক্লাস', link: '/class-02' },
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/polashmahmud/php' },
+      { icon: 'facebook', link: 'https://www.facebook.com/learnwithpolashmahmud' },
+      { icon: 'youtube', link: 'https://www.youtube.com/polashmahmud4' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/polashmahmud4/' },
     ]
   }
 })

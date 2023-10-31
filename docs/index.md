@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: চলুন শুরু করি
-      link: /markdown-examples
+      link: /class-01
 
 features:
   - title: আমাদের সম্পর্কে
