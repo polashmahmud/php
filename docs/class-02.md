@@ -374,6 +374,16 @@ A14
     echo(is_finite(log(0))) // returns nothing
 ```
 
+### PHP is_infinite() Function
+
+এটা দিয়ে আপনি কোনো সংখ্যা ইনফিনিটি/অসীম কিনা চেক করতে পারবেন
+
+```php
+<?php
+    echo(is_infinite(20)); // returns nothing
+    echo(is_infinite(log(0))) // returns 1
+```
+
 ### PHP min() and max() Functions
 
 এটা দিয়ে আপনি অনেকগুলো ভ‍্যালুর মাঝে কোনটা ছোট ভ‍্যালু এবং কোনটা বড় ভ‍্যালু তা বাহির করতে পারবেন
