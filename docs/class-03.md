@@ -144,8 +144,8 @@ if (condition) {
 
 ```php
 <?php
-$a = 10;
-$b = 20;
+$a = 20;
+$b = 10;
 
 if ($a > $b) {
   echo "a is greater than b";
