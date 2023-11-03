@@ -364,6 +364,35 @@ A14
     echo(pow(4,2)); // returns 16
 ```
 
+### PHP is_finite() Function
+
+এটা দিয়ে আপনি কোনো সংখ্যা ফাইনাইট/সসীম কিনা চেক করতে পারবেন
+
+```php
+<?php
+    echo(is_finite(2)); // returns 1
+    echo(is_finite(log(0))) // returns nothing
+```
+
+### PHP is_infinite() Function
+
+এটা দিয়ে আপনি কোনো সংখ্যা ইনফিনিটি/অসীম কিনা চেক করতে পারবেন
+
+```php
+<?php
+    echo(is_infinite(20)); // returns nothing
+    echo(is_infinite(log(0))) // returns 1
+```
+
+### PHP is_nan() Function
+
+এটা দিয়ে আপনি কোনো সংখ্যা নট-এ-নাম্বার কিনা চেক করতে পারবেন
+
+```php
+<?php
+    echo(is_nan(20)); // returns nothing
+    echo(is_nan(acos(6))) // returns 1
+```
 
 ### PHP min() and max() Functions
 
