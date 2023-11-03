@@ -100,7 +100,7 @@ printf('My name is %2$s %1$s', $firstName, $lastName);
 My name is Mahmud Polash
 ```
 
-তাহলে আপনি বুঝতে পারছেন আপনি চাইলে ভ‍্যারিয়েবল কোনটা আগে প্রিন্ট করবেন কোনটা পরে প্রিন্ট করবেন তা নির্দারণ করে দিতে
+তাহলে আপনি বুঝতে পারছেন আপনি চাইলে ভ‍্যারিয়েবল কোনটা আগে প্রিন্ট করবেন কোনটা পরে প্রিন্ট করবেন তা নির্ধারণ করে দিতে
 পারবেন।
 
 ## sprintf() ফাংশন
@@ -144,7 +144,7 @@ if (condition) {
 
 ```php
 <?php
-$a = 10;
+$a = 30;
 $b = 20;
 
 if ($a > $b) {
@@ -205,9 +205,9 @@ a is NOT greater than b
 if (condition) {
   code to be executed if condition is true;
 } elseif (condition) {
-  code to be executed if condition is true;
+  code to be executed if condition is false and elseif condition is true;
 } else {
-  code to be executed if condition is false;
+  code to be executed if and elseif both condition is false;
 }
 ```
 
@@ -238,7 +238,7 @@ if ($a > $b):
   echo "a is greater than b";
 elseif ($a == $b):
     echo "a is equal to b";
-    else:
+else:
     echo "a is NOT greater than b and a is NOT equal to b";
 endif;
 ```
@@ -252,6 +252,7 @@ a is NOT greater than b and a is NOT equal to b
 আরো কিছু উদাহরণঃ
 
 ```php
+<?php $a = 5; ?>
 <?php if ($a == 5): ?>
 A is equal to 5
 <?php endif; ?>
@@ -264,6 +265,8 @@ A is equal to 5
 ```
 
 ```php
+<?php
+$a = 10;
 if ($a == 5):
     echo "a equals 5";
     echo "...";
@@ -283,7 +286,7 @@ a is neither 5 nor 6
 
 **PHP - ternary Operator**
 
-পিএইচপিতে আমরা যদি কোন কিছু চেক করতে চাই তাহলে আমরা ternary অপারেটর ব‍্যবহার করতে পারি। এটা দিয়ে অনেক সর্টকার্টে
+পিএইচপিতে আমরা যদি কোন কিছু চেক করতে চাই তাহলে আমরা ternary অপারেটর ব‍্যবহার করতে পারি। এটা দিয়ে অনেক শর্টকার্টে
 কন্ডিশন এপ্লাই করা যায়।
 
 সিনট্যাক্সঃ
@@ -398,7 +401,7 @@ endwhile;
 $x = 1;
 
 while($x <= 5) {
-  echo "The number is: $x <br>" . PHP_EOL;
+  echo "The number is: $x" . PHP_EOL;
   $x++;
 }
 ```
@@ -408,7 +411,7 @@ while($x <= 5) {
 $x = 1;
 
 while($x <= 5):
-  echo "The number is: $x <br>" . PHP_EOL;
+  echo "The number is: $x" . PHP_EOL;
   $x++;
 endwhile;
 ```
@@ -443,7 +446,7 @@ do {
 $x = 1;
 
 do {
-  echo "The number is: $x <br>" . PHP_EOL;
+  echo "The number is: $x" . PHP_EOL;
   $x++;
 } while ($x <= 5);
 ```
@@ -478,6 +481,7 @@ do {
 
 ```php
 <?php
+$i = 3;
 do {
     if ($i < 5) {
         echo "i is not big enough";
@@ -491,7 +495,7 @@ do {
 
     /* process i */
 
-} while (0);
+} while ($i > 0);
 ```
 
 আউটপুট:
@@ -518,7 +522,7 @@ for (init counter; test counter; increment counter) {
 ```php
 <?php
 for ($x = 0; $x <= 5; $x++) {
-  echo "The number is: $x <br>" . PHP_EOL;
+  echo "The number is: $x" . PHP_EOL;
 }
 ```
 
@@ -553,7 +557,7 @@ foreach ($array as $value) {
 $colors = array("red", "green", "blue", "yellow");
 
 foreach ($colors as $value) {
-  echo "$value <br>" . PHP_EOL;
+  echo "$value" . PHP_EOL;
 }
 ```
 
@@ -572,7 +576,7 @@ yellow
 <?php
 $arr = array("one", "two", "three");
 foreach ($arr as $key => $value) {
-    echo "Key: $key; Value: $value<br />\n";
+    echo "Key: $key; Value: $value\n";
 }
 ```
 
