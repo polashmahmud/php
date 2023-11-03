@@ -384,6 +384,16 @@ A14
     echo(is_infinite(log(0))) // returns 1
 ```
 
+### PHP is_nan() Function
+
+এটা দিয়ে আপনি কোনো সংখ্যা নট-এ-নাম্বার কিনা চেক করতে পারবেন
+
+```php
+<?php
+    echo(is_nan(20)); // returns nothing
+    echo(is_nan(acos(6))) // returns 1
+```
+
 ### PHP min() and max() Functions
 
 এটা দিয়ে আপনি অনেকগুলো ভ‍্যালুর মাঝে কোনটা ছোট ভ‍্যালু এবং কোনটা বড় ভ‍্যালু তা বাহির করতে পারবেন
