@@ -231,7 +231,7 @@ $firstName = $name;
 
 $name = 'Mahmud';
 
-echo $fireName; // Output: Polash
+echo $firstName; // Output: Polash
 // try to change the value of $firstName variable and see the output
 
 echo $name; // Output: Mahmud
