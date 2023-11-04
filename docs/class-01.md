@@ -923,6 +923,14 @@ e.g. \\ and \'.
 EOD;
 ```
 
+## Constant
+
+যার মান পরিবর্তন করা যায় না। 
+```php
+<?php
+const DB_HOST = 'localhost';
+```
+
 ## Comments
 
 `//` এটা দিয়ে সিংগেল লাইন কমেন্ট করা হয়।
@@ -930,16 +938,6 @@ EOD;
 মাল্টিপুল লাইন কমেন্ট
 
 /* More complex example, with variables. */
-
-## Constant
-
-যার মান পরিবর্তন করা যায় না। 
-```php
-<?php
-
-const DB_HOST = 'localhost';
-
-```
 
 
 
