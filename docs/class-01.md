@@ -825,7 +825,7 @@ c
 }
 ```
 
-**PHP 7.3.0**-র পর থেকে *Closing identifier*-এর শেষে সেমিকোলন `(;)` বা নিউ লাইন দেয়া জরুরী নয়। বরং `array syntax` ব্যবহার করে আপনি আরো ডাটা ইনপুট দিতে পারেন। **খেয়াল রাখবেন**,`array syntax` ব্যবহার না করলে অবশ্যই সেমিকোলন `(;)` দিবেন। অন্যথায় **Parse error** পাবেন। যেমন:-
+**PHP 7.3.0**-র পর থেকে *Closing identifier*-এর শেষে সেমিকোলন `(;)` বা নিউ লাইন দেয়া জরুরী নয়। বরং *array syntax* ব্যবহার করে আপনি আরো ডাটা ইনপুট দিতে পারেন। **খেয়াল রাখবেন**,*array syntax* ব্যবহার না করলে অবশ্যই সেমিকোলন `(;)` দিবেন। অন্যথায় **Parse error** পাবেন। যেমন:-
 
 ##### Continuing an expression after a closing identifier:-
 
@@ -839,7 +839,7 @@ END, 'd e f'];
 var_dump($values);
 ```
 
-`array syntax` নিয়ে আমরা পরবর্তীতে জানব।
+*array syntax* নিয়ে আমরা পরবর্তীতে জানব।
 
 >> **খেয়াল রাখবেন**, *identifier*-এর নাম যেন `(string)`-র ভ্যালু না হয়। হলে **Parse error** পাবেন।
 >>
@@ -857,6 +857,7 @@ var_dump($values);
 >> তাই **খেয়াল রাখবেন**, `(string)` ডাটা যেন *identifier* নাম না হয়।
 >
 > **বিশেষ নোট**:— **PHP 7.3.0**-র আগে *Closing identifier*-র লাইনে শুধুমাত্র সেমিকোলন `(;)` ছাড়া অন্য কিছু ব্যবহারের সুযোগ ছিল না। ফলে *Closing identifier*-র পূর্বে কোন স্পেস, ট্যাব দেয়া অথবা সেমিকোলনের পরে কোন স্পেস, ট্যাব দেয়ার সুযোগ ছিল না। সাথে *Closing identifier*-টি একটি নিউ লাইনে লিখতে হত। এমনটা না হলে **PHP** *Closing identifier*-কে খুঁজতে থাকত এবং শেষে **Parse error** দিত।
+>
 >
 > ##### Invalid example, prior to PHP 7.3.0:-
 >
@@ -883,6 +884,8 @@ var_dump($values);
 
 **Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি *Variables*-র নাম ব্যবহার করা যায়। ফলে সেটা এক্সিকিউশন হয় এবং আমরা তার ভ্যালু এক্সেস করতে পারি।
 
+##### Heredoc string quoting example
+
 ```php
 <?php
 $str = <<<EOD
@@ -899,7 +902,7 @@ This should print a capital 'A': \x41, with the value of the variable \$str: \n$
 EOT;
 ```
 
-`opening Heredoc identifier`-কে ডাবল কোটেশনের ভেতর লেখার সুযোগ আছে।
+*opening Heredoc identifier*-কে ডাবল কোটেশনের ভেতর লেখার সুযোগ আছে।
 
 ##### Using double quotes in Heredoc:-
 
@@ -910,9 +913,15 @@ Hello World!
 FOOBAR;
 ```
 
-#### Nowdoc syntex
+#### Nowdoc syntax
 
-ব্যবহারগত দিক থেকে `Nowdoc syntex` (নাউ-ডক সিন্ট্যাক্স) যেমনি সিংগল কোটেশন `('')`-র সাথে মিলে যায়, তেমনি `herodoc syntex` এর সাথেও মিলে যায়। সিংগল কোটেশন `('')`-র সাথে মিলে কারণ সিংগল কোটেশন `('')`-র মত `Nowdoc syntex`-য়েও *parsing variable*-র সুযোগ নাই। এটা ছাড়া আর সবকিছুু করা সম্ভব `herodoc syntex` এর মত, তাই `herodoc syntex` এর সাথেও এর মিল পাওয়া যায়।
+ব্যবহারগত দিক থেকে *Nowdoc syntax* (নাউ-ডক সিন্ট্যাক্স) যেমনি সিংগল কোটেশন `('')`-র সাথে মিলে যায়, তেমনি *herodoc syntax* এর সাথেও মিলে যায়। সিংগল কোটেশন `('')`-র সাথে মিলে কারণ সিংগল কোটেশন `('')`-র মত *Nowdoc syntax*-য়েও *parsing variable*-র সুযোগ নাই। এটা ছাড়া আর সবকিছুু করা সম্ভব *herodoc syntax*-র মত, তাই *herodoc syntax*-র সাথেও মিলে যায়।
+
+*herodoc syntax* আর ডাবল কোটেশন `("")`-র [ভেতরের মিল](#heredoc-string-quoting-example) ইতিপূর্বেই আলোচনা হয়েছে।
+
+**Nowdoc syntax** লেখার পদ্ধতি:–
+
+> *herodoc syntax*-র সাথে মিল থাকলেও লেখার পদ্ধতিতে ভিন্নতা আছে। `(<<<)` এটি ***Nowdoc-য়েরও syntax operator***। তবে *opening Nowdoc identifier*-কে সিংগল কোটেশন `('')`-র ভেতর লিখতে হয়।
 
 ```php
 <?php
