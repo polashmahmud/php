@@ -954,6 +954,10 @@ This should print a capital 'A': \x41, with the value of the variable \$str: \n$
 ANOTHER_NOWDOC;
 ```
 
+## Variable parsing কি?
+
+ডাবল কোটেশন `("")` এবং *heredoc syntax*
+
 ## Constant
 
 যার মান পরিবর্তন করা যায় না। 
