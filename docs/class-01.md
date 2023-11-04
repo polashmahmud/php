@@ -882,7 +882,7 @@ var_dump($values);
 >}
 >```
 
-**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি *Variables*-র নাম ব্যবহার করা যায়। ফলে সেটা এক্সিকিউশন হয় এবং আমরা তার ভ্যালু এক্সেস করতে পারি।
+**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি *parsing variables*-রও সুযোগ আছে।
 
 ##### Heredoc string quoting example
 
@@ -915,13 +915,17 @@ FOOBAR;
 
 #### Nowdoc syntax
 
-ব্যবহারগত দিক থেকে *Nowdoc syntax* (নাউ-ডক সিন্ট্যাক্স) যেমনি সিংগল কোটেশন `('')`-র সাথে মিলে যায়, তেমনি *herodoc syntax* এর সাথেও মিলে যায়। সিংগল কোটেশন `('')`-র সাথে মিলে কারণ সিংগল কোটেশন `('')`-র মত *Nowdoc syntax*-য়েও *parsing variable*-র সুযোগ নাই। এটা ছাড়া আর সবকিছুু করা সম্ভব *herodoc syntax*-র মত, তাই *herodoc syntax*-র সাথেও মিলে যায়।
-
-*herodoc syntax* আর ডাবল কোটেশন `("")`-র [ভেতরের মিল](#heredoc-string-quoting-example) ইতিপূর্বেই আলোচনা হয়েছে।
+ব্যবহারগত দিক থেকে *nowdoc syntax* (নাউ-ডক সিন্ট্যাক্স) আর সিংগল কোটেশন `('')`একইরকম, যেমন *herodoc syntax* আর ডাবল কোটেশন `("")` একইরকম। *nowdoc syntax*-য়ে সিংগল কোটেশন `('')`-র মতই *parsing variable* এবং *escaping sequences*-র সুযোগ নাই। তবে *syntax* লেখার ধরণ *herodoc syntax*-র সাথে বেশ মিলে যায়।
 
 **Nowdoc syntax** লেখার পদ্ধতি:–
 
-> *herodoc syntax*-র সাথে মিল থাকলেও লেখার পদ্ধতিতে ভিন্নতা আছে। `(<<<)` এটি ***Nowdoc-য়েরও syntax operator***। তবে *opening Nowdoc identifier*-কে সিংগল কোটেশন `('')`-র ভেতর লিখতে হয়।
+> *herodoc syntax*-র সাথে মিল থাকলেও কিছুটা ভিন্নতা আছে। দুটির ***syntax operator*** একই, `(<<<)` এটি। তবে পার্থক্যটা হল, *opening nowdoc identifier*-কে সিংগল কোটেশন `('')`-র ভেতর লিখতে হয়।
+>
+> মিলগত আরো একটি দিক হল, *herodoc syntax*-র সব *rules* *nowdoc syntax*-য়েও প্রয়োগ হবে। বিশেষ করে [*closing identifier* কেন্দ্রিক যে *rules*](#parse-error-example) আছে।
+
+*herodoc syntax* আর ডাবল কোটেশন `("")`-র [ভেতরের মিল](#heredoc-string-quoting-example) ইতিপূর্বেই আলোচনা হয়েছে।
+
+##### Nowdoc string quoting example:-
 
 ```php
 <?php
@@ -930,6 +934,24 @@ Example of string spanning multiple lines
 using nowdoc syntax. Backslashes are always treated literally,
 e.g. \\ and \'.
 EOD;
+```
+
+##### Nowdoc string quoting example with variables:-
+
+```php
+<?php
+$str = <<<'NOWDOC'
+Example of string
+spanning multiple lines
+using heredoc syntax.
+NOWDOC;
+
+$name = 'MyName';
+
+echo <<<'ANOTHER_NOWDOC'
+My name is "$name".
+This should print a capital 'A': \x41, with the value of the variable \$str: \n$str
+ANOTHER_NOWDOC;
 ```
 
 ## Constant
