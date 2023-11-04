@@ -963,18 +963,60 @@ ANOTHER_NOWDOC;
 >
 > এই *syntax*-টি বহুল ব্যবহৃত এবং সহজ। *variable, an array value, or an object property* — যাইহোক, খুব সহজেই এই *syntax* দিয়ে সেগুলো *parsing* করা সম্ভব।
 >
-> **PHP** যখন `(string)` ডাটার ভেতর কোন `($)` ডলার সাইন দেখবে, – *যাকে (escape sequences)* ব্যবহার করে *(escaped)* করা হয়নি – তখনই সে তার পরবর্তী অক্ষরগুলোকে ভ্যারিয়েবল নাম মনে করে তাকে *parse* করার চেষ্টা করতে থাকবে। এজন্য উত্তম হল, ভ্যারিয়েবল নামকে `($)` ডলার সাইনসহ `{}` কার্লি ব্রেসের ভেতরে রেখে **PHP parser**-কে ভ্যারিয়েবলের শুরু এবং শেষ বোঝানো। অন্যথায় সঠিক রেজাল্ট ব্যাহত হতে পারে। যেমন:–
+>> **PHP** যখন `(string)` ডাটার ভেতর কোন `($)` ডলার সাইন দেখবে, – *যাকে (escape sequences)* ব্যবহার করে *(escaped)* করা হয়নি – তখনই সে তার পরবর্তী অক্ষরগুলোকে ভ্যারিয়েবল নাম মনে করে তাকে *parse* করার চেষ্টা করতে থাকবে। এজন্য উত্তম হল, ভ্যারিয়েবল নামকে `($)` ডলার সাইনসহ `{}` কার্লি ব্রেসের ভেতরে রেখে **PHP parser**-কে ভ্যারিয়েবলের শুরু এবং শেষ বোঝানো। অন্যথায় সঠিক রেজাল্ট ব্যাহত হতে পারে। যেমন:–
+>>
+>>```php
+>><?php
+>>$juice = "apple";
+>>
+>>echo "He drank some $juice juice.".PHP_EOL;
+>>// Unintended. "s" is a valid character for a variable name, so this refers to $juices, not $juice.
+>>echo "He drank some juice made of $juices.";
+>>// Explicitly specify the end of the variable name by enclosing the r/eference in braces.
+>>echo "He drank some juice made of {$juice}s.";
+>>```
+>>
+>> একইভাবে *array index* বা *object property*-ও *parse* করা সম্ভব। যখন আমরা *array or object* সম্পর্কে জানব, তখন সেখানে ‍উদাহরন দেখব।
 >
->```php
-><?php
->$juice = "apple";
+> ### Complex (curly) syntax
 >
->echo "He drank some $juice juice.".PHP_EOL;
->// Unintended. "s" is a valid character for a variable name, so this refers to $juices, not $juice.
->echo "He drank some juice made of $juices.";
->// Explicitly specify the end of the variable name by enclosing the r/eference in braces.
->echo "He drank some juice made of {$juice}s.";
->```
+> *Complex syntax* মানে এই নয় যে এর *syntax* কঠিন। বরং এই *syntax*-এর সাহায্যে `string` ডাটার ভেতরে *complex expressions* লেখা যায়।
+>
+>> এই *syntax*-য়েও `string` ডাটার ভেতরে *scalar variable* (শুধুমাত্র একটি ভ্যালু ধারণ করে এমন ভ্যারিয়েবল), *array element or object property* লিখে তা *parse* করা যায়। তবে এর বিশেষত্ব হল, যে *expression*গুলো `string` ডাটার বাইরে সাধারণত লেখা হয় তা এই *syntax*-এর সাহায্যে — তথা `{}` কার্লি ব্রেসের মধ্যে দিয়ে — `string` ডাটার ভেতরেও লেখা সম্ভব।
+>>
+>> `{}` কার্লি ব্রেসগুলোকে *escape* করা যায় না। তাই **PHP** যখন *opening curly brace* (`{`)-র সাথে সাথেই `$` (ডলার সাইন) দেখে তখন সেটাকে সে *Complex syntax* হিসেবে বিবেচনা করে।
+>>
+>>তাই *opening curly brace* (`{`)-র পর যদি কোন স্পেস বা অন্য কিছু থাকে তখন সে কার্লি ব্রেসকে স্বাভাবিক অক্ষর হিসেবে গ্রহণ করে।
+>>
+>>
+>>```php
+>><?php
+>>// Show all errors
+>>error_reporting(E_ALL);
+>>
+>>$great = 'fantastic';
+>>
+>>// Works, outputs: This is fantastic
+>>echo "This is {$great}"; // complex syntax
+>>
+>>// Won't work, outputs: This is { fantastic}
+>>echo "This is { $great}"; // not complex
+>>```
+>>
+>>*simple* অথবা *complex* উভয় *syntax*-এ `string` ডাটার ভেতরে যদি `$` (ডলার সাইন) লেখার প্রয়োজন দেখা দেয় তখন *escape ‍sequence* ব্যবহার করতে হবে। যেমন:– `{\$`।
+>>
+>> *array element or object property* কেন্দ্রিক উদাহরণ আমরা নির্দিষ্ট টপিকে দিয়ে দেখব। তবে আপনি চাইলে [ম্যানুয়াল](https://www.php.net/manual/en/language.types.string.php#language.types.string.parsing) পড়তে পারেন।
+>>
+>>বিশেষত্ব বোঝার উদাহরণ:–
+>>
+>>```php
+>><?php
+>>// Works, quoted keys only work using the curly brace syntax (i.e. complex syntax)
+>>echo "This works: {$arr['key']}";  // try to remove the braces
+>>
+>> // Works only in simple syntax
+>>echo "This works: $arr[key]";     // see the difference by making it like $arr['key']
+>>```
 
 ## Constant
 
