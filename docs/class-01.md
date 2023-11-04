@@ -689,7 +689,7 @@ if(abs($a-$b) < $epsilon) {
 >
 >খেয়াল রাখবেন, সিংগেল কোটেশনে `('')` অন্যান্য ***escape sequences*** যেমন:– `(\r)`, `(\n)` ইত্যাদি স্বাভাবিক *character* হিসেবে বিবেচিত হবে। তখন এই `(\)` *character*-টি ব্যাকস্ল্যাশ হিসেবে বিবেচিত হবে।
 >
->তেমনিভাবে *variable*-র নাম লিখলে তাও স্বাভাবিক *character* হিসেবে বিবেচিত হবে। *variable* এক্সিকিউশন হয়ে তার ভ্যালু পাওয়া যাবে না। এমন কিছুর প্রয়োজন হলে আপনাকে `("")` ডাবল কোটেশন অথবা `heredoc syntax` ব্যবহার করতে হবে।
+>তেমনিভাবে *variable*-র নাম লিখলে তাও স্বাভাবিক *character* হিসেবে বিবেচিত হবে। *variable* এক্সিকিউশন হয়ে তার ভ্যালু পাওয়া যাবে না। এমন কিছুর প্রয়োজন হলে আপনাকে `("")` ডাবল কোটেশন অথবা `heredoc syntax` ব্যবহার করতে হবে। এটাকে [*string parsing or parsing variable*](https://www.php.net/manual/en/language.types.string.php#language.types.string.parsing) বলে।
 
 ```php
 <?php
