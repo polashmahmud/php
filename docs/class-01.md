@@ -689,7 +689,7 @@ if(abs($a-$b) < $epsilon) {
 >
 >খেয়াল রাখবেন, সিংগেল কোটেশনে `('')` অন্যান্য ***escape sequences*** যেমন:– `(\r)`, `(\n)` ইত্যাদি স্বাভাবিক *character* হিসেবে বিবেচিত হবে। তখন এই `(\)` *character*-টি ব্যাকস্ল্যাশ হিসেবে বিবেচিত হবে।
 >
->তেমনিভাবে *variable*-র নাম লিখলে তাও স্বাভাবিক *character* হিসেবে বিবেচিত হবে। *variable* এক্সিকিউশন হয়ে তার ভ্যালু পাওয়া যাবে না। এমন কিছুর প্রয়োজন হলে আপনাকে `("")` ডাবল কোটেশন অথবা `heredoc syntax` ব্যবহার করতে হবে। এটাকে [*string parsing or parsing variable*](https://www.php.net/manual/en/language.types.string.php#language.types.string.parsing) বলে।
+>তেমনিভাবে *variable*-র নাম লিখলে তাও স্বাভাবিক *character* হিসেবে বিবেচিত হবে। *variable* এক্সিকিউশন হয়ে তার ভ্যালু পাওয়া যাবে না। এমন কিছুর প্রয়োজন হলে আপনাকে `("")` ডাবল কোটেশন অথবা `heredoc syntax` ব্যবহার করতে হবে। এটাকে [*string parsing or parsing variable*](#variable-parsing-কি) বলে।
 
 ```php
 <?php
@@ -882,7 +882,7 @@ var_dump($values);
 >}
 >```
 
-**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি *parsing variables*-রও সুযোগ আছে।
+**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি [*parsing variables*](#variable-parsing-কি)-রও সুযোগ আছে।
 
 ##### Heredoc string quoting example
 
@@ -915,7 +915,7 @@ FOOBAR;
 
 #### Nowdoc syntax
 
-ব্যবহারগত দিক থেকে *nowdoc syntax* (নাউ-ডক সিন্ট্যাক্স) আর সিংগল কোটেশন `('')`একইরকম, যেমন *herodoc syntax* আর ডাবল কোটেশন `("")` একইরকম। *nowdoc syntax*-য়ে সিংগল কোটেশন `('')`-র মতই *parsing variable* এবং *escaping sequences*-র সুযোগ নাই। তবে *syntax* লেখার ধরণ *herodoc syntax*-র সাথে বেশ মিলে যায়।
+ব্যবহারগত দিক থেকে *nowdoc syntax* (নাউ-ডক সিন্ট্যাক্স) আর সিংগল কোটেশন `('')`একইরকম, যেমন *herodoc syntax* আর ডাবল কোটেশন `("")` একইরকম। *nowdoc syntax*-য়ে সিংগল কোটেশন `('')`-র মতই [*parsing variable*](#variable-parsing-কি) এবং *escaping sequences*-র সুযোগ নাই। তবে *syntax* লেখার ধরণ *herodoc syntax*-র সাথে বেশ মিলে যায়।
 
 **Nowdoc syntax** লেখার পদ্ধতি:–
 
@@ -956,7 +956,7 @@ ANOTHER_NOWDOC;
 
 ## Variable parsing কি?
 
-ডাবল কোটেশন `("")` এবং *heredoc syntax*
+ডাবল কোটেশন `("")` এবং *heredoc syntax*-এ ভ্যারিয়েবল নাম প্রদান করলে নাম প্রিন্ট না হয়ে যখন সরাসরি তার ভ্যালু প্রিন্ট হয়, তাকে আমরা *Variable parsing* বলতে পারি।
 
 ## Constant
 
