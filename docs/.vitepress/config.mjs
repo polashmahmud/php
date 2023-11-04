@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "PHP Basic Course",
-  description: "A VitePress Site",
+  title: "পিএইচপি বেসিক কোর্স",
+  description: "একটি বিগেনার ফ্রেন্ডলি পিএইচপি কোর্স | আমরা যারা একদম নতুন তাদের সহজ ভাষায় পিএইচপি শিখানোর চেষ্টা করি ।",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
