@@ -963,7 +963,18 @@ ANOTHER_NOWDOC;
 >
 > এই *syntax*-টি বহুল ব্যবহৃত এবং সহজ। *variable, an array value, or an object property* — যাইহোক, খুব সহজেই এই *syntax* দিয়ে সেগুলো *parsing* করা সম্ভব।
 >
-> **PHP** যখন `(string)` ডাটার ভেতর কোন `($)` ডলার সাইন দেখবে, – *যাকে (escape sequences)* ব্যবহার করে *(escaped)* করা হয়নি – তখনই সে তার পরবর্তী অক্ষরগুলোকে ভ্যারিয়েবল নাম মনে করে তাকে *parse* করার চেষ্টা করতে থাকবে। এজন্য উত্তম হল, ভ্যারিয়েবল নামকে `($)` ডলার সাইনসহ `{}` কার্লি ব্রেসের ভেতরে রেখে **PHP parser**-কে ভ্যারিয়েবলের শুরু এবং শেষ বোঝানো। অন্যথায় সঠিক রেজাল্ট ব্যাহত হতে পারে।
+> **PHP** যখন `(string)` ডাটার ভেতর কোন `($)` ডলার সাইন দেখবে, – *যাকে (escape sequences)* ব্যবহার করে *(escaped)* করা হয়নি – তখনই সে তার পরবর্তী অক্ষরগুলোকে ভ্যারিয়েবল নাম মনে করে তাকে *parse* করার চেষ্টা করতে থাকবে। এজন্য উত্তম হল, ভ্যারিয়েবল নামকে `($)` ডলার সাইনসহ `{}` কার্লি ব্রেসের ভেতরে রেখে **PHP parser**-কে ভ্যারিয়েবলের শুরু এবং শেষ বোঝানো। অন্যথায় সঠিক রেজাল্ট ব্যাহত হতে পারে। যেমন:–
+>
+>```php
+><?php
+>$juice = "apple";
+>
+>echo "He drank some $juice juice.".PHP_EOL;
+>// Unintended. "s" is a valid character for a variable name, so this refers to $juices, not $juice.
+>echo "He drank some juice made of $juices.";
+>// Explicitly specify the end of the variable name by enclosing the r/eference in braces.
+>echo "He drank some juice made of {$juice}s.";
+>```
 
 ## Constant
 
