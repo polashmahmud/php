@@ -271,7 +271,7 @@ $bar = &test();    // Invalid.
 _Variable-_ এর নাম অনেক ভাবেই লেখা যায়, এবং সবগুলোই ভ্যালিড। তবে একটা প্রজেক্ট বা এপ্লিকেশনে যে কোন একটা স্টাইল ফলো করা উচিত।
 
 ```php
-$myname    // litteral words
+$myname    // literal words
 $my_name   // Snakecase: Words are delimited by an underscore.
 $myNameIs  // Camelcase: Words are delimited by capital letters, except the initial word.
 $MyNameIs  // Pascalcase: Words are delimited by capital letters.
