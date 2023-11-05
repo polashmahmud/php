@@ -982,7 +982,7 @@ ANOTHER_NOWDOC;
 >
 > *Complex syntax* মানে এই নয় যে এর *syntax* কঠিন। বরং এই *syntax*-এর সাহায্যে `string` ডাটার ভেতরে *complex expressions* লেখা যায়।
 >
->> এই *syntax*-য়েও `string` ডাটার ভেতরে *scalar variable* (শুধুমাত্র একটি ভ্যালু ধারণ করে এমন ভ্যারিয়েবল), *array element or object property* লিখে তা *parse* করা যায়। তবে এর বিশেষত্ব হল, যে *expression*গুলো `string` ডাটার বাইরে সাধারণত লেখা হয় তা এই *syntax*-এর সাহায্যে — তথা `{}` কার্লি ব্রেসের মধ্যে দিয়ে — `string` ডাটার ভেতরেও লেখা সম্ভব।
+>> এই *syntax*-য়েও `string` ডাটার ভেতরে *scalar variable* (শুধুমাত্র একটি ভ্যালু ধারণ করে এমন ভ্যারিয়েবল), *array element or object property* লিখে তা *parse* করা যায়। তবে এর বিশেষত্ব হল, যে *expression*-গুলো `string` ডাটার বাইরে সাধারণত লেখা হয় তা এই *syntax*-এর সাহায্যে — তথা `{}` কার্লি ব্রেসের মধ্যে দিয়ে — `string` ডাটার ভেতরেও লেখা সম্ভব।
 >>
 >> `{}` কার্লি ব্রেসগুলোকে *escape* করা যায় না। তাই **PHP** যখন *opening curly brace* (`{`)-র সাথে সাথেই `$` (ডলার সাইন) দেখে তখন সেটাকে সে *Complex syntax* হিসেবে বিবেচনা করে।
 >>
@@ -1017,6 +1017,10 @@ ANOTHER_NOWDOC;
 >> // Works only in simple syntax
 >>echo "This works: $arr[key]";     // see the difference by making it like $arr['key']
 >>```
+
+### `string` ডাটা access and modification by character
+
+`string` ডাটাকে `array`-র মত ব্যবহার করা যায়। *array indexing* যেমন 0 (শূণ্য) সংখ্যা দিয়ে শুরু হয় যাকে *zero-based offset* বলে, তেমনি `string` ডাটাতে থাকা *character*-গুলোর প্রতিটি *character*-কে এক একটি *array element* বিবেচনা করে *zero-based offset*-র সাহায্যে এক্সেস করা যায় এবং ভ্যালু পরিবর্তন করা যায়।
 
 ## Constant
 
