@@ -1104,6 +1104,14 @@ var_dump(isset($str['1x']));
 
 ক্যারেক্টার টাইপ নিয়ে জানতে *[character type functions](https://www.php.net/manual/en/ref.ctype.php)* দেখুন।
 
+### *type cast* করে `string` এ রূপান্তর প্রক্রিয়া {#string-type-casting}
+
+কোন ভ্যালুকে `string` এ রূপান্তর করতে হলে ভ্যালুর পূর্বে `(string)` লিখে *type cast* করা যেতে পারে, অথবা [`strval()`](https://www.php.net/manual/en/function.strval.php) ফাংশন ব্যবহার করা যেতে পারে।
+
+যে *expression scope* এর ভেতর শুধুমাত্র `string` ডাটার প্রয়োজন হয়, সেখানে *String conversion* অটোমেটিক হয়। যেমন:- [`echo`](https://www.php.net/manual/en/function.echo.php) বা [`print`](https://www.php.net/manual/en/function.print.php) ফাংশন, অথবা যখন কোন *Variable*-কে `string` ডাটার সাথে তুলনা (*compare*) করা হয়। আরো ভালোভাবে বুঝতে *[Types](https://www.php.net/manual/en/language.types.php)*, *[Type Juggling](https://www.php.net/manual/en/language.types.type-juggling.php)* এবং [`settype()`](https://www.php.net/manual/en/function.settype.php) ফাংশন সম্পর্কে জানুন।
+
+`(bool) true` `string`-এ কনভার্ট হলে তার ভ্যালু হবে `(string) "1"`। আর `false` কনভার্ট হবে *(empty string)* `("")`-এ।
+
 
 ## Constant
 
