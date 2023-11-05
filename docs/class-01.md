@@ -1128,10 +1128,14 @@ var_dump(isset($str['1x']));
 
 `string` এর আরো ডিটেইলস জানতে পড়ুন *[Details of the String Type](https://www.php.net/manual/en/language.types.string.php#language.types.string.details)*।
 
-
 ## Constant
 
-যার মান পরিবর্তন করা যায় না। 
+*constant* হল একটি *identifier* বা নাম, যার অধীনে কোন একটি ভ্যালু স্টোর করা যায়। *Variables* এর মতই। পার্থক্য হল, *constant* ভ্যালু কখনো পরিবর্তন করা যায় না। *Variables* এর মতই *constant* এর নামও *case-sensitive*। নামকরণের *convention* অনুযায়ী *constant* এর নাম সবসময় *uppercase* লেটারে হবে।
+>
+> PHP 8.0.0-র আগে [define()](https://www.php.net/manual/en/function.define.php) ফাংশন ব্যবহার করে কোন *constant* ডিফাইন করা হলে তার *case-sensitive* হওয়ার প্রয়োজন ছিলনা।
+
+*constant*-এর নাম নির্ধারণে ঐ [সমস্ত রুল](#variable-naming-rules) ফলো করতে হবে যা *Variables* বা **PHP** এর অন্যান্য *label* এর ক্ষেত্রে অনুসরণ করতে হয়।
+
 ```php
 <?php
 const DB_HOST = 'localhost';
