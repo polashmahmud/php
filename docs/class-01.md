@@ -1120,9 +1120,13 @@ var_dump(isset($str['1x']));
 
 `object`-কে `string`-এ কনভার্ট করতে অবশ্যই *magic method* [`__toString()`](https://www.php.net/manual/en/language.oop5.magic.php) ব্যবহার করতে হবে। *magic method* সহ `object` নিয়ে আমরা সামনে জানব।
 
-`(resource)` ডাটা টাইপকে `string`-এ কনভার্ট করলে তা সবসময় একটি নির্দিষ্ট *structure*-এ কনভার্ট হবে। *structure*-টি হল:- `"Resource id #1"`, যেখানে 1 হল 
+`(resource)` ডাটা টাইপকে `string`-এ কনভার্ট করলে তা সবসময় একটি নির্দিষ্ট *structure*-এ কনভার্ট হবে। *structure*-টি হল:- `"Resource id #1"`, যেখানে 1 একটি *unique resource number* নির্দেশ করে। *script* টি *execution* হওয়ার পর থেকে লাইফটাইমের জন্য ঐ *unique resource number* টি **PHP** তার *runtime*-এ *Resource* ডাটার সাথে সেট করে দিবে। এই *unique number* টি অন্য কোন `Resource` ডাটার সাথে আর সেট করবে না। এত সুবিধা থাকার পরও এই ধরণের স্ট্রাকচারের উপর ভরসা করা উচিত নয়। কারণ ভবিষ্যতে এই স্ট্রাকচারে পরিবর্তন হতেই পারে।
 
 `null`-কে `string`-এ কনভার্ট করলে রেজাল্ট হবে *(empty string)* `("")`।
+
+অনেক **PHP values**-কে স্থায়ীভাবে স্টোর করে রাখতে কখনো কখনো `string`-এ কনভার্ট করা হয়। এই প্রক্রিয়াকে *serialization* বলে। এটি করতে [`serialize()`](https://www.php.net/manual/en/function.serialize.php) ফাংশনটি ব্যবহার করতে হয়।
+
+`string` এর আরো ডিটেইলস জানতে পড়ুন *[Details of the String Type](https://www.php.net/manual/en/language.types.string.php#language.types.string.details)*।
 
 
 ## Constant
