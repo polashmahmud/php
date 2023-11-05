@@ -1112,6 +1112,18 @@ var_dump(isset($str['1x']));
 
 `(bool) true` `string`-এ কনভার্ট হলে তার ভ্যালু হবে `(string) "1"`। আর `false` কনভার্ট হবে *(empty string)* `("")`-এ।
 
+`int` ও `float` ডাটা টাইপকে `string`-এ কনভার্ট করলে ভ্যালুগুলো *numeric format* থেকে *textual format*-এ রূপান্তরিত হবে। *Floating point numbers*-কে *exponential notation (4.1E+6)* ব্যবহার করেও `string`-এ কনভার্ট করা যায়।
+
+> **PHP 8.0.0** থেকে `float` ডাটা প্রকাশ করার জন্য *period* বা (.) ডট চিহ্নই *(e.g., 3.14)* *decimal point character* হিসেবে সব জায়গায় বিবেচিত হবে। আগের ভার্সনগুলিতে *script* এর *locale setting* এর *LC_NUMERIC* ক্যাটাগরিতে যা সেট করা থাকত তাই *decimal point character* হিসেবে বিবেচিত হত। [`setlocale()`](https://www.php.net/manual/en/function.setlocale.php) এর মাধ্যমে সেটা সেট করা যেত।
+
+`array` ডাটা টাইপকে `string`-এ কনভার্ট করলে রেজাল্ট সবসময় *textual format*-এ (`"Array"`), এটাই পাবেন। তাই `echo` বা `print` করলে এই ভ্যালুই দেখতে পাবেন। *Array* ডাটা স্ট্রাকচার দেখতে পাবেন না। *Array* এর *single element* দেখতে হলে *array key/index construction* ব্যবহার করতে হবে। যেমন:- `echo $arr['foo'];`। *Array, object or resource* নিয়ে বিস্তারিত তথ্য দেখতে হলে [`print_r()`](https://www.php.net/manual/en/function.print-r.php) বা [`var_dump()`](https://www.php.net/manual/en/function.var-dump.php) ফাংশন ব্যবহার করতে হবে।
+
+`object`-কে `string`-এ কনভার্ট করতে অবশ্যই *magic method* [`__toString()`](https://www.php.net/manual/en/language.oop5.magic.php) ব্যবহার করতে হবে। *magic method* সহ `object` নিয়ে আমরা সামনে জানব।
+
+`(resource)` ডাটা টাইপকে `string`-এ কনভার্ট করলে তা সবসময় একটি নির্দিষ্ট *structure*-এ কনভার্ট হবে। *structure*-টি হল:- `"Resource id #1"`, যেখানে 1 হল 
+
+`null`-কে `string`-এ কনভার্ট করলে রেজাল্ট হবে *(empty string)* `("")`।
+
 
 ## Constant
 
