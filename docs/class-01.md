@@ -1094,6 +1094,17 @@ var_dump(isset($str['1x']));
 
 > শুধুমাত্র `string` ডাটা টাইপই *arrays* এর মত আচরণ করতে পারে। *arrays or objects* ডাটা টাইপের ভ্যালু `([])` ব্রাকেট নোটেশন এবং `({})` অবজেক্ট নোটেশনের মাধ্যমে এক্সেস করা যায়। কিন্তু অন্য ডাটা টাইপকে `string` এর মত `([])` ব্রাকেট নোটেশন বা`({})` অবজেক্ট নোটেশনের মাধ্যমে এক্সেস করার চেষ্টা করলে রেজাল্ট `null` আসবে।
 
+### প্রয়োজনীয় `string` *operators and functions* {#useful-functions-and-operators}
+
+`string` ডাটা *concatenate* করতে মানে একটি `string` ভ্যালুর সাথে অন্য একটি জোড়া লাগাতে `(.)` ডট অপারেটর ব্যবহৃত হয়। `(+)` (*addition*) অপারেটর দিয়ে এই কাজ হবেনা। বিস্তারিত জানতে *[String operators](https://www.php.net/manual/en/language.operators.string.php)* নিয়ে পড়ুন।
+
+*string manipulation* এর জন্য *[string functions section](https://www.php.net/manual/en/ref.strings.php)* পড়ুন।
+
+*URL strings* ভিত্তিক ফাংশনগুলো জানতে চাইলে *[functions for URL strings](https://www.php.net/manual/en/ref.url.php)* নিয়ে পড়ুন। *URL encrypt/decrypt* এর জন্য পড়ুন (*[Sodium](https://www.php.net/manual/en/ref.sodium.php)*) এবং (*[Hash](https://www.php.net/manual/en/ref.hash.php)*)।
+
+ক্যারেক্টার টাইপ নিয়ে জানতে *[character type functions](https://www.php.net/manual/en/ref.ctype.php)* দেখুন।
+
+
 ## Constant
 
 যার মান পরিবর্তন করা যায় না। 
