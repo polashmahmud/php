@@ -1028,13 +1028,102 @@ ANOTHER_NOWDOC;
 >
 > **PHP 8.0.0**-র আগে `string` ভ্যালু কার্লি ব্রেসের {} সাহায্যেও এক্সেস করা যেত। যেমন:- `$str{42}`। তবে **PHP 7.4.0** ভার্সন থেকে এটার ব্যবহার অনিয়মিত হয় এবং **PHP 8.0.0** ভার্সন থেকে এটা আর সাপোর্টেড নয়।
 >
-> ‍কিছু গুরুত্বপূর্ণ নোট:–
+> ‍**কিছু গুরুত্বপূর্ণ নোট**:–
 >
->> ধরুন, আপনার `string` ভ্যালুর মোট পরিমাণ ৫টি *character*। আপনি ভ্যালু সেট করতে গিয়ে *offset* দিলেন মোট পরিমাণ থেকে বেশি, যেমন:- `$str[9] = 'i'`। এখন কি হবে? **PHP** আপনার নির্ধারণ করে দেয়া অফসেটেই ঐ ভ্যালুটি সেট করবে। কিন্তু কিভাবে? *offset* ৫ থেকে নিয়ে ৮ পর্যন্ত সে নিজ থেকে স্পেস যোগ করে দিবে। যাতে ৫ থেকে ৮ পর্যন্ত যে গ্যাপটি তৈরি হয়েছে তা পূর্ণ হয় এবং আপনি আপনার দেয়া ইন্সট্রাকশনের আউটপুট ঠিকমত পান। **PHP** কতটা *forgiving* তাইনা বলুন!
+>> **ধরুন**, আপনার `string` ভ্যালুর মোট পরিমাণ ৫টি *character*। আপনি ভ্যালু সেট করতে গিয়ে *offset* দিলেন মোট পরিমাণ থেকে বেশি, যেমন:- `$str[9] = 'i';`। এখন কি হবে? **PHP** আপনার নির্ধারণ করে দেয়া অফসেটেই ঐ ভ্যালুটি সেট করবে। কিন্তু কিভাবে? *offset* ৫ থেকে নিয়ে ৮ পর্যন্ত সে নিজ থেকে স্পেস যোগ করে দিবে। যাতে ৫ থেকে ৮ পর্যন্ত যে গ্যাপটি তৈরি হয়েছে তা পূর্ণ হয় এবং আপনি আপনার দেয়া ইন্সট্রাকশনের আউটপুট ঠিকমত পান। **PHP** কতটা *forgiving* তাইনা বলুন!
 >>
->> আবার ধরুন, *offset* হিসেবে আপনার একটি `int` (0-9) সংখ্যা দেয়ার কথা। আপনার মর্জি হল, `float` (1.0) সংখ্যা দেয়ার বা আপনি সংখ্যা দিলেন ঠিকই কিন্তু `string` ('1') আকারে। কি হবে? **PHP** তার সাধ্যমত চেষ্টা করবে সেটাকে `int`-এ কনভার্ট করার এবং সে অনুযায়ী আউটপুট দেয়ার। *Oh PHP! you beauty!*
+>> **আবার ধরুন**, *offset* হিসেবে আপনার একটি `int` (0-9) সংখ্যা দেয়ার কথা। আপনার মর্জি হল, `float` (1.0) সংখ্যা দেয়ার বা আপনি সংখ্যা দিলেন ঠিকই কিন্তু `string` ('1') আকারে। কি হবে? **PHP** তার সাধ্যমত চেষ্টা করবে সেটাকে `int`-এ কনভার্ট করার এবং সে অনুযায়ী আউটপুট দেয়ার। *Oh PHP! you beauty!*
 >>
->> কিন্তু আপনিও নাছোড়বান্দা। আপনি *illegal offset type* ব্যবহার করলেন মানে *offset* হিসেবে *array or object* দিয়ে দিলেন। কি হবে? এইবার **PHP** আপনারে সহজে ছাড়বে না। সে আপনাকে **E_WARNING Error** দেবে।
+>> **কিন্তু আপনিও নাছোড়বান্দা**। আপনি *illegal offset type* ব্যবহার করলেন মানে *offset* হিসেবে *array or object* দিয়ে দিলেন। কি হবে? এইবার **PHP** আপনারে সহজে ছাড়বে না। সে আপনাকে **E_WARNING Error** দেবে।
+>>
+>> **আপনি তো একজন ক্রিয়েটিভ মানুষ**। তাই আপনি `string` ভ্যালুর একটি *character* পরিবর্তন করতে গিয়ে বিপরীতে একটিমাত্র *character* না দিয়ে একাধিক *character* দিয়ে বসলেন। কি হবে? ঐ একাধিক *character* থেকে শুধুমাত্র *first character*-টিই পরিবর্তিত জায়গায় বসবে। বাকিগুলো রিমুভ হয়ে যাবে। জানেনই তো, **PHP** কতটা *forgiving*!
+>>
+>> **আপনার ক্রিয়েটিভিটি এখানেই শেষ হয়নি**। ফলে `string` ভ্যালু সেট করতে গিয়ে নির্দিষ্ট *offset* দিয়ে ডাটা হিসেবে আপনি দিলেন *empty string*। যেমন:- `$str[4] = '';`। **PHP 7.1.0** এবং পরবর্তী ভার্সনগুলো আপনার এই ক্রিয়েটিভিটি মেনে নেবে না। বরং *fatal error* দিবে। আর কত বলুন? যদিও আগের ভার্সনগুলো ঐ ক্ষেত্রে ভ্যালু হিসেবে `NULL` সেট করে দিত। কিন্তু `NULL` জিনিসটা তো ভাল কিছু নয়। তাই অনেক ধরণের সমস্যা তৈরি হত তখন। এ-কারণে **PHP 7.1.0** থেকে আপনার এই ধরণের কাজকে সমর্থন করেনা।
+>>
+>> `array` ডাটা টাইপে একটি সুবিধা আছে, সেটা হল আপনি চাইলে *empty index operator* ব্যবহার করে `array` এর ভ্যালু সেট করতে পারবেন। যেমন:-
+>>
+>>> ```php
+>>><?php
+>>>$myArray = []; // Initialize an empty array
+>>>
+>>>$myArray[] = "Element 1"; // This appends "Element 1" to $myArray
+>>>$myArray[] = "Element 2"; // This appends "Element 2" to $myArray
+>>>
+>>>print_r($myArray); // Outputs the content of the array
+>>>```
+>> এখন `string` ভ্যালুগুলোকে আমরা `array` এর মতই এক্সেস করতে পারি। এমতাবস্থায় আপনার যদি ইচ্ছা জাগে যে আপনি প্রথমে একটা *empty string* Initialize করবেন তারপর *empty index operator* দিয়ে ভ্যালু সেট/এক্সেস করবেন; কি হবে? **PHP 7.1.0** এবং পরবর্তী ভার্সনগুলো আপনাকে *fatal error* দিবে। আগের ভার্সনগুলো আপনার ইচ্ছার মূল্যায়ন করে `string`-কে বিহাইন্ড দা সিন `array`-তে কনভার্ট করে নিত।
+
+##### চলেন কিছু উদাহরণ দেখি:– {#some-string-examples}
+
+```php
+<?php
+// Get the first character of a string
+$str = 'This is a test.';
+$first = $str[0];
+
+// Get the third character of a string
+$third = $str[2];
+
+// Get the last character of a string.
+$str = 'This is still a test.';
+$last = $str[strlen($str)-1];
+
+// Modify the last character of a string
+$str = 'Look at the sea';
+$str[strlen($str)-1] = 'e';
+```
+
+##### *illegal offset* ব্যবহার করার উদাহরণ:– {#example-of-illegal-string-offsets}
+
+```php
+<?php
+$str = 'abc';
+
+var_dump($str['1']);
+var_dump(isset($str['1']));
+
+var_dump($str['1.0']);
+var_dump(isset($str['1.0']));
+
+var_dump($str['x']);
+var_dump(isset($str['x']));
+
+var_dump($str['1x']);
+var_dump(isset($str['1x']));
+```
+
+> শুধুমাত্র `string` ডাটা টাইপই *arrays* এর মত আচরণ করতে পারে। *arrays or objects* ডাটা টাইপের ভ্যালু `([])` ব্রাকেট নোটেশন এবং `({})` অবজেক্ট নোটেশনের মাধ্যমে এক্সেস করা যায়। কিন্তু অন্য ডাটা টাইপকে `string` এর মত `([])` ব্রাকেট নোটেশন বা`({})` অবজেক্ট নোটেশনের মাধ্যমে এক্সেস করার চেষ্টা করলে রেজাল্ট `null` আসবে।
+
+### প্রয়োজনীয় `string` *operators and functions* {#useful-functions-and-operators}
+
+`string` ডাটা *concatenate* করতে মানে একটি `string` ভ্যালুর সাথে অন্য একটি জোড়া লাগাতে `(.)` ডট অপারেটর ব্যবহৃত হয়। `(+)` (*addition*) অপারেটর দিয়ে এই কাজ হবেনা। বিস্তারিত জানতে *[String operators](https://www.php.net/manual/en/language.operators.string.php)* নিয়ে পড়ুন।
+
+*string manipulation* এর জন্য *[string functions section](https://www.php.net/manual/en/ref.strings.php)* পড়ুন।
+
+*URL strings* ভিত্তিক ফাংশনগুলো জানতে চাইলে *[functions for URL strings](https://www.php.net/manual/en/ref.url.php)* নিয়ে পড়ুন। *URL encrypt/decrypt* এর জন্য পড়ুন (*[Sodium](https://www.php.net/manual/en/ref.sodium.php)*) এবং (*[Hash](https://www.php.net/manual/en/ref.hash.php)*)।
+
+ক্যারেক্টার টাইপ নিয়ে জানতে *[character type functions](https://www.php.net/manual/en/ref.ctype.php)* দেখুন।
+
+### *type cast* করে `string` এ রূপান্তর প্রক্রিয়া {#string-type-casting}
+
+কোন ভ্যালুকে `string` এ রূপান্তর করতে হলে ভ্যালুর পূর্বে `(string)` লিখে *type cast* করা যেতে পারে, অথবা [`strval()`](https://www.php.net/manual/en/function.strval.php) ফাংশন ব্যবহার করা যেতে পারে।
+
+যে *expression scope* এর ভেতর শুধুমাত্র `string` ডাটার প্রয়োজন হয়, সেখানে *String conversion* অটোমেটিক হয়। যেমন:- [`echo`](https://www.php.net/manual/en/function.echo.php) বা [`print`](https://www.php.net/manual/en/function.print.php) ফাংশন, অথবা যখন কোন *Variable*-কে `string` ডাটার সাথে তুলনা (*compare*) করা হয়। আরো ভালোভাবে বুঝতে *[Types](https://www.php.net/manual/en/language.types.php)*, *[Type Juggling](https://www.php.net/manual/en/language.types.type-juggling.php)* এবং [`settype()`](https://www.php.net/manual/en/function.settype.php) ফাংশন সম্পর্কে জানুন।
+
+`(bool) true` `string`-এ কনভার্ট হলে তার ভ্যালু হবে `(string) "1"`। আর `false` কনভার্ট হবে *(empty string)* `("")`-এ।
+
+`int` ও `float` ডাটা টাইপকে `string`-এ কনভার্ট করলে ভ্যালুগুলো *numeric format* থেকে *textual format*-এ রূপান্তরিত হবে। *Floating point numbers*-কে *exponential notation (4.1E+6)* ব্যবহার করেও `string`-এ কনভার্ট করা যায়।
+
+> **PHP 8.0.0** থেকে `float` ডাটা প্রকাশ করার জন্য *period* বা (.) ডট চিহ্নই *(e.g., 3.14)* *decimal point character* হিসেবে সব জায়গায় বিবেচিত হবে। আগের ভার্সনগুলিতে *script* এর *locale setting* এর *LC_NUMERIC* ক্যাটাগরিতে যা সেট করা থাকত তাই *decimal point character* হিসেবে বিবেচিত হত। [`setlocale()`](https://www.php.net/manual/en/function.setlocale.php) এর মাধ্যমে সেটা সেট করা যেত।
+
+`array` ডাটা টাইপকে `string`-এ কনভার্ট করলে রেজাল্ট সবসময় *textual format*-এ (`"Array"`), এটাই পাবেন। তাই `echo` বা `print` করলে এই ভ্যালুই দেখতে পাবেন। *Array* ডাটা স্ট্রাকচার দেখতে পাবেন না। *Array* এর *single element* দেখতে হলে *array key/index construction* ব্যবহার করতে হবে। যেমন:- `echo $arr['foo'];`। *Array, object or resource* নিয়ে বিস্তারিত তথ্য দেখতে হলে [`print_r()`](https://www.php.net/manual/en/function.print-r.php) বা [`var_dump()`](https://www.php.net/manual/en/function.var-dump.php) ফাংশন ব্যবহার করতে হবে।
+
+`object`-কে `string`-এ কনভার্ট করতে অবশ্যই *magic method* [`__toString()`](https://www.php.net/manual/en/language.oop5.magic.php) ব্যবহার করতে হবে। *magic method* সহ `object` নিয়ে আমরা সামনে জানব।
+
+`(resource)` ডাটা টাইপকে `string`-এ কনভার্ট করলে তা সবসময় একটি নির্দিষ্ট *structure*-এ কনভার্ট হবে। *structure*-টি হল:- `"Resource id #1"`, যেখানে 1 হল 
+
+`null`-কে `string`-এ কনভার্ট করলে রেজাল্ট হবে *(empty string)* `("")`।
+
 
 ## Constant
 
