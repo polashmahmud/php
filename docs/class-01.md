@@ -882,7 +882,7 @@ var_dump($values);
 >}
 >```
 
-**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি [*parsing variables*](#variable-parsing-কি)-রও সুযোগ আছে।
+**Heredoc** ডাটাগুলোর ব্যবহার *double-quoted string*-র (ডাবল কোটেশন) মতই হয়। পার্থক্য হল, **Heredoc**-এ *quotes* `(''), ("")` লিখতে *escape sequence*-র প্রয়োজন পড়ে না। যদিও অন্য *escape sequence*-গুলো ঠিকই কাজ করে। তেমনি [*parsing variables*](#variable-parsing-কি) এরও সুযোগ আছে।
 
 ##### Heredoc string quoting example
 
