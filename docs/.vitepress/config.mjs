@@ -18,6 +18,7 @@ export default defineConfig({
           { text: 'প্রথম ক্লাস', link: '/class-01' },
           { text: 'দ্বিতীয় ক্লাস', link: '/class-02' },
           { text: 'তৃতীয় ক্লাস', link: '/class-03' },
+          { text: 'চতুর্থ ক্লাস', link: '/class-04' },
         ]
       }
     ],
