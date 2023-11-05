@@ -1313,7 +1313,7 @@ define("__FOO__", "something");
 >> */
 >>```
 
-3. Unix shell-style (Perl style) এর comment। `#` হ্যাশ সাইন দিয়ে করতে হয়। এটিও সিংগল লাইন কমেন্ট বা *"one-line" comment* এর মত কাজ করে।
+3. `Unix shell-style` (Perl style) এর comment। `#` হ্যাশ সাইন দিয়ে করতে হয়। এটিও সিংগল লাইন কমেন্ট বা *"one-line" comment* এর মত কাজ করে।
 >
 >```php
 ><?php
