@@ -549,12 +549,17 @@ foreach ($array as $value) {
   code to be executed;
 }
 ```
+foreach এ array সাধারনত দুই ভাবে লেখা যায়
+```php
+$colors = array("red", "green", "blue", "yellow");
+$colors = ["red", "green", "blue", "yellow"];
+```
 
 উদাহরণঃ
 
 ```php
 <?php
-$colors = array("red", "green", "blue", "yellow");
+$colors = array("red", "green", "blue", "yellow");  
 
 foreach ($colors as $value) {
   echo "$value" . PHP_EOL;
