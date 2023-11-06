@@ -8,7 +8,7 @@
 
 ## ম্যাথমেটিকাল অপারেশন{#mathematical-operations}
 
-### Addition (যোগ করা)
+### Addition (যোগ করা){#addition}
 
 **PHP** তে যোগ করা খুবই সহজ। স্কুল জীবনের বেসিক *arithmetic* (পাটিগণিত) অংক করার কথা মনে আছে? PHP তে আমরা সেভাবেই পাটিগণিত অংকগুলো করব।
 
@@ -97,7 +97,7 @@ $number2 = $number + 10;
 echo $number, " ", $number2;    // outputs: 20 30
 ```
 
-### ‍Subtraction (বিয়োগ করা)
+### ‍Subtraction (বিয়োগ করা){#‍subtraction}
 
 **PHP** তে বিয়োগ করাও খুব সহজ। সবকিছু হুবহু যোগ করার মতই। তাই যোগ করার টপিকে যা যা বলা হয়েছে সবকিছুই এখানেও প্রয়োগ হবে। তবে পার্থক্য হল, বিয়োগ করতে বিয়োগচিহ্ন `(-)` বা মাইনাাস অপারেটর ব্যবহার করতে হয়। উদাহরণগুলো দেখুন:—
 
@@ -163,58 +163,60 @@ echo $number; //output: 20
 $number = 20;
 $number2 = $number - 10;
 
-echo $number, "\n", $number2; // output: 20, 10
+echo $number, " ", $number2; // output: 20, 10
 ```
 
-## PHP Math (গুন করা)
+### Multiplication (গুন করা) {#multiplication}
 
-PHP তে আমরা খুব সহজেই গুন করতে পারি। ধরেন আপনার একটা ভ‍্যারিয়েবল আছে $number = 20; এখন আপনি এর সাথে 10 গুন করতে চাচ্ছেন।
-তাহলে আপনি নিচের মতো করে করতে পারেন।
+স্বাধারণ অংকের মতই গুণচিহ্ন (*) বা মাল্টিপ্লাই অপারেটর দিয়ে **PHP** তে গুণ করা খুবই সহজ। বাকি যোগ-বিয়োগের টপিকে যে বিষয়গুলো আমরা আলোচনা করেছি তার সবগুলো এখানেও প্রয়োগ হবে। আমরা উদাহরণ দেখতে পারি।
 
 ```php
 <?php
 
+// multiply two numbers
+$x = 10 * 5;
+echo $x;    // outputs: 50
+
+// multiply two number contanied variables
+$a = 10;
+$b = 5;
+$x = $a * $b;
+
+echo $x;    // outputs: 50
+
+// multiply with expression
+$a = 2;
+$b = 10;
+$x = (10 * $a) * $b;
+
+echo $x;    // outputs: 200
+
+// multiplication assignment
 $number = 20;
 $number = $number * 10;
 
 echo $number; //output: 200
-```
 
-এছাড়াও আপনি আরেক ভাবে করতে পারেন
-
-```php
-<?php
-
+// multiplication assignment operator
 $number = 20;
 $number *= 10;
 
 echo $number; //output: 200
-```
 
-আপনি যদি একটা বিষয় একটু খেয়াল করেন, নিচের কোডটি দেখেন
-
-```php
-<?php
-
+// not assigned multiplication (not getting expected output)
 $number = 20;
 $number * 10;
 
 echo $number; //output: 20
-```
 
-এখানে আমরা ২ নম্বর লাইনে $number এর সাথে ১০ গুন করেছি। এটা কিন্তু ঠিকই গুন হয়েছে। কিন্তু আমরা এটাকে কোথাও এসাইন করি
-নাই। তাই যেহেতু এসাইন করি নাই তাই এর আউটপুট দেখাচ্ছে 20। নিচের কোডটি দেখলে বিষয়টি আরো ক্লিয়ার হবে আশা করছি
-
-```php
-<?php
-
+// assigned multiplication (for getting expected output)
 $number = 20;
 $number2 = $number * 10;
 
-echo $number, "\n", $number2; // output: 20, 200
+echo $number, " ", $number2; // output: 20, 200
 ```
 
-## PHP Math (ভাগ করা)
+### PHP Math (ভাগ করা)
 
 PHP তে আমরা খুব সহজেই ভাগ করতে পারি। ধরেন আপনার একটা ভ‍্যারিয়েবল আছে $number = 20; এখন আপনি এর সাথে 10 ভাগ করতে চাচ্ছেন।
 তাহলে আপনি নিচের মতো করে করতে পারেন।
