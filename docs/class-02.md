@@ -10,7 +10,7 @@
 
 ### Addition (যোগ করা){#addition}
 
-**PHP** তে যোগ করা খুবই সহজ। স্কুল জীবনের বেসিক *arithmetic* (পাটিগণিত) অংক করার কথা মনে আছে? PHP তে আমরা সেভাবেই পাটিগণিত অংকগুলো করব।
+**PHP** তে যোগ করা খুবই সহজ। স্কুল জীবনের বেসিক *arithmetic* (পাটিগণিত) অংক করার কথা মনে আছে? **PHP** তে আমরা সেভাবেই পাটিগণিত অংকগুলো করব।
 
 তাহলে আমরা যোগ অংক কিভাবে করব? আপনার জানা থাকার কথা, যোগ করতে হলে ২টি সংখ্যার মাঝে যোগচিহ্ন `(+)` বা প্লাস সাইন ব্যবহার করতে হয়। **PHP** তেও একই নিয়ম। যোগ করতে হলে প্লাস `(+)` ব্যবহার করতে হবে। এখন **PHP** তে এই যোগ অংক আপনি কয়েকভাবে করতে পারেন।
 
@@ -338,7 +338,7 @@ echo $number, " ", $number2; // outputs: 20, 2
 
 > *modulo operation* চলার পূর্বে **PHP** ভাজ্য এবং ভাজককে ইন্টিজার ডাটা টাইপে কনভার্ট করে নেয়; অর্থাৎ ভাজ্য বা ভাজকের কোন একটা যদি ফ্লোট ভ্যালু হয় **PHP** তাকে প্রথমে ইন্টিজার ভ্যালুতে কনভার্ট করে অতঃপর অপারেশন চালায়। আপনি যদি ফ্লোট ভ্যালুকে ফ্লোটই রাখতে চান, [`fmod()`](https://www.php.net/manual/en/function.fmod.php) ফাংশনের ব্যবহার দেখুন।
 >
-> *modulo operation* এর রেজাল্ট তথা ভাগশেষ সবসময় ভাজ্যের *(dividend)* সাইন গ্রহণ করবে; অর্থাৎ `$a % $b` এর ভেতরকার অপারেশনের ফলাফল-মান `$a` ভ্যারিয়েবলের মান ধারণ করবে। সুতরাং `$a` ভাজ্য পজিটিভ সংখ্যা হলে ভাগশেষ তথা ফলাফল পজিটিভ হবে, নেগেটিভ হলে নেগেটিভ। যেমন:-
+> *modulo operation* এর রেজাল্ট তথা ভাগশেষ সবসময় ভাজ্যের *(dividend)* সাইন গ্রহণ করবে; অর্থাৎ `$a % $b` এর ভেতরকার অপারেশনের ফলাফল-মান সবসময় `$a` ভ্যারিয়েবলের মান ধারণ করবে। সুতরাং `$a` তথা ভাজ্য পজিটিভ সংখ্যা হলে ভাগশেষ তথা ফলাফল পজিটিভ হবে, নেগেটিভ হলে নেগেটিভ। যেমন:-
 >
 > ```php
 ><?php
@@ -349,58 +349,101 @@ echo $number, " ", $number2; // outputs: 20, 2
 >echo (-5 % -3)."\n";         // prints -2
 >```
 
-## Arithmetic Operators
+## Operators
 
-এতক্ষণ পর্যন্ত আমরা যা যা করলাম এগুলো সবগুলোকে বলে Arithmetic operators (এরিথমেটিক অপারেটর- গানিতিক অপারেটর). এগুলো
-দিয়ে আমরা যা যা করতে পারি তা যদি এক নজরে দেখি তাহলে হচ্ছে-
+*practical learning* কে গুরুত্ব দিয়ে প্রথমেই আমরা ম্যাথমেটিকাল অপারেশনের বেশকিছু ব্যবহার দেখে ফেলেছি। যার ফলে অনেকগুলো **PHP Operator** সম্পর্কেও আমাদের ধারণা হয়ে গেছে।
+
+এখন প্রশ্ন হল, **PHP** তে কত ধরণের *Operator* আছে এবং কি কি?
+
+### List of PHP Operators{#php-operator-list}
+
+**PHP** তে অনেক ধরণের অপারেটর আছে। যেগুলো বিভিন্ন সময় বিভিন্ন কাজে ব্যবহার হয়ে থাকে। আমরা এখানে কিছু কমন অপারেটরের লিস্ট তৈরি করার চেষ্টা করব। চলুন শুরু করি।
+
+- [***Arithmetic Operators***](#arithmetic)
+- [***Assignment Operators***](https://www.php.net/manual/en/language.operators.arithmetic.php)
+- [***Comparison Operators***](https://www.php.net/manual/en/language.operators.comparison.php)
+- [***Increment/Decrement Operators***](#increment-decrement-operators)
+- [***Logical Operators***](https://www.php.net/manual/en/language.operators.logical.php)
+- [***String Operators***](https://www.php.net/manual/en/language.operators.string.php)
+- [***Array Operators***](https://www.php.net/manual/en/language.operators.array.php)
+- [***Type Operators***](https://www.php.net/manual/en/language.operators.type.php)
+- [***Bitwise Operators***](https://www.php.net/manual/en/language.operators.bitwise.php)
+- [***Execution Operators***](https://www.php.net/manual/en/language.operators.execution.php)
+- [***Error Control Operators***](https://www.php.net/manual/en/language.operators.errorcontrol.php)
+- [***Conditional Assignment Operators***](https://www.php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary)
+
+সবগুলো অপারেটরের বিস্তারিত বিবরণ এখনই জানার সুযোগ নাই। কারণ অপারেটরগুলো নির্দিষ্ট অপারেশনের সাথে জড়িত। তাই যখন আমরা কোন অপারেশন সম্পর্কে জানব তখন তার অপারেটরগুলোও জানব।
+
+ইতিমধ্যে আমরা *Arithmetic Operation* বা পাটিগণিত অংক কষার পদ্ধতি সম্পর্কে জেনেছি। চলুন একবার *Arithmetic Operators* এর তালিকা দেখে নিই।
+
+## Arithmetic Operators{#arithmetic-operators}
+
+যোগ, বিয়োগ, গুণ, ভাগসহ এতক্ষণ আমরা যা যা করলাম এগুলোকে বলে *Arithmetic Operation*। আর তার অপারেটরগুলোকে বলে *Arithmetic Operators* (এরিথমেটিক অপারেটর- গানিতিক অপারেটর)।
+
+এক নজরে অপারেটরগুলোর নাম, উদাহরণ এবং আমরা কখন কোন কাজে এগুলো ব্যবহার করতে পারি তার তালিকা:-
+
+#### List of Arithmetic Operators{#arithmetic-operator-list}
 
 | Example  | Name           | Result                                           |
 |----------|----------------|--------------------------------------------------|
-| +$a      | Identity       | Conversion of $a to int or float as appropriate. |
-| -$a      | Negation       | Opposite of $a.                                  |
-| $a + $b  | Addition       | Sum of $a and $b.                                |
-| $a - $b  | Subtraction    | Difference of $a and $b.                         |
-| $a * $b  | Multiplication | Product of $a and $b.                            |
-| $a / $b  | Division       | Quotient of $a and $b.                           |
-| $a % $b  | Modulo         | Remainder of $a divided by $b.                   |
-| $a ** $b | Exponentiation | Result of raising $a to the $b'th power.         |
+| `+$a`    | Identity       | Conversion of $a to int or float as appropriate. |
+| `-$a`    | Negation       | Opposite of $a.                                  |
+|`$a + $b` | Addition       | Sum of $a and $b.                                |
+|`$a - $b` | Subtraction    | Difference of $a and $b.                         |
+|`$a * $b` | Multiplication | Product of $a and $b.                            |
+|`$a / $b` | Division       | Quotient of $a and $b.                           |
+|`$a % $b` | Modulo         | Remainder of $a divided by $b.                   |
+|`$a ** $b`| Exponentiation | Result of raising $a to the $b'th power.         |
 
-## Increment/decrement Operators
+## Increment/Decrement Operators{#increment-decrement-operators}
 
-PHP তে কোন ভ‍্যালুর মান বৃদ্ধি করবার জন‍্য ++ চিহ্ন ব‍্যবহার করা হয় আবার কমানোর জন‍্য -- চিহ্ন ব‍্যবহার করা হয়।
-এগুলোকেই Increment/decrement operators বলে
+**PHP** তে কোন ভ‍্যালুর মান ১ করে বৃদ্ধি করার জন‍্য `++` এই চিহ্ন ব‍্যবহার করা হয়। (`++`) এটি *increment operator* এবং এই অপারেশনকে *Increment Operation* বলে।
+
+আবার ভ‍্যালুর মান ১ করে কমানোর জন‍্য `--` এই চিহ্ন ব‍্যবহার করা হয়। তখন (`--`) এটি হয় *decrement operator* এবং এই কাজটি *Decrement Operation*।
+
+**PHP** তে আমরা কোন ভ‍্যালুর মান দুইভাবে *increment* করতে পারি। ঠিক তেমনি দুইভাবে *decrement*-ও করতে পারি। টেবিলে নাম, উদাহরণ এবং কোনটির কি কাজ তার তালিকা টা দেখি:-
+
+#### List of Increment/Decrement Operators{#increment-decrement-operator-list}
 
 | Example | Name           | Effect                                 |
 |---------|----------------|----------------------------------------|
-| ++$a    | Pre-increment  | Increments $a by one, then returns $a. |
-| $a++    | Post-increment | Returns $a, then increments $a by one. |
-| --$a    | Pre-decrement  | Decrements $a by one, then returns $a. |
-| $a--    | Post-decrement | Returns $a, then decrements $a by one. |
+| `++$a`  | Pre-increment  | Increments $a by one, then returns $a. |
+| `$a++`  | Post-increment | Returns $a, then increments $a by one. |
+| `--$a`  | Pre-decrement  | Decrements $a by one, then returns $a. |
+| `$a--`  | Post-decrement | Returns $a, then decrements $a by one. |
 
-কিছু উদাহরনঃ
+কিছু উদাহরন দেখি:-
 
 ```php
 <?php
 echo 'Post-increment:', PHP_EOL;
 $a = 5;
-var_dump($a++);
-var_dump($a);
+var_dump($a++);     // prints 5
+var_dump($a);       // prints 6
 
 echo 'Pre-increment:', PHP_EOL;
 $a = 5;
-var_dump(++$a);
-var_dump($a);
+var_dump(++$a);      // prints 6
+var_dump($a);       // prints 6
 
 echo 'Post-decrement:', PHP_EOL;
 $a = 5;
-var_dump($a--);
-var_dump($a);
+var_dump($a--);     // prints 5
+var_dump($a);       // prints 4
 
 echo 'Pre-decrement:', PHP_EOL;
 $a = 5;
-var_dump(--$a);
-var_dump($a);
+var_dump(--$a);     // prints 4
+var_dump($a);       // prints 4
 ```
+
+**সতর্কবার্তা:—**
+>
+> বুলিয়ান টাইপের ভ্যালুতে *Increment/Decrement Operation* এর ফলে কোন প্রভাব পড়েনা। তেমনিভাবে *null* টাইপের ভ্যালুতেও *Decrement Operation* এর ফলে কোন প্রভাব পড়েনা।
+>
+>তবে **PHP 8.3.0** ভার্সন থেকে এমন ক্ষেত্রগুলোতে ***E_WARNING*** রিপোর্ট করবে। কারণ ভবিষ্যতে এই ২টি ডাটা টাইপে এজাতীয় *Operation* কে বৈধতা দিতে নির্দিষ্ট ভ্যালুকে টাইপ কাস্ট করে ইন্টিজারে কনভার্ট করার পরিকল্পনা চলছে।
+>
+> *non- numeric string* এর উপরও *Decrement Operation* এর কোন প্রভাব পড়েনা। **PHP 8.3.0** থেকে এই ক্ষেত্রে ***E_WARNING*** রিপোর্ট করবে। ভবিষ্যতে এমন কর্মকাণ্ড ***TypeError*** থ্রো করবে।
 
 PERL string increment example
 
