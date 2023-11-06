@@ -401,37 +401,49 @@ echo $number, " ", $number2; // outputs: 20, 2
 
 আবার ভ‍্যালুর মান ১ করে কমানোর জন‍্য `--` এই চিহ্ন ব‍্যবহার করা হয়। তখন (`--`) এটি হয় *decrement operator* এবং এই কাজটি *Decrement Operation*।
 
+**PHP** তে আমরা কোন ভ‍্যালুর মান দুইভাবে *increment* করতে পারি। ঠিক তেমনি দুইভাবে *decrement*-ও করতে পারি। টেবিলে নাম, উদাহরণ এবং কোনটির কি কাজ তার তালিকা টা দেখি:-
+
+#### List of Increment/Decrement Operators{#increment-decrement-operator-list}
+
 | Example | Name           | Effect                                 |
 |---------|----------------|----------------------------------------|
-| ++$a    | Pre-increment  | Increments $a by one, then returns $a. |
-| $a++    | Post-increment | Returns $a, then increments $a by one. |
-| --$a    | Pre-decrement  | Decrements $a by one, then returns $a. |
-| $a--    | Post-decrement | Returns $a, then decrements $a by one. |
+| `++$a`  | Pre-increment  | Increments $a by one, then returns $a. |
+| `$a++`  | Post-increment | Returns $a, then increments $a by one. |
+| `--$a`  | Pre-decrement  | Decrements $a by one, then returns $a. |
+| `$a--`  | Post-decrement | Returns $a, then decrements $a by one. |
 
-কিছু উদাহরনঃ
+কিছু উদাহরন দেখি:-
 
 ```php
 <?php
 echo 'Post-increment:', PHP_EOL;
 $a = 5;
-var_dump($a++);
-var_dump($a);
+var_dump($a++);     // prints 5
+var_dump($a);       // prints 6
 
 echo 'Pre-increment:', PHP_EOL;
 $a = 5;
-var_dump(++$a);
-var_dump($a);
+var_dump(++$a);      // prints 6
+var_dump($a);       // prints 6
 
 echo 'Post-decrement:', PHP_EOL;
 $a = 5;
-var_dump($a--);
-var_dump($a);
+var_dump($a--);     // prints 5
+var_dump($a);       // prints 4
 
 echo 'Pre-decrement:', PHP_EOL;
 $a = 5;
-var_dump(--$a);
-var_dump($a);
+var_dump(--$a);     // prints 4
+var_dump($a);       // prints 4
 ```
+
+**সতর্কবার্তা:—**
+>
+> বুলিয়ান টাইপের ভ্যালুতে *Increment/Decrement Operation* এর ফলে কোন প্রভাব পড়েনা। তেমনিভাবে *null* টাইপের ভ্যালুতেও *Decrement Operation* এর ফলে কোন প্রভাব পড়েনা।
+>
+>তবে **PHP 8.3.0** ভার্সন থেকে এমন ক্ষেত্রগুলোতে ***E_WARNING*** রিপোর্ট করবে। কারণ ভবিষ্যতে এই ২টি ডাটা টাইপে এজাতীয় *Operation* কে বৈধতা দিতে নির্দিষ্ট ভ্যালুকে টাইপ কাস্ট করে ইন্টিজারে কনভার্ট করার পরিকল্পনা চলছে।
+>
+> *non- numeric string* এর উপরও *Decrement Operation* এর কোন প্রভাব পড়েনা। **PHP 8.3.0** থেকে এই ক্ষেত্রে ***E_WARNING*** রিপোর্ট করবে। ভবিষ্যতে এমন কর্মকাণ্ড ***TypeError*** থ্রো করবে।
 
 PERL string increment example
 
