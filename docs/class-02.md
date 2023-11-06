@@ -395,7 +395,7 @@ echo $number, " ", $number2; // outputs: 20, 2
 |`$a % $b` | Modulo         | Remainder of $a divided by $b.                   |
 |`$a ** $b`| Exponentiation | Result of raising $a to the $b'th power.         |
 
-## Increment/Decrement Operators{##increment-decrement-operators}
+## Increment/Decrement Operators{#increment-decrement-operators}
 
 **PHP** তে কোন ভ‍্যালুর মান ১ করে বৃদ্ধি করার জন‍্য `++` এই চিহ্ন ব‍্যবহার করা হয়। (`++`) এটি *increment operator* এবং এই অপারেশনকে *Increment Operation* বলে।
 
