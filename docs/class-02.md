@@ -130,7 +130,7 @@ echo $number, " ", $number2;    // outputs: 20 30
 $number = 20;
 $number = $number - 10;
 
-echo $number; //output: 10
+echo $number;   //outputs: 10
 ```
 
 *subtraction assignment operator* এর উদাহরণ:-
@@ -141,7 +141,7 @@ echo $number; //output: 10
 $number = 20;
 $number -= 10;
 
-echo $number; //output: 10
+echo $number;   //outputs: 10
 ```
 
 *not assigned subtraction* *(not getting expected output)* এর উদাহরণ:-
@@ -152,7 +152,7 @@ echo $number; //output: 10
 $number = 20;
 $number - 10;
 
-echo $number; //output: 20
+echo $number;   //outputs: 20
 ```
 
 *assigned subtraction* *(for getting expected output)* এর উদাহরণ:-
@@ -163,12 +163,12 @@ echo $number; //output: 20
 $number = 20;
 $number2 = $number - 10;
 
-echo $number, " ", $number2; // output: 20, 10
+echo $number, " ", $number2;    // outputs: 20, 10
 ```
 
 ### Multiplication (গুন করা) {#multiplication}
 
-স্বাধারণ অংকের মতই গুণচিহ্ন (*) বা মাল্টিপ্লাই অপারেটর দিয়ে **PHP** তে গুণ করা খুবই সহজ। বাকি যোগ-বিয়োগের টপিকে যে বিষয়গুলো আমরা আলোচনা করেছি তার সবগুলো এখানেও প্রয়োগ হবে। আমরা উদাহরণ দেখতে পারি।
+স্বাধারণ অংকের মতই গুণচিহ্ন `(*)` বা *multiplication operator* দিয়ে **PHP** তে গুণ করা খুবই সহজ। বাকি যোগ-বিয়োগের টপিকে যে বিষয়গুলো আমরা আলোচনা করেছি তার সবগুলো এখানেও প্রয়োগ হবে। আমরা উদাহরণ দেখতে পারি।
 
 ```php
 <?php
@@ -195,73 +195,75 @@ echo $x;    // outputs: 200
 $number = 20;
 $number = $number * 10;
 
-echo $number; //output: 200
+echo $number;   //output: 200
 
 // multiplication assignment operator
 $number = 20;
 $number *= 10;
 
-echo $number; //output: 200
+echo $number;   //outputs: 200
 
 // not assigned multiplication (not getting expected output)
 $number = 20;
 $number * 10;
 
-echo $number; //output: 20
+echo $number;   //outputs: 20
 
 // assigned multiplication (for getting expected output)
 $number = 20;
 $number2 = $number * 10;
 
-echo $number, " ", $number2; // output: 20, 200
+echo $number, " ", $number2;    // outputs: 20, 200
 ```
 
-### PHP Math (ভাগ করা)
+### Division (ভাগ করা) {#division}
 
-PHP তে আমরা খুব সহজেই ভাগ করতে পারি। ধরেন আপনার একটা ভ‍্যারিয়েবল আছে $number = 20; এখন আপনি এর সাথে 10 ভাগ করতে চাচ্ছেন।
-তাহলে আপনি নিচের মতো করে করতে পারেন।
+**PHP** তে ভাগ করার প্রসেসটাও খুবই সহজ। ভাগচিহ্ন `(/)` বা *division operator* ব্যবহার করতে হয়। বাকি সবকিছু আগের মতই।
 
 ```php
 <?php
 
+// divide two numbers
+$x = 50 / 5;
+echo $x;    // outputs: 10
+
+// divide two number contanied variables
+$a = 50;
+$b = 5;
+$x = $a / $b;
+
+echo $x;    // outputs: 10
+
+// divide with expression
+$a = 2;
+$b = 10;
+$x = (200 / $a) / $b;
+
+echo $x;    // outputs: 10
+
+// division assignment
 $number = 20;
 $number = $number / 10;
 
-echo $number; //output: 2
-```
+echo $number;   //outputs: 2
 
-এছাড়াও আপনি আরেক ভাবে করতে পারেন
-
-```php
-<?php
-
+// division assignment operator
 $number = 20;
 $number /= 10;
 
-echo $number; //output: 2
-```
+echo $number;   //outputs: 2
 
-আপনি যদি একটা বিষয় একটু খেয়াল করেন, নিচের কোডটি দেখেন
-
-```php
-<?php
-
+// not assigned division (not getting expected output)
 $number = 20;
 $number / 10;
 
-echo $number; //output: 20
-```
+echo $number;   //outputs: 20
 
-এখানে আমরা ২ নম্বর লাইনে $number এর সাথে ১০ ভাগ করেছি। এটা কিন্তু ঠিকই ভাগ হয়েছে। কিন্তু আমরা এটাকে কোথাও এসাইন করি
-নাই। তাই যেহেতু এসাইন করি নাই তাই এর আউটপুট দেখাচ্ছে 20। নিচের কোডটি দেখলে বিষয়টি আরো ক্লিয়ার হবে আশা করছি
-
-```php
-<?php
-
+// assigned division (for getting expected output)
 $number = 20;
 $number2 = $number / 10;
 
-echo $number, "\n", $number2; // output: 20, 2
+echo $number, " ", $number2; // outputs: 20, 2
 ```
 
 ## PHP Math (ভাগশেষ বাহির করা)
