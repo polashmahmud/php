@@ -99,7 +99,30 @@ echo $number, " ", $number2;    // outputs: 20 30
 
 ### ‍Subtraction (বিয়োগ করা)
 
-PHP তে বিয়োগ করাও খুব সহজ। ধরেন আপনার একটা ভ‍্যারিয়েবল আছে $number = 20; এখন আপনি এর সাথে 10 বিয়োগ করতে চাচ্ছেন। তাহলে আপনি নিচের মতো করে করতে পারেন।
+**PHP** তে বিয়োগ করাও খুব সহজ। সবকিছু হুবহু যোগ করার মতই। তাই যোগ করার টপিকে যা যা বলা হয়েছে সবকিছুই এখানেও প্রয়োগ হবে। তবে পার্থক্য হল, বিয়োগ করতে বিয়োগচিহ্ন `(-)` বা মাইনাাস অপারেটর ব্যবহার করতে হয়। উদাহরণগুলো দেখুন:—
+
+>```php
+><?php
+>
+> // subtract number from number
+>$x = 10 - 5;
+>echo $x;    // outputs: 5
+>
+> // subtract number contanied variable from another
+>$a = 10;
+>$b = 5;
+>$x = $a - $b;
+>
+>echo $x;    // outputs: 5
+>
+> // subtract with expression
+>$a = 10;
+>$b = 10;
+>$x = (40 - $a) - $b;
+>
+>echo $x;    // outputs: 20
+
+*subtraction assignment* এর উদাহরণ:-
 
 ```php
 <?php
@@ -110,7 +133,7 @@ $number = $number - 10;
 echo $number; //output: 10
 ```
 
-এছাড়াও আপনি আরেক ভাবে করতে পারেন
+*subtraction assignment operator* এর উদাহরণ:-
 
 ```php
 <?php
@@ -121,7 +144,7 @@ $number -= 10;
 echo $number; //output: 10
 ```
 
-আপনি যদি একটা বিষয় একটু খেয়াল করেন, নিচের কোডটি দেখেন
+*not assigned subtraction* *(not getting expected output)* এর উদাহরণ:-
 
 ```php
 <?php
@@ -132,8 +155,7 @@ $number - 10;
 echo $number; //output: 20
 ```
 
-এখানে আমরা ২ নম্বর লাইনে $number এর সাথে ১০ বিয়োগ করেছি। এটা কিন্তু ঠিকই বিয়োগ হয়েছে। কিন্তু আমরা এটাকে কোথাও এসাইন
-করি নাই। তাই যেহেতু এসাইন করি নাই তাই এর আউটপুট দেখাচ্ছে 20। নিচের কোডটি দেখলে বিষয়টি আরো ক্লিয়ার হবে আশা করছি
+*assigned subtraction* *(for getting expected output)* এর উদাহরণ:-
 
 ```php
 <?php
