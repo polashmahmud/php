@@ -266,7 +266,27 @@ $number2 = $number / 10;
 echo $number, " ", $number2; // outputs: 20, 2
 ```
 
-## PHP Math (ভাগশেষ বাহির করা)
+> **PHP** তে *division operator* `(/)` দিয়ে ভাগ করার পর ভাগফলটির ডাটা টাইপ সাধারণত `(float)` হয়।
+>
+> ```php
+> <?php
+>
+> $result = 10 / 3; // This results in 3.33... (a float)
+>echo $result; // This would output 3.3333333333333
+> ```
+>
+>তবে যদি *two operands* (ভাজ্য ও ভাজক) উভয়টিই *integer* হয় এবং ভাগফলও পূর্ণসংখা তথা (*integer*) হয়, তখন তার ডাটা টাইপ ইন্টিজারই হবে।
+>
+> ```php
+> <?php
+>
+> $result = 10 / 2;  // This results in 5 (an integer)
+>echo $result; // This would output 5
+> ```
+>
+> অবশ্য [`intdiv()`](https://www.php.net/manual/en/function.intdiv.php) ফাংশনের সাহায্যে সকল ফ্লোট ডাটাকে ইন্টিজারে কনভার্ট করা যায়।
+
+### PHP Math (ভাগশেষ বাহির করা)
 
 পিএইচপিতে ভাগশেষ বাহির করবার জন‍্য % (মডুলাস) ব‍্যবহার করা হয়
 
