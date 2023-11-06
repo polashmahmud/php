@@ -286,56 +286,68 @@ echo $number, " ", $number2; // outputs: 20, 2
 >
 > অবশ্য [`intdiv()`](https://www.php.net/manual/en/function.intdiv.php) ফাংশনের সাহায্যে সকল ফ্লোট ডাটাকে ইন্টিজারে কনভার্ট করা যায়।
 
-### PHP Math (ভাগশেষ বাহির করা)
+### Remainder (ভাগশেষ বাহির করা){#remainder}
 
-পিএইচপিতে ভাগশেষ বাহির করবার জন‍্য % (মডুলাস) ব‍্যবহার করা হয়
-
-PHP তে খুব সহজেই ভাগশেষ বাহির করা যায়। ধরেন আপনার একটা ভ‍্যারিয়েবল আছে $number = 20; এখন আপনি একে 3 দিয়ে ভাগ করতে
-চাচ্ছেন, এবং ভাগ দেবার পর যে ভাগশেষ থাকবে তা বাহির করতে চাচ্ছেন। তাহলে % এটা ব‍্যবহার করা হয়।
+**PHP** তে খুব সহজেই ভাগশেষ বের করা যায়। ভাগশেষ বের করার জন‍্য ভাগশেষ চিহ্ন `(%)` বা (*modulus operator*) ব‍্যবহার করা হয়। বাকি সকল প্রসেস আমরা আগেই দেখে এসেছি। আসুন উদাহরণ দেখি:—
 
 ```php
 <?php
 
+// modulo operation between two numbers
+$x = 50 % 4;
+echo $x;    // outputs: 2
+
+// modulo operation between two number contanied variables
+$a = 50;
+$b = 4;
+$x = $a % $b;
+
+echo $x;    // outputs: 10
+
+// modulo operation with expression
+$a = 7;
+$b = 3;
+$x = (200 % $a) % $b;   // results (200 % 7) = (4) % 3 = 1
+
+echo $x;    // outputs: 1
+
+// modulus assignment
 $number = 20;
 $number = $number % 3;
 
-echo $number; //output: 2
-```
+echo $number;   //outputs: 2
 
-এছাড়াও আপনি আরেক ভাবে করতে পারেন
-
-```php
-<?php
-
+// modulus assignment operator
 $number = 20;
-$number /= 3;
+$number %= 3;
 
-echo $number; //output: 2
-```
+echo $number;   //outputs: 2
 
-আপনি যদি একটা বিষয় একটু খেয়াল করেন, নিচের কোডটি দেখেন
-
-```php
-<?php
-
+// not assigned modulo operation (not getting expected output)
 $number = 20;
 $number % 10;
 
-echo $number; //output: 20
-```
+echo $number;   //outputs: 20
 
-এখানে আমরা ২ নম্বর লাইনে $number এর সাথে ১০ ভাগশেষ বাহির করবার জন‍্য ব‍্যবহার করেছি। এটা কিন্তু ঠিকই ভাগশেষ বাহির করেছে।
-কিন্তু আমরা এটাকে কোথাও এসাইন করি নাই। তাই যেহেতু এসাইন করি নাই তাই এর আউটপুট দেখাচ্ছে 20। নিচের কোডটি দেখলে বিষয়টি
-আরো ক্লিয়ার হবে আশা করছি
-
-```php
-<?php
-
+// assigned modulo operation (for getting expected output)
 $number = 20;
-$number2 = $number % 10;
+$number2 = $number % 3;
 
-echo $number, "\n", $number2; // output: 20, 0
+echo $number, " ", $number2; // outputs: 20, 2
 ```
+
+> *modulo operation* চলার পূর্বে **PHP** ভাজ্য এবং ভাজককে ইন্টিজার ডাটা টাইপে কনভার্ট করে নেয়; অর্থাৎ ভাজ্য বা ভাজকের কোন একটা যদি ফ্লোট ভ্যালু হয় **PHP** তাকে প্রথমে ইন্টিজার ভ্যালুতে কনভার্ট করে অতঃপর অপারেশন চালায়। আপনি যদি ফ্লোট ভ্যালুকে ফ্লোটই রাখতে চান, [`fmod()`](https://www.php.net/manual/en/function.fmod.php) ফাংশনের ব্যবহার দেখুন।
+>
+> *modulo operation* এর রেজাল্ট তথা ভাগশেষ সবসময় ভাজ্যের *(dividend)* সাইন গ্রহণ করবে; অর্থাৎ `$a % $b` এর ভেতরকার অপারেশনের ফলাফল-মান `$a` ভ্যারিয়েবলের মান ধারণ করবে। সুতরাং `$a` ভাজ্য পজিটিভ সংখ্যা হলে ভাগশেষ তথা ফলাফল পজিটিভ হবে, নেগেটিভ হলে নেগেটিভ। যেমন:-
+>
+> ```php
+><?php
+>
+>echo (5 % 3)."\n";           // prints 2
+>echo (5 % -3)."\n";          // prints 2
+>echo (-5 % 3)."\n";          // prints -2
+>echo (-5 % -3)."\n";         // prints -2
+>```
 
 ## Arithmetic Operators
 
