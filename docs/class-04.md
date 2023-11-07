@@ -171,6 +171,19 @@ echo makecoffee(array("cappuccino", "lavazza"), "teapot");
 Making a cup of cappuccino with hands.
 Making a cup of cappuccino, lavazza with teapot.
 ```
+এখানে join একটি অ্যারের উপাদান থেকে একটি স্ট্রিং প্রদান করে।
+
+```php
+$a = [ 'a', 'b','c'];
+
+echo join("=", $a);
+```
+
+আউটপুট:
+
+```php
+a=b=c
+```
 
 ## PHP Functions - Returning values
 
