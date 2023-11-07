@@ -572,13 +572,13 @@ echo pow(-1, 5.5); // NAN
 
 ### is_finite() Function
 
-এবার আসুন একটি সংখ্যা ফাইনাইট/সসীম নাকি ইনফিনিট/অসীম এ সম্পর্কে ২টি ফাংশন দেখি।
+এবার আসুন একটি সংখ্যা ফাইনাইট/সসীম নাকি ইনফিনিট/অসীম এ সম্পর্কে ২টি ফাংশন দেখি। ফাইনাইট সংখ্যা কি সেটা যদি জানা না থাকে তাহলে এই [আর্টিকেলটি](https://www.mathsisfun.com/definitions/finite-number.html) পড়ুন বা গুগল করুন।
 
 যদি জানতে চাই একটা সংখ্যা ফাইনাইট/সসীম কিনা তাহলে আমরা [`is_finite()`](https://www.php.net/manual/en/function.is-finite.php) ব্যবহার করতে পারি। এই ফাংশনটি চেক করে দেখে তাকে ইনপুট দেয়া ফ্লোট নাম্বারটি ফাইনাইট বা সসীম কিনা। মনে রাখবেন, একটি ফাইনাইট ফ্লোট নাম্বার যেমনিভাবে ইনফিনিট বা অসীম নয়, তেমনি সেটি `NAN` টাইপেরও নয়। অর্থাৎ সেটা একটা সসীম ফ্লোট সংখ্যাই হবে। অন্যকিছু নয়। আর হলে সেটা সসীম ফ্লোট সংখ্যাই নয়।
 
 প্যারামিটার হিসেবে ফাংশনটি ১টি ফ্লোট নাম্বার প্রত্যাশা করে।
 
-ফাংশন থেকে প্রাপ্ত রেজাল্ট যদি `NAN, INF, -INF` না হয়, তাহলে *true* রিটার্ন করবে। অন্যথায় *false* করবে।
+ফাংশন থেকে প্রাপ্ত রেজাল্ট যদি `NAN, INF, -INF` না হয়, তাহলে *true* রিটার্ন করে। অন্যথায় *false* রিটার্ন করে।
 
 ```php
 <?php
@@ -611,15 +611,35 @@ bool(false)
 
 ### is_infinite() Function
 
-এটা দিয়ে আপনি কোনো সংখ্যা ইনফিনিটি/অসীম কিনা চেক করতে পারবেন
+এবার জানব [`is_infinite()`](https://www.php.net/manual/en/function.is-infinite.php) ফাংশন নিয়ে। এটা দিয়ে আমরা কোনো ফ্লোট সংখ্যা ইনফিনিট/অসীম কিনা তা চেক করতে পারব। ইনফিনিট কি তা জানতে [আর্টিকেলটি](infinite) পড়ুন, গুগল করুন।
+
+ফাংশনটি ফ্লোট নাম্বার প্রত্যাশা করে। প্রাপ্ত রেজাল্ট `INF, -INF` মানে ইনফিনিটি বা অসীম হলে *true* রিটার্ন করে। অন্যথায় *false* রিটার্ন করে।
 
 ```php
 <?php
-    echo(is_infinite(20)); // returns nothing
-    echo(is_infinite(log(0))) // returns 1
+
+var_dump(is_infinite(20));
+var_dump(is_infinite(log(0)));
+
+$inf = 1e308 * 2;
+var_dump($inf, is_infinite($inf));
+
+$negative_inf = -$inf;
+var_dump($negative_inf, is_infinite($negative_inf));
 ```
 
-### PHP is_nan() Function
+The above example will output:
+
+```bash
+bool(false)
+bool(true)
+float(INF)
+bool(true)
+float(-INF)
+bool(true)
+```
+
+### is_nan() Function
 
 এটা দিয়ে আপনি কোনো সংখ্যা নট-এ-নাম্বার কিনা চেক করতে পারবেন
 
