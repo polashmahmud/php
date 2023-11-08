@@ -1,4 +1,4 @@
-# ফাংশনাল পিএইচপি এবং স্কোপ (Scope) পরিচিতি
+# ফাংশনাল পিএইচপি এবং স্কোপ (Scope) পরিচিতি{#understanding-functional-php-and-scope}
 
 ## PHP Functions
 
