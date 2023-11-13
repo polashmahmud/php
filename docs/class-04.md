@@ -207,6 +207,8 @@ function functionName($parameter1, $parameter2, $parameter3) {
 }
 ```
 
+খেয়াল করার বিষয় হল, আপনি ফাংশনে প্যারামিটার সেট করলে এবং তার কোন [ডিফল্ট ভ্যালু এসাইন না করলে](#default-argument-value) ফাংশন কল করার সময় আর্গুমেন্ট আকারে প্যারামিটারের ভ্যালু অবশ্যই প্রদান করতে হবে। কারণ তখন প্যারামিটারগুলো ফাংশনের জন্য *required arguments* হিসেবে বিবেচিত হয়। আর্গুমেন্ট আকারে ভ্যালু প্রদান না করলে এরর পাবেন।
+
 **এবার আসুন জানার চেষ্টা করি ফাংশন আর্গুমেন্ট কি।**
 
 ফাংশন প্যারামিটারের কনসেপ্ট টা যদি বুঝে থাকেন তাহলে আর্গুমেন্ট আপনি হয়তো ইতিমধ্যেই বুঝে গেছেন। তবুও আরো পরিষ্কারভাবে বুঝতে চাইলে বলব, ফাংশনে আমরা তো প্যারামিটার সেট করেছি। যে আমাদের পাঠানো ভ্যালুগুলো ভ্যারিয়েবলের মত হোল্ড করবে। এখন ভ্যালুগুলো পাঠাবেন কি করে? উত্তর হল, আর্গুমেন্টের সাহায্যে বা বলতে পারি ফাংশনে আপনি যেকোন ভ্যালু শুধুমাত্র আর্গুমেন্টের মাধ্যমেই পাঠাতে পারবেন।
@@ -378,11 +380,13 @@ PHP Fatal error:  Uncaught TypeError: addNumbers(): Argument #2 ($b) must be of 
 
 শুধুমাত্র হিন্ট দেয়া ছাড়া সেক্ষেত্রে আর তেমন উপকারিতা নেই। অর্থাৎ তখন আপনি নিজেকে এবং অন্য ডেভলপারদের এক ধরণের হিন্ট দিচ্ছেন যে কি ধরণের ডাটা আসলে ফাংশনে তাদের পাস করা উচিত। এইজন্য একে টাইপ হিন্টিংও বলা হয়। এর বেশি তেমন কোন উপকারিতা নেই।
 
-আচ্ছা, উপরের উদাহরণগুলোতে দেখতে পেয়েছেন যে আর্গুমেন্টের মাধ্যমে আমরা ফাংশনে আমাদের ডিরেক্ট ডাটা বা ভ্যালুগুলো পাস করি। হতে পারে সেটা হার্ডকোডেড বা ভ্যারিয়েবলে ভেতর থাকা কোন ভ্যালু। এই ডাটা বা ভ্যালুগুলো ফাংশনের ভেতর *by value* আকারে পাস হয়। ফলে ফাংশনের ভেতরে ভ্যালুর চেঞ্জ হলে পরিবর্তনটা ফাংশনের ভেতরেই দেখা যায়। ফাংশনের বাইরে ঐ ভ্যালুর কোন পরিবর্তন দেখা যায়না। এটা ফাংশনে ভ্যালু পাস করার ডিফল্ট পদ্ধতি। এছাড়াও *passing by reference*, *default argument values*, *Variable-length argument lists* বা আনলিমিটেড আর্গুমেন্ট পাস করা এবং *Named Arguments* ইত্যাদির মাধ্যমেও ফাংশনে ভ্যালু পাস করা যায়। পরবর্তীতে আমরা একে একে সব জানব।
+আচ্ছা, উপরের উদাহরণগুলোতে দেখতে পেয়েছেন যে আর্গুমেন্টের মাধ্যমে আমরা ফাংশনে আমাদের ডিরেক্ট ডাটা বা ভ্যালুগুলো পাস করি। হতে পারে সেটা হার্ডকোডেড বা ভ্যারিয়েবলে ভেতর থাকা কোন ভ্যালু। এই ডাটা বা ভ্যালুগুলো ফাংশনের ভেতর *by value* আকারে পাস হয়। ফলে ফাংশনের ভেতরে ভ্যালুর চেঞ্জ হলে পরিবর্তনটা ফাংশনের ভেতরেই দেখা যায়। ফাংশনের বাইরে ঐ ভ্যালুর কোন পরিবর্তন দেখা যায়না। এটা ফাংশনে ভ্যালু পাস করার ডিফল্ট পদ্ধতি। এছাড়াও [*passing by reference*](#passing-arguments-by-reference), *default argument values*, *Variable-length argument lists* বা আনলিমিটেড আর্গুমেন্ট পাস করা এবং *Named Arguments* ইত্যাদির মাধ্যমেও ফাংশনে ভ্যালু পাস করা যায়। পরবর্তীতে আমরা একে একে সব জানব।
 
 ## Passing Arguments by Reference
 
-আমরা চাইলে ফাংশনে রেফারেন্স ভ্যালুও পাস করতে পারি। সেক্ষেত্রে আর্গুমেন্টে আমাদের ভ্যালু হোল্ড করা কোন ভ্যারিয়েবল পাস করতে হয়। ফলে যখন ফাংশনের ভেতর ভ্যালু চেঞ্জ হয়, তখন ঐ রেফার করা ভ্যারিয়েবল - ফাংশনের ভেতরে বা বাহিরে তথা স্ক্রিপ্টের যেখানেই থাকুক - তার ভ্যালুও চেঞ্জ হয়ে যায়। এই কনসেপ্টটা বুঝতে হলে প্রথম ক্লাসের [ভ্যারিয়েবল assigned by reference](https://php.polashmahmud.com/class-01.html#assigned-by-reference-variable-%E0%A6%9F%E0%A6%BE-%E0%A6%95%E0%A6%BF) টা আপনাকে বুঝতে হবে। কারণ, ঐ একই প্রক্রিয়া এখানেও ফলো করা হয়। উদাহরণ দেখুন:-
+আমরা চাইলে ফাংশনে রেফারেন্স ভ্যালুও পাস করতে পারি। সেক্ষেত্রে আর্গুমেন্টে আমাদের ভ্যালু হোল্ড করা কোন ভ্যারিয়েবল পাস করতে হয়। ফলে যখন ফাংশনের ভেতর ভ্যালু চেঞ্জ হয়, তখন ঐ রেফার করা ভ্যারিয়েবল - ফাংশনের ভেতরে বা বাহিরে তথা স্ক্রিপ্টের যেখানেই থাকুক - তার ভ্যালুও চেঞ্জ হয়ে যায়। এটি ইম্প্লিমেন্ট করতে হলে ফাংশন প্যারামিটার সেট করার সময় প্যারামিটার নামের আগে একটি `&` বা *Ampersand Sign* বসাতে হয়।
+
+এই কনসেপ্টটা বুঝতে হলে প্রথম ক্লাসের [ভ্যারিয়েবল assigned by reference](https://php.polashmahmud.com/class-01.html#assigned-by-reference-variable-%E0%A6%9F%E0%A6%BE-%E0%A6%95%E0%A6%BF) টা আপনাকে বুঝতে হবে। কারণ, ঐ একই প্রক্রিয়া এখানেও ফলো করা হয়। উদাহরণ দেখুন:-
 
 ```php
 <?php
@@ -404,56 +408,228 @@ echo $num;
 
 ## Default Argument Value
 
-আপনি চাইলে ফাংশনের প‍্যারামিটারের ডিফল্ট ভ‍্যালু সেট করে রাখতে পারবেন। 
+ফাংশনে ভ্যালু পাবার আরো একটি পদ্ধতি হল প‍্যারামিটারের ডিফল্ট ভ‍্যালু সেট করে রাখা।
+
+প্যারামিটারের পরিচয়ে আমরা বলেছি প্যারামিটার ভ্যারিয়েবলের মত। তাই এর বিহেভিয়ারও ভ্যারিয়েবলের মত। যেমনিভাবে *uninitialized variable* এর কনসেপ্ট আমরা দেখেছি ঠিক তেমনি যখন কোন ভ্যালু এসাইন না করে আমরা ফাংশন প্যারামিটার সেট করি তখন সেটা তো *uninitialized variable* এর মতই তাইনা। পরবর্তীতে ফাংশন কল করতে আর্গুমেন্ট হিসেবে আমরা যে ভ্যালু পাস করি যা মূলত প‍্যারামিটারের ভ্যালু হিসেবে সেট হয়, সেটা তো পরের বিষয়।
+
+এখন যেহেতু বলেছি ভ্যারিয়েবলের মত বিহেভ করবে এইজন্য আপনি চাইলে *value initialized variable* এর মত ফাংশন তৈরির সময় প‍্যারামিটারেরও *value initialize* করতে পারেন। এইটা করতে যেভাবে কোন ভ্যারিয়েবলের ভ্যালু এসাইন করেন ঠিক সেভাবেই প্যারামিটার নামের পর `=` (*Assignment Operator*) দিয়ে তারপর ভ্যালু ইনিশিয়ালাইজ করতে পারেন। একে ফাংশনের ভাষায় প্যারামিটার/আর্গুমেন্টের ডিফল্ট ভ্যালু সেট করা বলে।
+
+এর সুবিধা হল, আপনি যদি ফাংশন কল করার সময় এক বা একাধিক আর্গুমেন্টে কোন ভ্যালু প্রদান না করেন তখন ঐ পার্টিকুলার আর্গুমেন্টের জন্য যে ডিফল্ট ভ্যালু প্যারামিটারে সেট করে রাখা আছে ফাংশনের ভেতর সেটা এভেলেবল হবে। আর যদি ভ্যালু আপনি পাস করে দেন তখন ডিফল্ট ভ্যালু চেঞ্জ হয়ে আপনার দেয়া ভ্যালুটা প্যারামিটার ভ্যালু হিসেবে সেট হবে এবং সেই ভ্যালুটা ফাংশনের ভেতর এভেলেবল হবে।
+
+মনে আছে, ভ্যারিয়েবলের ভ্যালু ভ্যারি করে বা পরিবর্তন হয়। প্যারামিটারেও তাই ঘটে। ডিফল্ট ভ্যালু সেট করা থাকলে প্যারামিটারের ভ্যালু হিসেবে তাকে গণ্য করা হয় যখন আর্গুমেন্টে ভ্যালু পাস না করা হয়। আর্গুমেন্টে ভ্যালু পাস করা হলে প্যারামিটারের ভ্যালু চেঞ্জ হয়ে পাস করা ভ্যালুটা বসে যায়। উদাহরণ দেখি:-
 
 ```php
+<?php
 function makecoffee($type = "cappuccino")
 {
     return "Making a cup of $type.\n";
 }
-echo makecoffee();
-echo makecoffee(null);
-echo makecoffee("espresso");
+
+echo makecoffee(); // argument value not passed
+echo makecoffee(null); // it means $type = null
+echo makecoffee("espresso"); // it means $type = "espresso"
 ```
 
 আউটপুট:
 
-```php
+```
 Making a cup of cappuccino.
 Making a cup of .
 Making a cup of espresso.
 ```
-
+এখন প্যারামিটারে ডিফল্ট ভ্যালু হিসেবে —*scalar values*, *arrays*, *the special type `null`* এবং *as of **PHP 8.1.0**, objects using the [`new ClassName()`](https://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.new) syntax*— এগুলোও সেট করতে পারবেন। *scalar values* সেট করার উদাহরণ আগেই দেখেছি। এবার *arrays* সেট করার উদাহরণ দেখি:-
 
 ```php
+<?php
 function makecoffee($types = array("cappuccino"), $coffeeMaker = NULL)
 {
     $device = is_null($coffeeMaker) ? "hands" : $coffeeMaker;
     return "Making a cup of ".join(", ", $types)." with $device.\n";
 }
+
 echo makecoffee();
 echo makecoffee(array("cappuccino", "lavazza"), "teapot");
 ```
 
 আউটপুট:
 
-```php
+```
 Making a cup of cappuccino with hands.
 Making a cup of cappuccino, lavazza with teapot.
 ```
-এখানে join একটি অ্যারের উপাদান থেকে একটি স্ট্রিং প্রদান করে।
+*array* সম্পর্কে আমরা জানতে [পঞ্চম ক্লাস](https://php.polashmahmud.com/class-05.html) দেখুন। আপাতত কোড বুঝতে অসুবিধা হলে স্কিপ করে যান।
+
+উপরের উদাহরণে [`join()`](https://www.php.net/manual/en/function.join) ফাংশনের ব্যবহার জানতে [ম্যানুয়াল](https://www.php.net/manual/en/function.implode.php) পড়ুন।
+
+লক্ষ্যণীয় বিষয়, ডিফল্ট ভ্যালু অবশ্যই *constant expression* হতে হবে। ভ্যারিয়েবল, অন্য কোন ফাংশন কল অথবা অন্য কোন *class member* হতে পারবেনা।
+
+*required arguments* এর কথা মনে আছে? যখন প্যারামিটারের ডিফল্ট ভ্যালু সেট না করা হয় তখন সেটা *required arguments* হিসেবে বিবেচিত হয়। অর্থাৎ আপনি ফাংশন কল করবেন কিন্তু আর্গুমেন্ট পাস করবেন না এমনটা হতে পারবেনা। এরর পাবেন। কিন্তু উল্টো হল আপনি যখন ডিফল্ট ভ্যালু সেট করেন তখন ফাংশন কল করার সময় আর্গুমেন্ট পাস করা অপশনাল হয়ে যায়। একে *optional arguments* ও বলতে পারেন। এখন ভ্যালু পাস করলে ভালো, না পাস করলেও সমস্যা নাই। ফাংশন আগে থেকে সেট করা ডিফল্ট ভ্যালু ব্যবহার করবে।
+
+### required arguments এবং optional arguments কেন্দ্রিক সমস্যা
+
+তবে সমস্যা হল, আপনার ফাংশনে যদি *required arguments* এবং *optional arguments* দুটোই সেট করা হয় তখন কি হবে?
+
+সেক্ষেত্রে ফাংশন তৈরির সময় *optional arguments* গুলো *required arguments* এর পরে সেট করতে হবে। যদি উল্টোটা করেন এবং ভাবেন *optional arguments* এর ভ্যালুগুলো তো সেট করা আছে তাহলে ফাংশন কল করার সময় শুধু *required arguments* এর ভ্যালুগুলো দিব। এমনটা ভাবলে বড় ধরণের হোঁচট খাবেন।
+
+কেন? কারণ আপনি এমনটা ভাবলেও পিএইচপি এমনটা ভাবতে পারেনি। সে তার স্বভাব অনুযায়ী *required arguments* এর ভ্যালু তার নির্দিষ্ট সিরিয়ালে খুঁজতে থাকবে। আগে পরে কি আছে সেটা সে দেখবেনা। তাই নির্দিষ্ট সিরিয়ালে সে যদি কোন ভ্যালু না পায় তাহলে ধরে নেবে আপনি তার ভ্যালু প্রোভাইড করেননি এবং প্যারামিটার ফাংশন এক্সিকিউট হওয়ার পরও আন-ইনিশিয়ালাইজড অবস্থায় থাকতে পারেনা তাই আপনাকে এরর দেবে।
+
+উদাহরণ দেখুন:-
 
 ```php
-$a = [ 'a', 'b','c'];
-
-echo join("=", $a);
+<?php
+function makeyogurt($container = "bowl", $flavour)
+{
+    return "Making a $container of $flavour yogurt.\n";
+}
+ 
+// "raspberry" is $container, not $flavour. $flavour which is required
+// but value was not given
+echo makeyogurt("raspberry");
 ```
 
-আউটপুট:
+আউটপুট:-
+
+```
+Fatal error: Uncaught ArgumentCountError: Too few arguments
+to function makeyogurt(), 1 passed in example.php on line 42
+```
+
+এবার, নিচের উদাহরণের সাথে *compare* করুন:-
 
 ```php
-a=b=c
+<?php
+function makeyogurt($flavour, $container = "bowl")
+{
+    return "Making a $container of $flavour yogurt.\n";
+}
+ 
+// "raspberry" is $flavour, which is required argument and the value was set
+echo makeyogurt("raspberry");
 ```
+
+আউটপুট:-
+
+```
+Making a bowl of raspberry yogurt.
+```
+
+*As of **PHP 8.0.0***, আপনি *named arguments* ব্যবহার করে *multiple optional parameters* কে স্কিপ করতে পারেন। উদাহরণ:-
+
+```php
+<?php
+function makeyogurt($container = "bowl", $flavour = "raspberry", $style = "Greek")
+{
+    return "Making a $container of $flavour $style yogurt.\n";
+}
+
+echo makeyogurt(style: "natural");
+```
+
+আউটপুট:-
+
+```
+Making a bowl of raspberry natural yogurt.
+```
+
+[*named arguments*](https://www.php.net/manual/en/functions.arguments.php#functions.named-arguments) নিয়ে আমরা সামনে জানব।
+
+তবে *As of **PHP 8.0.0***, *required arguments* কে *optional arguments* এর পর ডিক্লেয়ার করাটা *deprecated* হয়ে গেছে। এর ফলে আপনি *optional arguments* গুলোতে যে ডিফল্ট ভ্যালু সেট করে রেখেছিলেন তা আর ভ্যালিড থাকবেনা। তখন এমন হবে যেন আপনি ডিফল্ট ভ্যালু সেটই করেন নাই। সবগুলোই তখন *required arguments* হয়ে যাবে। কারণ আপনার সেট করে দেয়া ডিফল্ট ভ্যালু তো কখনোই ব্যবহারের সুযোগ আসবেনা, তাইনা।
+
+এই নিয়মের ব্যতিক্রম হল, যদি আপনি ডিফল্ট ভ্যালু হিসেবে *null* সেট করেন, যেমন:- `$param = null`। এক্ষেত্রে প্যারামিটারটাই তখন *implicitly nullable* টাইপ হয়ে যায়। এই কারণে কিছুটা শিথিলতা তৈরি হয় বিধায় তখন *deprecation notice* দেয়া হয়না। কিন্তু প্যারামিটারটা তখনও *required arguments* হিসেবে বিবেচিত হয়। তবে উত্তম হল [*explicit nullable type*](https://www.php.net/manual/en/language.types.declarations.php#language.types.declarations.nullable) ব্যবহার করা। উদাহরণ দেখুন:-
+
+```php
+<?php
+function foo($a = [], $b) {} // Default not used; deprecated as of PHP 8.0.0
+function foo($a, $b) {}      // Functionally equivalent, no deprecation notice
+
+function bar(A $a = null, $b) {} // Still allowed; $a is required but nullable
+function bar(?A $a, $b) {}       // Recommended
+```
+
+আমরা তো ফাংশনে [ডাটা বা ভ্যালুর রেফারেন্সও](#passing-arguments-by-reference) পাঠাতে পারি তাইনা? এমন প্যারামিটারেও ডিফল্ট ভ্যালু সেট করা যাবে। যেমন:- `&$value = "value"`।
+
+## আনলিমিটেড আর্গুমেন্ট পাস করা
+
+ফাংশনে ভ্যালু পাস করার আরো একটি পন্থা হল, *Variable-length argument lists*। এর সাহায্যে আপনি যেমনিভাবে ফাংশনে আনলিমিটেড প্যারামিটার সেট করতে পারেন তেমনি আনলিমিটেড আর্গুমেন্ট পাস করতে পারেন।
+
+এইজন্য ফাংশন তৈরির সময় প্যারামিটার নামের পূর্বে `...` বা তিনটে ডট সাইন টোকেন ব্যবহার করতে হয়। একে [*spread operator*](https://wiki.php.net/rfc/spread_operator_for_array) ও বলে। এর ফলে বোঝানো হয় যে ফাংশনটি *variable number of arguments* গ্রহণ করার উপযোগী। এখন এই *variable number* এর যেহেতু কোন সীমা নাই তাই আপনি ফাংশনটিকে আনলিমিটেড আর্গুমেন্ট গ্রহণ করার উপযোগীও বলতে পারেন।
+
+মনে রাখবেন, এই *spread operator* এর সুবিধা শুধুমাত্র *arrays* এবং পিএইচপির [*Traversable*](https://www.php.net/manual/en/class.traversable.php) সিস্টেমকে ইম্প্লিমেন্ট করা *objects* গুলোই নিতে পারে। তাই ফাংশনে যে ভ্যালু পাস হবে তা আসলে এরে টাইপের ভ্যালু হবে নিঃসন্দেহে।
+
+*variable number of arguments* সেট করার উদাহরণ দেখুন:-
+
+```php
+<?php
+function sum(...$numbers) {
+  $total = 0;
+  foreach ($numbers as $n) {
+    $total += $n;
+  }
+  return $total;
+}
+
+echo sum(1, 2, 3, 4, 5); // 15
+```
+
+আউটপুট:-
+
+```
+10
+```
+
+আবার এভাবেও বলা যায়, *arrays* এবং পিএইচপির *Traversable* সিস্টেমকে ইম্প্লিমেন্ট করা *objects* গুলো ফাংশনে ভ্যালু আকারে পাসও করা যেতে পারে। *variable number of arguments* পাস করার উদাহরণ দেখুন:-
+
+```php
+<?php
+function add($a, $b) {
+    return $a + $b;
+}
+
+echo add(...[1, 2])."\n";
+
+$a = [1, 2];
+echo add(...$a);
+```
+
+আউটপুট:-
+
+```
+3
+3
+```
+
+আবার, আপনি কিন্তু *variable number of arguments* সেট করার আগে স্বাভাবিক *positional arguments* ও সেট করতে পারেন। কোন বাধা নেই। তবে এক্ষেত্রে ফাংশন কলে পাঠানো আর্গুমেন্টগুলোতে প্রথমে *positional arguments* এর সিরিয়াল বা পজিশন মেইনটেইন করা হবে। অতঃপর বাকি এক/একাধিক যত আর্গুমেন্ট থাকে সেগুলো *variable number of arguments* এর ভ্যালু হিসেবে বিবেচিত হবে।
+
+এমনিভাবে আপনি *variable number of arguments* এর টাইপ ডিক্লেয়ার করতে পারেন। সেক্ষেত্রে `...` টোকেনের আগে আপনি টাইপটা ডিক্লেয়ার করতে হবে এবং ডিক্লেয়ার করা হলে যতগুলো আর্গুমেন্ট এই ধারায় পড়বে সবগুলোকে অবশ্যই টাইপ ম্যাচ করতে হবে। অন্যথায় এরর হবে। উদাহরণ দেখুন:-
+
+```php
+<?php
+function total_intervals($unit, DateInterval ...$intervals) {
+    $time = 0;
+    foreach ($intervals as $interval) {
+        $time += $interval->$unit;
+    }
+    return $time;
+}
+
+$a = new DateInterval('P1D');
+$b = new DateInterval('P2D');
+echo total_intervals('d', $a, $b).' days';
+
+// This will fail, since null isn't a DateInterval object.
+echo total_intervals('d', null);
+```
+
+আউটপুট:-
+
+```
+3 days
+Catchable fatal error: Argument 2 passed to total_intervals() must be an instance of DateInterval, null given, called in - on line 14 and defined in - on line 2
+```
+
+এই উদাহরণটি পুরোপুরি বুঝতে হলে আপনাকে পিএইচপির *[DateInterval](https://www.php.net/manual/en/class.dateinterval) class* টা বুঝতে হবে।
+
+সবশেষে *variable arguments* এর এই সুবিধা *passed by reference* প্যারামিটারেও সেট করা যাবে। সেক্ষেত্রে *ampersand (&)* সাইনের আগে `...` এই টোকেনটি বসাতে হবে।
 
 ## PHP Functions - Returning values
 
@@ -535,21 +711,6 @@ require_once 'functions.php';
 echo sum(1, 2); // 3
 ```
 
-## আনলিমিটেড আর্গুমেন্ট পাস করা
-
-আপনি চাইলে ফাংশনে আনলিমিটেড আর্গুমেন্ট পাস করতে পারেন। 
-
-```php
-function sum(...$numbers) {
-  $total = 0;
-  foreach ($numbers as $n) {
-    $total += $n;
-  }
-  return $total;
-}
-
-echo sum(1, 2, 3, 4, 5); // 15
-```
 
 ## একটা বড় ফাংশনকে ছোট ছোট ফাংশনে ভাগ করা
 
