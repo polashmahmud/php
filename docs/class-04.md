@@ -631,13 +631,26 @@ Catchable fatal error: Argument 2 passed to total_intervals() must be an instanc
 
 সবশেষে *variable arguments* এর এই সুবিধা *passed by reference* প্যারামিটারেও সেট করা যাবে। সেক্ষেত্রে *ampersand (&)* সাইনের আগে `...` এই টোকেনটি বসাতে হবে।
 
-## ফাংশন প্যারামিটার/আর্গুমেন্টের নামকরণ {#Named-Arguments}
+## প্যারামিটার/আর্গুমেন্টের নামকরণ {#Named-Arguments}
 
 পিএইচপিতে ফাংশনের প্যারামিটার সেট করার সময় তার নামকরণও করা যায়। এই অতিরিক্ত ফিচারটি পিএইচপি 8.0.0 ইন্ট্রোডিউস করেছে। এই ফিচারটি ইন্ট্রোডিউস হওয়ায় আর্গুমেন্ট পাস করার যে সীমাবদ্ধতা আমরা ইতিপূর্বে আলোচনা করেছি তা দূর হয়ে গেছে।
 
 ফলস্বরূপ *positional parameters* এর যে কনসেপ্টটা আমরা দেখেছি, যার ফলে প্রতিটি পজিশন ধরে ধরে বা সিরিয়াল মেইনটেইন করে আর্গুমেন্ট পাস করার যে প্রয়োজনীয়তা দেখা দেয়, সেটার আর দরকার হয়না। এই ফিচারটি ইম্প্লিমেন্ট করে আপনি আর্গুমেন্টগুলোকে যেমনি *self-documenting* করে ফেলতে পারেন তেমনি যেখানে খুশি আর্গুমেন্ট পাস করার মত *order-independent* ও করে দিতে পারেন। তখন ইচ্ছামত আপনি যেকোন জায়গায় ডিফল্ট প্যারামিটার সেট করতে পারেন, তেমনি আর্গুমেন্টও পজিশন বা সিরিয়াল বজায় না রেখে পাস করতে পারেন।
 
 বিস্তারিত জানতে পিএইচপির [*Named-Arguments*](https://www.php.net/manual/en/functions.arguments.php#functions.named-arguments) নিয়ে আর্টিকেলটা পড়ুন।
+
+##### Named argument syntax
+
+উদাহরণ দেখি:-
+
+```php
+<?php
+myFunction(paramName: $value);
+array_foobar(array: $value);
+
+// NOT supported.
+function_name($variableStoringParamName: $value);
+```
 
 ## ফাংশনে ভ্যালু রিটার্ন করা কি এবং কেন?{#Functions-Returning-values}
 
