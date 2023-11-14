@@ -964,9 +964,10 @@ Variable x outside function is: 5
 
 ## `global` কিওয়ার্ডের ব্যবহার {#The-global-Keyword} 
 
-ফাংশনের মধ্যে গ্লোবাল ভ্যারিয়েবল ব্যবহার করতে পারেন। এটি করার জন‍্য [`global`](https://www.php.net/manual/en/language.variables.scope.php#language.variables.scope.global) কিওয়ার্ড ব্যবহার করতে হয়।
+ফাংশন বা লোকাল স্কোপের ভেতর গ্লোবাল ভ্যারিয়েবল এক্সেস করার প্রথম উপায় হল, [`global`](https://www.php.net/manual/en/language.variables.scope.php#language.variables.scope.global) কিওয়ার্ডের ব্যবহার। এজন্য ফাংশনের ভেতর গ্লোবাল যে ভ্যারিয়েবলগুলো এক্সেস বা ব্যবহার করার প্রয়োজন দেখা দেয় তার পূর্বে কিওয়ার্ডটি ব্যবহার করতে হবে। ফলে তখন ভ্যারিয়েবলগুলো গ্লোবাল স্কোপে রেফার হবে এবং সেখানে থাকা ভ্যালুগুলো এক্সেস করে ব্যবহার করবে। যেমন:-
 
 ```php
+<?php
 $x = 5;
 $y = 10;
 
@@ -980,7 +981,52 @@ myTest();
 echo $y; // outputs 15
 ```
 
+তবে যদি একই নামের ভ্যারিয়েবল লোকাল স্কোপেও থাকে তখন লোকাল ভ্যারিয়েবল প্রাধান্য পাবে। যেমন:-
+
+```php
+<?php
+$x = 5;
+$y = 10;
+
+function myTest()
+{
+    //$x = 15;  // don't use it here
+    global $x, $y; // as $x is overriden here
+
+    $x = 15;
+    $y = $x + $y;
+}
+
+myTest();
+
+echo $y; // outputs 25
+```
+
+তবে এভাবে গ্লোবাল ভ্যারিয়েবলকে এক্সেস করার ব্যবহার পরিহার করা উচিত। কারণ এতে এক্সিডেন্টালি কোডবেসের কোথাও ভ্যারিয়েবলের ভ্যালু পরিবর্তন করা হয়ে যেতে পারে। পরবর্তীতে যা ডিবাগ করে বের করা অসাধ্য সাধনের মত। তাই প্রাথমিকভাবেই সেফ থাকা উচিত।
+
+একটি ফাংশনে একাধিক ভ্যারিয়েবলকে গ্লোবাল ভ্যারিয়েবল বানানো যেতে পারে। কোন সীমা নাই।
+
 ## `$GLOBALS` array এর ব্যবহার {#$GLOBALS-associative-array}
+
+ফাংশনের ভেতর গ্লোবাল ভ্যারিয়েবল এক্সেস করার আরো একটি পদ্ধতি হল [`$GLOBALS`](https://www.php.net/manual/en/reserved.variables.globals.php) *associative array*  এর ব্যবহার। একে [*superglobal*](https://www.php.net/manual/en/language.variables.superglobals.php) ও বলে। এটি পিএইচপির একটি বিল্ট-ইন *associative array*।
+
+তাই গ্লোবাল ভ্যারিয়েবলগুলো এক্সেস করতে [*associative array*](https://php.polashmahmud.com/class-05.html) এক্সেস করার যে পদ্ধতি সেটা ব্যবহার করতে হবে। যেখানে গ্লোবাল ভ্যারিয়েবলের নামটা হচ্ছে *array key* এবং প্রতিটি *array element* এর ভ্যালু হচ্ছে ভ্যারিয়েবলগুলোর একচুয়াল ভ্যালু। উদাহরণ দেখি:-
+
+```php
+<?php
+$a = 1;
+$b = 2;
+
+function Sum()
+{
+    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
+} 
+
+Sum();
+echo $b; // outputs 3
+```
+
+আবারও, যেহেতু বেটার কোড স্ট্রাকচার মেইনটেইন করার গুরুত্ব অপরিসীম। তাই এজাতীয় সুবিধা পারতপক্ষে ব্যবহার না করাই ভালো।
 
 ## The static Keyword
 
