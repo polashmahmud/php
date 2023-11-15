@@ -411,7 +411,7 @@ location : Dhaka
 
 আমরা ইতিপূর্বে জেনেছি, পিএইচপি সকল *array* স্ট্রাকচারই *Associative array* এর উপর ভিত্তি করে তৈরি হয়। তাই আপনি `foreach()` লুপ *indexed array* তেও ব্যবহার করতে পারেন। এর ভাইস ভার্সাও করা যায়, তথা `for` লুপ দিয়েও *Associative array* এবং *Multidimensional arrays* তে লুপ চালানো যায়। তবে তার ইম্প্লিমেন্টেশন বেশ জটিল।
 
-## Multidimensional arrays তে লুপ চালানো{#Loop-through-multidimensional-array}
+## Multidimensional array তে লুপ চালানো{#Loop-through-multidimensional-array}
 
 একটি মাল্টিডাইমেনশনাল অ্যারের ভেতরে লুপ চালানোর জন‍্যও আমরা `foreach` লুপ ব্যবহার করতে পারি।
 
