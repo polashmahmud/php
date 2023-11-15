@@ -511,17 +511,20 @@ foreach ($peoples as $people) {
         break;
     }
 }
+var_dump($found);
 ```
 
 আউটপুট হবেঃ
 
 ```php
-Array
-(
-    [id] => 1
-    [name] => John
-    [email] => john@example.com
-)
+array(3) {
+  ["id"]=>
+  int(1)
+  ["name"]=>
+  string(4) "John"
+  ["email"]=>
+  string(16) "john@example.com"
+}
 ```
 
 
