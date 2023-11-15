@@ -168,7 +168,7 @@ echo $number, " ", $number2;    // outputs: 20, 10
 
 ### Multiplication (গুন করা) {#multiplication}
 
-স্বাধারণ অংকের মতই গুণচিহ্ন `(*)` বা *multiplication operator* দিয়ে **PHP** তে গুণ করা খুবই সহজ। বাকি যোগ-বিয়োগের টপিকে যে বিষয়গুলো আমরা আলোচনা করেছি তার সবগুলো এখানেও প্রয়োগ হবে। আমরা উদাহরণ দেখতে পারি।
+সাধারণ অংকের মতই গুণচিহ্ন `(*)` বা *multiplication operator* দিয়ে **PHP** তে গুণ করা খুবই সহজ। বাকি যোগ-বিয়োগের টপিকে যে বিষয়গুলো আমরা আলোচনা করেছি তার সবগুলো এখানেও প্রয়োগ হবে। আমরা উদাহরণ দেখতে পারি।
 
 ```php
 <?php
@@ -613,7 +613,7 @@ bool(false)
 
 ### is_infinite() Function
 
-এবার জানব [`is_infinite()`](https://www.php.net/manual/en/function.is-infinite.php) ফাংশন নিয়ে। এটা দিয়ে আমরা কোনো ফ্লোট সংখ্যা ইনফিনিট/অসীম কিনা তা চেক করতে পারব। ইনফিনিট কি তা জানতে [আর্টিকেলটি](https://www.mathnasium.com/sherwood/news/what-infinity-sher) পড়ুন, গুগল করুন।
+এবার জানব [`is_infinite()`](https://www.php.net/manual/en/function.is-infinite.php) ফাংশন নিয়ে। এটা দিয়ে আমরা কোনো ফ্লোট সংখ্যা ইনফিনিট/অসীম কিনা তা চেক করতে পারব। ইনফিনিট কি তা জানতে [আর্টিকেলটি](https://www.mathnasium.com/sherwood/news/what-infinity-sher) পড়ুন, গুগলে খোজ করুন।
 
 ফাংশনটি ফ্লোট নাম্বার প্রত্যাশা করে। প্রাপ্ত রেজাল্ট `INF, -INF` মানে ইনফিনিটি বা অসীম হলে *true* রিটার্ন করে। অন্যথায় *false* রিটার্ন করে।
 
@@ -713,7 +713,7 @@ echo(round(0.49));  // returns 0
 
 ### Random Numbers
 
-এই ফাংশন দিয়ে আমরা রেন্ডম নাম্বার পেয়ে থাকি
+এই ফাংশন দিয়ে আমরা রেন্ডম নাম্বার পেয়ে থাকি।
 
 ```php
 <?php
