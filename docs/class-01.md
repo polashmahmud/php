@@ -168,6 +168,21 @@ echo "This string spans\nmultiple lines. The newlines will be\output as well.";
 
 string, escape characters, ভ্যারিয়েবল, array সহ যেসকল শব্দ বা term নতুন মনে হচ্ছে, বুঝতে পারছেন না; সেগুলো নিয়ে ঘাবড়াবার কিছু নেই। ধীরে ধীরে আমরা সব জানতে পারব।
 
+## shorthand echo statements
+
+**echo** এর পরিবর্তে আমরা চাইলে <?=  > ব্যবহার করতে পারি । এটি সাধারাণত ব্যবহার হয় কোনো পিএইচপি ফাইল এ পিএইচপি ট্যাগের বাইরে রাখা এইচটিএমএল ট্যাগের ভিতর সামান্য পিএইচপি লেখার ক্ষেত্রে।
+**যেমনঃ-**
+
+```php
+<!DOCTYPE html>
+<html>
+<body>
+<p>Welcome To <?="PHP Guide";?>
+</body>
+</html>
+
+```
+
 ## Variables
 
 #### Variables কাকে বলে?
