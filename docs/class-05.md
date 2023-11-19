@@ -52,7 +52,7 @@
 *যেহেতু আমরা [**Scalar Data**](#Scalar-Data) গুলোর আউটপুট প্রিন্ট করতে [`echo`](https://www.php.net/manual/en/function.echo.php) বা [`print`](https://www.php.net/manual/en/function.print.php) ফাংশন ২টি ব্যবহার করে এসেছি, এখন **Dynamic Data like array, object etc..** গুলোর আউটপুটও কি একইভাবে প্রিন্ট করতে পারব?*
 
 
-না, পারবনা। ডাটা যেহেতু ডাইনামিক তাই *echo* বা *print* এর মত **Scalar Data** আউটপুট দেয়া ফাংশন এর আউটপুট প্রসেস করতে পারবেনা। কারণ *echo* বা *print* আউটপুট দেয়ার সময় রেজাল্টকে স্ট্রিং ডাটায় কনভার্ট করে তারপর আউটপুট দেয়। একটা ফল *array* আউটপুটকে যেহেতু স্ট্রিংয়ে কনভার্ট করা যায়না তাই এই ২টি ফাংশন কোন কাজে আসবে না। হ্যাঁ, যদি *array* এর নির্দিষ্ট কোন এলিমেন্ট প্রিন্ট করার দরকার পড়ে তখন এরা ঠিকই কাজে আসবে।
+না, পারবনা। ডাটা যেহেতু ডাইনামিক তাই *echo* বা *print* এর মত **Scalar Data** আউটপুট দেয়া ফাংশন এর আউটপুট প্রসেস করতে পারবেনা। কারণ *echo* বা *print* আউটপুট দেয়ার সময় রেজাল্টকে স্ট্রিং ডাটায় কনভার্ট করে তারপর আউটপুট দেয়। একটা ফুল *array* আউটপুটকে যেহেতু স্ট্রিংয়ে কনভার্ট করা যায়না তাই এই ২টি ফাংশন কোন কাজে আসবে না। হ্যাঁ, যদি *array* এর নির্দিষ্ট কোন এলিমেন্ট প্রিন্ট করার দরকার পড়ে তখন এরা ঠিকই কাজে আসবে।
 
 তাহলে কিভাবে *array* কে প্রিন্ট করব? সেজন‍্য আমাদের পিএইচপির বিল্ট-ইন একটি ফাংশন [`var_dump()`](https://www.php.net/manual/en/function.var-dump) বা [`print_r()`](https://www.php.net/manual/en/function.print-r) ব‍্যবহার করতে হবে। উদাহরণঃ-
 
@@ -423,7 +423,7 @@ location : Dhaka
         array('polash', 'mehedi', 'sunny', 'shakil')
     );
     foreach ($array as $key => $value) {
-        echo $key . ' : ' . $value . '<br>';
+        echo $key . ' : ' . $value . PHP_EOL;
     }
 ?>
 ```
@@ -447,7 +447,7 @@ location : Dhaka
     );
     foreach ($array as $key => $value) {
         foreach ($value as $key => $value) {
-            echo $key . ' : ' . $value . '<br>';
+            echo $key . ' : ' . $value . PHP_EOL;
         }
     }
 ?>
@@ -487,7 +487,7 @@ $peoples = [
 ];
 
 foreach ($peoples as $people) {
-    echo $people['name'] . '|' . $people['email'] . '<br>';
+    echo $people['name'] . '|' . $people['email'] . PHP_EOL;
 }
 ```
 
@@ -520,7 +520,7 @@ foreach ($peoples as $people) {
     echo $people['name'] .  '<br>';
     
     foreach ($people['likes'] as $like) {
-        echo $like . '<br>';
+        echo $like . PHP_EOL;
     }
 }
 ```
@@ -555,9 +555,9 @@ $peoples = [
 ];
 
 foreach ($peoples as $people) {
-    echo $people['name'] .  '<br>';
+    echo $people['name'] . PHP_EOL;
     
-    echo implode(', ', $people['likes']);
+    echo implode(', ', $people['likes']) . PHP_EOL;
 }
 ```
 
@@ -589,7 +589,7 @@ $peoples = [
 ];
 
 foreach ($peoples as $index => $people) {
-    echo $index . ' : ' . $people['name'] .  '<br>';
+    echo $index . ' : ' . $people['name'] . PHP_EOL;
 }
 ```
 
@@ -605,13 +605,13 @@ foreach ($peoples as $index => $people) {
 ```php
 $status = [
     ['text' => 'What a lovely day!'],
-    ['text' => 'Have a cuf of tea!'],
+    ['text' => 'Have a cup of tea!'],
     'status' => 200
 ];
 
 foreach ($status as $key => $value) {
     if ($key !== 'status') {
-        echo $value['text'] . '<br>';
+        echo $value['text'] . PHP_EOL;
     }
 }
 ```
@@ -620,7 +620,7 @@ foreach ($status as $key => $value) {
 
 ```php
 What a lovely day!
-Have a cuf of tea!
+Have a cup of tea!
 ```
 
 এই জিনিসটা আরেকটু সুন্দর ভাবেও করা যায়। যেমনঃ
@@ -636,7 +636,7 @@ foreach ($status as $key => $value) {
     if ($key === 'status') {
         continue;
     }
-    echo $value['text'] . '<br>';
+    echo $value['text'] . PHP_EOL;
 }
 ```
 
@@ -644,7 +644,7 @@ foreach ($status as $key => $value) {
 
 ```php
 What a lovely day!
-Have a cuf of tea!
+Have a cup of tea!
 ```
 
 আমরা অ্যারের ভিতর কোন কিছু সার্চও করতে পারি।
@@ -672,20 +672,18 @@ foreach ($peoples as $people) {
         break;
     }
 }
-var_dump($found);
+print_r($found);
 ```
 
 আউটপুট হবেঃ
 
 ```php
-array(3) {
-  ["id"]=>
-  int(1)
-  ["name"]=>
-  string(4) "John"
-  ["email"]=>
-  string(16) "john@example.com"
-}
+Array
+(
+    [id] => 1
+    [name] => John
+    [email] => john@example.com
+)
 ```
 
 
@@ -709,32 +707,29 @@ foreach ($peoples as &$people) {
    $people['name'] = strtoupper($people['name']);
 }
 
-var_dump($peoples);
+print_r($peoples);
 ```
 
 আউটপুট হবেঃ
 
 ```php
-array(2) {
-  [0]=>
-  array(3) {
-    ["id"]=>
-    int(1)
-    ["name"]=>
-    string(4) "JOHN"
-    ["email"]=>
-    string(16) "john@example.com"
-  }
-  [1]=>
-  &array(3) {
-    ["id"]=>
-    int(2)
-    ["name"]=>
-    string(4) "JANE"
-    ["email"]=>
-    string(16) "jane@example.com"
-  }
-}
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => JOHN
+            [email] => john@example.com
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [name] => JANE
+            [email] => jane@example.com
+        )
+
+)
 ```
 
 আপনার যদি পুরাতন ভ‍্যালু এবং নতুন ভ‍্যালু দুইটাই দরকার হয়ে থাকে তাহলে আপনি অন‍্য ভাবেও এটা করতে পারেন।
@@ -760,24 +755,25 @@ foreach ($peoples as $people) {
     $newPeoples[] = $person;
 }
 
-var_dump($newPeoples);
+print_r($peoples);
 ```
 
 আউটপুট হবেঃ
 
 ```php
-array(2) {
-  [0]=>
-  array(1) {
-    ["name"]=>
-    string(4) "JOHN"
-  }
-  [1]=>
-  array(1) {
-    ["name"]=>
-    string(4) "JANE"
-  }
-}
+Array
+(
+    [0] => Array
+        (
+            [name] => JOHN
+        )
+
+    [1] => Array
+        (
+            [name] => JANE
+        )
+
+)
 ```
 
 আমরা অ্যারের ভিতর যেভাবে কোন কিছু গুণন করতে পারি।
@@ -788,27 +784,23 @@ $numbers = [1,2,3,4,5];
 foreach ($numbers as &$number) {
     $number *= 2;
 }
-var_dump($numbers);
+print_r($numbers);
 ```
 
 আউটপুট হবেঃ
 
 ```php
-array(5) {
-  [0]=>
-  int(2)
-  [1]=>
-  int(4)
-  [2]=>
-  int(6)
-  [3]=>
-  int(8)
-  [4]=>
-  &int(10)
-}
+Array
+(
+    [0] => 2
+    [1] => 4
+    [2] => 6
+    [3] => 8
+    [4] => 10
+)
 ```
 
-আরেকটা উদাহারণ:
+আরেকটা উদাহরণ:
 
 ```php
 $numbers = [1,2,3,4,5];
