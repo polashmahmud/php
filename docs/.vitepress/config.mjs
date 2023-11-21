@@ -8,7 +8,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'হোম পেজ', link: '/' },
-      { text: 'ডকুমেন্টেশন', link: '/class-01' }
+      { text: 'ডকুমেন্টেশন', link: '/class-01' },
+      { text: 'টিম', link: '/team' },
     ],
 
     sidebar: [
@@ -37,6 +38,18 @@ export default defineConfig({
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2023-present Polash Mahmud'
+    },
+
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
+
+    search: {
+      provider: 'local'
     }
   }
 })
