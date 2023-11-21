@@ -8,7 +8,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'হোম পেজ', link: '/' },
-      { text: 'ডকুমেন্টেশন', link: '/class-01' }
+      { text: 'ডকুমেন্টেশন', link: '/class-01' },
+      { text: 'টিম', link: '/team' },
     ],
 
     sidebar: [
@@ -30,6 +31,39 @@ export default defineConfig({
       { icon: 'facebook', link: 'https://www.facebook.com/learnwithpolashmahmud' },
       { icon: 'youtube', link: 'https://www.youtube.com/polashmahmud4' },
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/polashmahmud4/' },
+      { icon: 'discord', link: 'https://discord.gg/mktPP7n9xp' },
+      { icon: 'twitter', link: 'https://twitter.com/polashmahmud4' }
+    ],
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023-present Polash Mahmud'
+    },
+
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
+
+    search: {
+      provider: 'local'
+    }
+  },
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-7RDGBXJVRS' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7RDGBXJVRS');`
     ]
-  }
+  ]
 })
