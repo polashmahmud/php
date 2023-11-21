@@ -21,7 +21,7 @@ if (in_array('apple', $fruits)) {
 Apple exists
 ```
 
-আরেটা উদাহরন
+আরেকটা উদাহরন
 
 ```php
 <?php
