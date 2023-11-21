@@ -427,7 +427,7 @@ location : Dhaka
 ?>
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
 
 ```
 0 : Array
@@ -435,98 +435,101 @@ location : Dhaka
 2 : Array
 ```
 
-এখানে আমরা দেখতে পাচ্ছি মাল্টিডাইমেনশনাল অ্যারের ভেতরে আবার অ্যারে আছে। তাই আমরা আবার একটি `foreach` লুপ চালাবো যেটি আমাদের মাল্টিডাইমেনশনাল অ্যারের ভেতরের ভ‍্যালু গুলো প্রিন্ট করবে।
+আমরা আউটপুট হিসেবে কোন ভ্যালু দেখতে পাচ্ছিনা। কেন? কারণ [মাল্টিডাইমেনশনাল অ্যারের](#multidimensional-arrays) প্রকৃতি অনুযায়ী অ্যারের ভেতর অ্যারের উপস্থিতি থাকায় আমরা যে ভ্যালুকে `echo` করছি সেটা মূলত একটি অ্যারে। ইতিপূর্বে আমরা জেনে এসেছি, একটি [পূর্ণ অ্যারেকে _echo_ করা যায়না](#array-output)। তাহলে _nested array_ গুলোর ভ্যালু দেখার উপায় কি?
+
+সেজন্য আমাদের আবার একটি `foreach` লুপ চালাতে হবে। এককথায় _nested array_ এর ভ্যালু পেতে _nested foreach loop_ চালাতে হবে। উদাহরণঃ
 
 ```php
 <?php
     $array = array(
-        array('polash', 'mehedee', 'sunny', 'shakil'),
-        array('polash', 'mehedee', 'sunny', 'shakil'),
-        array('polash', 'mehedee', 'sunny', 'shakil')
+        array('polash', 'mehedi', 'sunny', 'shakil'),
+        array('polash', 'mehedi', 'sunny', 'shakil'),
+        array('polash', 'mehedi', 'sunny', 'shakil')
     );
     foreach ($array as $key => $value) {
         foreach ($value as $key => $value) {
             echo $key . ' : ' . $value . PHP_EOL;
         }
     }
-?>
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
 
-```php
+```
 0 : polash
-1 : mehedee
+1 : mehedi
 2 : sunny
 3 : shakil
 0 : polash
-1 : mehedee
+1 : mehedi
 2 : sunny
 3 : shakil
 0 : polash
-1 : mehedee
+1 : mehedi
 2 : sunny
 3 : shakil
 ```
 
-যদি আরো কিছু উদাহারণ দেখিঃ
+একই জাতীয় আরো কিছু উদাহরণঃ
 
 ```php
-$peoples = [
-    [
-        'id' => 1,
-        'name' => 'John',
-        'email' => 'john@example.com'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Jane',
-        'email' => 'jane@example.com'
-    ],
-];
+<?php
+    $peoples = [
+        [
+            'id' => 1,
+            'name' => 'John',
+            'email' => 'john@example.com'
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jane',
+            'email' => 'jane@example.com'
+        ],
+    ];
 
-foreach ($peoples as $people) {
-    echo $people['name'] . '|' . $people['email'] . PHP_EOL;
-}
+    foreach ($peoples as $people) {
+        echo $people['name'] . '|' . $people['email'] . PHP_EOL;
+    }
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
 
-```php
+```
 John|john@example.com
 Jane|jane@example.com
 ```
 
-আমাদের এই অ্যারের ভিতরে যদি আরো অ্যারে থাকে তাহলে আমাদের অ্যারেটা একটু কমপ্লেক্স হয়ে যাচ্ছে। তখন আমরা কি করে প্রিন্ট করবো।
+এভাবে অ্যারে যতটা নেস্টেড লেভেলের হবে তার ভ্যালু এক্সেস করার জন্য আমাদেরকেও ঠিক ততটাই নেস্টেড _foreach loop_ চালাতে হবে। _for_ লুপ দিয়েও সম্ভব, তবে সেক্ষেত্রে মাল্টি নেস্টেড অ্যারের কম্প্লেক্সিটির মত লজিকটাও বেশ কম্প্লেক্স রূপ ধারণ করে থাকে। উদাহরণ দেখিঃ
 
 ```php
-$peoples = [
-    [
-        'id' => 1,
-        'name' => 'John',
-        'email' => 'john@example.com',
-        'likes' => ['php', 'laravel']
-    ],
-    [
-        'id' => 2,
-        'name' => 'Jane',
-        'email' => 'jane@example.com',
-        'likes' => ['php', 'wordpress']
-    ],
-];
+<?php
+    $peoples = [
+        [
+            'id' => 1,
+            'name' => 'John',
+            'email' => 'john@example.com',
+            'likes' => ['php', 'laravel']
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jane',
+            'email' => 'jane@example.com',
+            'likes' => ['php', 'wordpress']
+        ],
+    ];
 
-foreach ($peoples as $people) {
-    echo $people['name'] .  '<br>';
+    foreach ($peoples as $people) {
+        echo $people['name'] .  PHP_EOL;
 
-    foreach ($people['likes'] as $like) {
-        echo $like . PHP_EOL;
+        foreach ($people['likes'] as $like) {
+            echo $like . PHP_EOL;
+        }
     }
-}
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
 
-```php
+```
 John
 php
 laravel
@@ -535,154 +538,176 @@ php
 wordpress
 ```
 
-আমরা যদি চাই তাহলে likes টাকে লুপ না চালিয়ে স্ট্রিং আকারে দেখিয়ে দিতে পারি।
+`foreach` লুপের সাহায্যে আমরা খুব সহজে অ্যারে _Key_ বা _Index_ ও প্রিন্ট করতে পারি। উদাহরণঃ
 
 ```php
-$peoples = [
-    [
-        'id' => 1,
-        'name' => 'John',
-        'email' => 'john@example.com',
-        'likes' => ['php', 'laravel']
-    ],
-    [
-        'id' => 2,
-        'name' => 'Jane',
-        'email' => 'jane@example.com',
-        'likes' => ['php', 'wordpress']
-    ],
-];
+<?php
+    $peoples = [
+        [
+            'id' => 1,
+            'name' => 'John',
+            'email' => 'john@example.com',
+            'likes' => ['php', 'laravel']
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jane',
+            'email' => 'jane@example.com',
+            'likes' => ['php', 'wordpress']
+        ],
+    ];
 
-foreach ($peoples as $people) {
-<<<<<<< HEAD
-    echo $people['name'] .  '<br>';
-
-    echo implode(', ', $people['likes']);
-=======
-    echo $people['name'] . PHP_EOL;
-
-    echo implode(', ', $people['likes']) . PHP_EOL;
->>>>>>> 7de096aeac5d14ce015b8fdede71484222a313ec
-}
+    foreach ($peoples as $index => $people) {
+        echo $index . ' : ' . $people['name'] . PHP_EOL;
+    }
 ```
 
-আউটপুট হবেঃ
-
-```php
-John
-php, laravel
-Jane
-php, wordpress
-```
-
-আমরা যদি চাই তাহলে ইনডেক্স সহকারে লুপ চালাতে পারি।
-
-```php
-$peoples = [
-    [
-        'id' => 1,
-        'name' => 'John',
-        'email' => 'john@example.com',
-        'likes' => ['php', 'laravel']
-    ],
-    [
-        'id' => 2,
-        'name' => 'Jane',
-        'email' => 'jane@example.com',
-        'likes' => ['php', 'wordpress']
-    ],
-];
-
-foreach ($peoples as $index => $people) {
-    echo $index . ' : ' . $people['name'] . PHP_EOL;
-}
-```
-
-আউটপুট হবেঃ
+আউটপুটঃ
 
 ```php
 0 : John
 1 : Jane
 ```
 
-আপনার যদি এমন একটা অ্যারে থাকে যার key গুলো একই না তাহলে আপনি লুপ চালানোর সময় এই key গুলো চেক করে নিতে পারেন।
+_Associative Array_ এর ভ্যালুগুলোকে এক্সেস করতে ব্রাকেট নোটেশনের ভেতর আমরা *key* নামটা সাধারণত দিয়ে থাকি। এখন আপনার যদি এমন একটা সিম্পল বা নেস্টেড অ্যারে থাকে যার *key* গুলো সিমিলার না অথচ আপনি লুপ চালিয়ে অ্যারের *key* গুলো ম্যাচ করে সে অনুযায়ী ভ্যালু প্রিন্ট করতে চান, সেটা সম্ভব হবেনা। বরং তখন যেই *key* টা ম্যাচ করবেনা সেটার ভ্যালু প্রিন্ট করতে গিয়ে আপনি *Error* পাবেন। যেমনঃ
 
 ```php
-$status = [
-    ['text' => 'What a lovely day!'],
-    ['text' => 'Have a cup of tea!'],
-    'status' => 200
-];
+<?php
+    $status = [
+        ['text' => 'What a lovely day!'],
+        ['text' => 'Have a cup of tea!'],
+        'status' => 200
+    ];
 
-foreach ($status as $key => $value) {
-    if ($key !== 'status') {
+    foreach ($status as $key => $value) {
         echo $value['text'] . PHP_EOL;
     }
-}
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
+
+```
+What a lovely day!
+Have a cup of tea!
+PHP Warning:  Trying to access array offset on value of type int
+```
+
+তাহলে উপায়? আপনাকে প্রথমেই একটা চেক বসিয়ে ম্যাচ করেনা যে *key* গুলো সেগুলো আলাদা করে ফেলতে হবে। অতঃপর যে *key* গুলো ম্যাচ করে সেগুলো প্রিন্ট করতে হবে। যেমনঃ
 
 ```php
+<?php
+    $status = [
+        ['text' => 'What a lovely day!'],
+        ['text' => 'Have a cup of tea!'],
+        'status' => 200
+    ];
+
+    foreach ($status as $key => $value) {
+        if ($key !== 'status') {
+            echo $value['text'] . PHP_EOL;
+        }
+    }
+```
+
+আউটপুটঃ
+
+```
 What a lovely day!
 Have a cup of tea!
 ```
 
-এই জিনিসটা আরেকটু সুন্দর ভাবেও করা যায়। যেমনঃ
+একই কাজ আমরা আরো অপটিমাইজ করে করতে পারি। যেমনঃ
 
 ```php
-$status = [
-    ['text' => 'What a lovely day!'],
-    ['text' => 'Have a cup of tea!'],
-    'status' => 200
-];
+<?php
+    $status = [
+        ['text' => 'What a lovely day!'],
+        ['text' => 'Have a cup of tea!'],
+        'status' => 200
+    ];
 
-foreach ($status as $key => $value) {
-    if ($key === 'status') {
-        continue;
+    foreach ($status as $key => $value) {
+        if ($key === 'status') {
+            continue;
+        }
+        echo $value['text'] . PHP_EOL;
     }
-    echo $value['text'] . PHP_EOL;
-}
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
 
-```php
+```
 What a lovely day!
 Have a cup of tea!
 ```
 
-আমরা অ্যারের ভিতর কোন কিছু সার্চও করতে পারি।
+আমরা জানি একটি পূর্ণ অ্যারেকে `echo` করা যায়না। তবে আমরা চাইলে অ্যারের বিল্ট-ইন ফাংশন [`implode()`](https://php.polashmahmud.com/class-06.html#implode-array-function) এর সাহায্যে একটি অ্যারেকে স্ট্রিংয়ে কনভার্ট করে অতঃপর ভ্যালু প্রিন্ট করতে পারি। তখন অ্যারের ভ্যালু দেখতে আমাদের কোন লুপের প্রয়োজন হবেনা। উদাহরণঃ
 
 ```php
-$peoples = [
-    [
-        'id' => 1,
-        'name' => 'John',
-        'email' => 'john@example.com'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Jane',
-        'email' => 'jane@example.com'
-    ],
-];
+<?php
+    $peoples = [
+        [
+            'id' => 1,
+            'name' => 'John',
+            'email' => 'john@example.com',
+            'likes' => ['php', 'laravel']
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jane',
+            'email' => 'jane@example.com',
+            'likes' => ['php', 'wordpress']
+        ],
+    ];
 
-$toFind = 'John';
-$found = false;
+    foreach ($peoples as $people) {
+        echo $people['name'] . PHP_EOL;
 
-foreach ($peoples as $people) {
-    if ($people['name'] === $toFind) {
-        $found = $people;
-        break;
+        echo implode(', ', $people['likes']) . PHP_EOL;
     }
-}
-print_r($found);
 ```
 
-আউটপুট হবেঃ
+আউটপুটঃ
+
+```
+John
+php, laravel
+Jane
+php, wordpress
+```
+
+আমাদের অনেক সময় অ্যারের অসংখ্য ভ্যালুর ভেতর থেকে একটি নির্দিষ্ট ভ্যালু খুঁজে বের করার প্রয়োজন হয়। সেজন্য আমরা নিন্মোক্ত লজিক ব্যবহার করে অ্যারের ভিতর কোন কিছু সার্চ করতে পারি। যেমনঃ
 
 ```php
+<?php
+    $peoples = [
+        [
+            'id' => 1,
+            'name' => 'John',
+            'email' => 'john@example.com'
+        ],
+        [
+            'id' => 2,
+            'name' => 'Jane',
+            'email' => 'jane@example.com'
+        ],
+    ];
+
+    $toFind = 'John';
+    $found = false;
+
+    foreach ($peoples as $people) {
+        if ($people['name'] === $toFind) {
+            $found = $people;
+            break;
+        }
+    }
+    print_r($found);
+```
+
+আউটপুটঃ
+
+```
 Array
 (
     [id] => 1
@@ -852,3 +877,4 @@ foreach ($numbers as $number) {
 8
 10
 ```
+**কাজ চলমান.........................**
