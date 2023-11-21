@@ -30,6 +30,13 @@ export default defineConfig({
       { icon: 'facebook', link: 'https://www.facebook.com/learnwithpolashmahmud' },
       { icon: 'youtube', link: 'https://www.youtube.com/polashmahmud4' },
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/polashmahmud4/' },
-    ]
+      { icon: 'discord', link: 'https://discord.gg/mktPP7n9xp' },
+      { icon: 'twitter', link: 'https://twitter.com/polashmahmud4' }
+    ],
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023-present Polash Mahmud'
+    }
   }
 })
