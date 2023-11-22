@@ -15,7 +15,9 @@ const members = [
     title: 'প্রধান সম্পাদক',
     links: [
       { icon: 'github', link: 'https://github.com/polashmahmud' },
-      { icon: 'facebook', link: 'https://www.facebook.com/polashmahmud4/' }
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/polashmahmud4/' },
+      { icon: 'facebook', link: 'https://www.facebook.com/polashmahmud4/' },
+      { icon: 'x', link: 'https://twitter.com/polashmahmud4' }
     ]
   },
   {
@@ -24,6 +26,8 @@ const members = [
     title: 'সম্পাদক',
     links: [
       { icon: 'github', link: 'https://github.com/Umar-Faruk96' },
+      { icon: 'linkedin', link: 'https://linkedin.com/in/omorfaruksheikhraihan' },
+      { icon: 'x', link: 'https://twitter.com/RashedOmor' },
     ]
   },
 ]
@@ -32,10 +36,10 @@ const members = [
 <VPTeamPage>
   <VPTeamPageTitle>
     <template #title>
-      ডকুমেন্টেশন টীম
+      ডকুমেন্টেশন টিম
     </template>
     <template #lead>
-      ডকুমেন্টেশন টীম একটি স্বেচ্ছাসেবক দল যারা পিএইচপি ব‍্যাসিক কোর্সের ডকুমেন্টেশন সম্পাদনা করে। আপনিও যোগদান করতে পারেন। আপনার যেকোন ধরনের সাহায্য স্বাগতম।
+      ডকুমেন্টেশন টিম একটি স্বেচ্ছাসেবক দল, যারা এই পিএইচপি বেসিক কোর্সের ডকুমেন্টেশনটির সম্পাদনায় রত। এই দলে আপনিও যোগদান করতে পারেন। ডকুমেন্টেশনটির সমৃদ্ধি ও উন্নতির পথে আপনার যেকোন অবদান প্রশংসনীয়, উৎসাহব্যঞ্জক ও অনস্বীকার্য।
     </template>
   </VPTeamPageTitle>
   <VPTeamMembers
