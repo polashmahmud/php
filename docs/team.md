@@ -30,6 +30,14 @@ const members = [
       { icon: 'x', link: 'https://twitter.com/RashedOmor' },
     ]
   },
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/61494470?v=4',
+    name: 'রাসেল হোসাইন ',
+    title: 'সহকারী সম্পাদক',
+    links: [
+      { icon: 'github', link: 'https://github.com/Rasel2f' },
+    ]
+  },
 ]
 </script>
 
