@@ -1,6 +1,7 @@
 ---
 layout: page
 ---
+
 <script setup>
 import {
   VPTeamPage,
@@ -34,7 +35,7 @@ const members = [
   {
     avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
     name: 'তানভীর আব্দুল্লাহ তোহা',
-    title: 'সেচ্ছাসেবক',
+    title: 'স্বেচ্ছাসেবক',
     links: [
       { icon: 'github', link: 'https://github.com/TohaTanvir' },
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
@@ -49,7 +50,8 @@ const members = [
     links: [
       { icon: 'github', link: 'https://github.com/Rasel2f' },
     ]
-  },
+  }
+]
 </script>
 
 <VPTeamPage>

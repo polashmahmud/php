@@ -236,9 +236,9 @@ echo $firstName; // Output: Polash
 echo $name; // Output: Mahmud
 ```
 
-### Assigned by reference variable টা কি?
+### Assigned by reference variable টা কি?{#assigned-by-reference-variable}
 
-অবশ্য, যদি ১টি _Variable_ এর ভ্যালু পরিবর্তন করলে অন্যটির  ভ্যালুও আপনাআপনি পরিবর্তন হবে এমন সুবিধা আপনি চান, তখন _Variable_ এসাইন করার সময় পূর্বের _Variable_ নামের আগে একটি `&` (_ampersand_) চিহ্ন ব‍্যবহার করুন। এই প্রক্রিয়াকে [_assigned by reference_](https://www.php.net/manual/en/language.variables.basics.php) বলে।
+অবশ্য, যদি ১টি _Variable_ এর ভ্যালু পরিবর্তন করলে অন্যটির  ভ্যালুও আপনাআপনি পরিবর্তন হবে এমন সুবিধা আপনি চান, তখন _Variable_ এসাইন করার সময় পূর্বের _Variable_ নামের আগে একটি `&` (_ampersand_) চিহ্ন ব‍্যবহার করুন। এই প্রক্রিয়াকে [_assigned by reference_](https://www.php.net/manual/en/language.references.whatdo.php#language.references.whatdo.assign) বলে।
 
 ```php
 <?php
