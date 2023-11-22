@@ -31,7 +31,7 @@ const members = [
     ]
   },
   {
-    avatar: 'https://avatars.githubusercontent.com/u/61494470?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/30306452?s=400&v=4',
     name: 'রাসেল হোসাইন ',
     title: 'সহকারী সম্পাদক',
     links: [
