@@ -30,6 +30,16 @@ const members = [
       { icon: 'x', link: 'https://twitter.com/RashedOmor' },
     ]
   },
+{
+    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
+    name: 'তানভীর আব্দুল্লাহ তোহা',
+    title: 'সেচ্ছাসেবক',
+    links: [
+      { icon: 'github', link: 'https://github.com/TohaTanvir' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
+      { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
+    ]
+  },
 ]
 </script>
 
