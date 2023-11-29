@@ -58,3 +58,32 @@
   <body></body>
 </html>
 ```
+
+এবার আমরা পরবর্তী ধাপ তথা ফর্ম তৈরি করব।
+
+## প্রাথমিক এইচটিএমএল ফর্ম তৈরি{#build-first-html-form}
+
+চলুন একটি এইচটিএমএল ফর্ম তৈরি করি।
+
+```html
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>Submit Form</h2>
+
+      <form action="">
+        <div class="form-group">
+          <label for="inputValue">Enter Value:</label>
+          <input
+            type="text"
+            name="inputValue"
+            id="inputValue"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+```
