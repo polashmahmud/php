@@ -10,7 +10,7 @@
 
 ## Initial Setup
 
-প্রথমে আমরা `index.html` নামে একটি ফাইল তৈরি করব।
+প্রথমে আমরা `index.php` নামে একটি পিএইচপি ফাইল তৈরি করে এর ভিতরে একটি বেসিক HTML স্ট্রাকচার নিলাম যার ভিতরে একটি head সেকশন ও একটি body সেকশন দেখতে পাচ্ছি।
 
 ```html
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
 </html>
 ```
 
-সেখানে এইচটিএমএলের ইনিশিয়াল টেমপ্লেট বসাব এবং [Bootstrap CDN](https://getbootstrap.com/docs/4.3/getting-started/download/#jsdelivr) টা লিংক করব।
+উপরোক্ত এইচটিএমএলের ইনিশিয়াল টেমপ্লেট-এর head সেকশনে [Bootstrap CDN](https://getbootstrap.com/docs/4.3/getting-started/download/#jsdelivr) টা লিংক করব।
 
 ```html
 <link
@@ -63,9 +63,10 @@
 
 ## প্রাথমিক এইচটিএমএল ফর্ম তৈরি{#build-first-html-form}
 
-চলুন একটি এইচটিএমএল ফর্ম তৈরি করি।
+চলুন আমাদের ইনডেক্স ফাইলের body সেকশনে একটি এইচটিএমএল ফর্ম তৈরি করি যেখানে প্রাথমিকভাবে একটি input ফিল্ড নিলাম বিভিন্ন রকম value প্রদানের‌‌‌ জন্য এবং একটি button নিলাম তা submit করার জন্য। 
 
 ```html
+<body>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -86,4 +87,5 @@
     </div>
   </div>
 </div>
+</body>
 ```
