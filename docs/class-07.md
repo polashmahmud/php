@@ -100,3 +100,9 @@
 
 যেহেতু `one.php` নামে লোকালি আমাদের কোন ফাইল নাই তাই আমরা ব্রাউজারে Not Found দেখতে পাব। প্রমাণঃ
 ![Not Found Example](/public/not-found-page.png "Not Found Output")
+
+#### method Attribute
+
+আরেকটি এট্রিবিউট হল, `method`। যার মাধ্যমে আমরা সাধারণত ফর্ম সাবমিশনের প্রসেসটা নির্ধারণ করে থাকি। এই এট্রিবিউটের ভ্যালুগুলো মূলত একেকটি [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP) method। যার মাধ্যমে আমরা ব্রাউজারকে ওয়েবে আমাদের ডাটাগুলো এক জায়গা থেকে আরেক জায়গায় কিভাবে ট্রান্সফার হবে সেই নির্দেশনা দিয়ে থাকি।
+
+এখানে আমরা সেই ভ্যালুগুলো থেকে ২টি ভ্যালু বা method [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) এবং [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) সম্পর্কে বিশেষভাবে জানার চেষ্টা করব। কারণ `method` এট্রিবিউটের ভ্যালু হিসেবে http method গুলোর মধ্যে এই ২টি allowed method বা ভ্যালু। ব্রাউজারেও এই method দুটি বেশি ব্যবহৃত এবং প্রত্যাশিত।
