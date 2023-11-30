@@ -10,7 +10,7 @@
 
 ## Initial Setup
 
-প্রথমে আমরা `index.php` নামে একটি পিএইচপি ফাইল তৈরি করে এর ভিতরে একটি বেসিক HTML স্ট্রাকচার নিলাম যার ভিতরে একটি head সেকশন ও একটি body সেকশন দেখতে পাচ্ছি।
+প্রথমে আমরা `index.php` নামে একটি পিএইচপি ফাইল তৈরি করে এর ভিতরে একটি বেসিক HTML স্ট্রাকচার নিব যার ভিতরে একটি head ও body সেকশন থাকবে।
 
 ```html
 <!DOCTYPE html>
@@ -63,29 +63,40 @@
 
 ## প্রাথমিক এইচটিএমএল ফর্ম তৈরি{#build-first-html-form}
 
-চলুন আমাদের ইনডেক্স ফাইলের body সেকশনে একটি এইচটিএমএল ফর্ম তৈরি করি যেখানে প্রাথমিকভাবে একটি input ফিল্ড নিলাম বিভিন্ন রকম value প্রদানের‌‌‌ জন্য এবং একটি button নিলাম তা submit করার জন্য। 
+চলুন আমাদের ইনডেক্স ফাইলের body সেকশনে একটি এইচটিএমএল ফর্ম তৈরি করি যেখানে প্রাথমিকভাবে বিভিন্ন রকম value প্রদানের‌‌‌ জন্য একটি input ফিল্ড থাকবে এবং তা submit করার জন্য একটি button থাকবে।
 
 ```html
 <body>
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h2>Submit Form</h2>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2>Submit Form</h2>
 
-      <form action="">
-        <div class="form-group">
-          <label for="inputValue">Enter Value:</label>
-          <input
-            type="text"
-            name="inputValue"
-            id="inputValue"
-            class="form-control"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <form action="">
+          <div class="form-group">
+            <label for="inputValue">Enter Value:</label>
+            <input
+              type="text"
+              name="inputValue"
+              id="inputValue"
+              class="form-control"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </body>
 ```
+
+### Attributes for form submission
+
+পরবর্তী ধাপের আগে চলুন ফর্ম রিলেটেড কিছু গুরুত্বপূর্ণ বিষয় পরিষ্কার হয়ে নিই। আমরা যখন সাবমিট বাটনে ক্লিক করে কোন এইচটিএমএল ফর্ম সাবমিট করি ব্রাউজার তখন আমাদের নির্দেশিত কিছু গাইডলাইন অনুযায়ী ফর্ম সাবমিশন করে। আর সেই গাইডলাইনগুলো আমরা [ফর্ম এলিমেন্টের](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) একাধিক [এট্রিবিউটের](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attributes_for_form_submission) সাহায্যে দিতে পারি।
+
+#### action Attribute
+
+এদের মধ্যে একটি এট্রিবিউট রয়েছে [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)। এই এট্রিবিউটের মাধ্যমে আমরা সাধারণত ফর্ম সাবমিশনের এড্রেস বা ঠিকানা নির্ধারণ করে থাকি। তাই এর ভ্যালু হিসেবে আমাদেরকে [URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL) প্রদান করতে হয়। যদি কোন ভ্যালু তথা URL প্রদান না করা হয়, যেমনঃ `action=""`, তখন যে ওয়েবপেজে অবস্থান করে ফর্মটি সাবমিট করা হয় সেখানেই তথা নিজের কাছেই ফর্মের ডাটাগুলো সাবমিট হয়। আর যদি কোন relative বা absolute URL দেয়া হয় যেমনঃ `action="/one.php"`, তখন সেই নির্দিষ্ট পেজটি এভেলেবল থাকলে তাতে সাবমিট হয়। নাহলে Not Found আউটপুট প্রদর্শন করে।
+
+যেহেতু `one.php` নামে লোকালি আমাদের কোন ফাইল নাই তাই আমরা ব্রাউজারে Not Found দেখতে পাব। প্রমাণঃ
+![Not Found Example](/public/not-found-page.png "Not Found Output")
