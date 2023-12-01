@@ -96,9 +96,26 @@
 
 #### action Attribute
 
-এদের মধ্যে একটি এট্রিবিউট রয়েছে [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)। এই এট্রিবিউটের মাধ্যমে আমরা সাধারণত ফর্ম সাবমিশনের এড্রেস বা ঠিকানা নির্ধারণ করে থাকি। তাই এর ভ্যালু হিসেবে আমাদেরকে [URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL) প্রদান করতে হয়। যদি কোন ভ্যালু তথা URL প্রদান না করা হয়, যেমনঃ `action=""`, তখন যে ওয়েবপেজে অবস্থান করে ফর্মটি সাবমিট করা হয় সেখানেই তথা নিজের কাছেই ফর্মের ডাটাগুলো সাবমিট হয়। আর যদি কোন relative বা absolute URL দেয়া হয় যেমনঃ `action="/one.php"`, তখন সেই নির্দিষ্ট পেজটি এভেলেবল থাকলে তাতে সাবমিট হয়। নাহলে Not Found আউটপুট প্রদর্শন করে।
+এদের মধ্যে একটি এট্রিবিউট রয়েছে [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)। এই এট্রিবিউটের মাধ্যমে আমরা সাধারণত ফর্ম সাবমিশনের এড্রেস বা ঠিকানা নির্ধারণ করে থাকি। তাই এর ভ্যালু হিসেবে আমাদেরকে [URL](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL) প্রদান করতে হয়। যদি কোন ভ্যালু তথা URL প্রদান না করা হয়, যেমনঃ `action=""`, তখন যে ওয়েবপেজে অবস্থান করে ফর্মটি সাবমিট করা হয় সেখানেই তথা নিজের কাছেই ফর্মের ডাটাগুলো সাবমিট হয়। আর যদি কোন relative বা absolute URL দেয়া হয় যেমনঃ `action="/one.php"`, তখন সেই নির্দিষ্ট পেজটি অর্থাৎ one.php এভেলেবল থাকলে ফর্মটি তাতে সাবমিট হয়। নাহলে Not Found আউটপুট প্রদর্শন করে।
 
-যেহেতু `one.php` নামে লোকালি আমাদের কোন ফাইল নাই তাই আমরা ব্রাউজারে Not Found দেখতে পাব। প্রমাণঃ
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```html
+<form action="/one.php">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+এখানে `one.php` নামে লোকালি আমাদের কোন ফাইল নাই। তাই আমরা ব্রাউজারে Not Found দেখতে পাব। প্রমাণঃ
 
 ![Not Found Example](/public/not-found-page.png "Not Found Output")
 
@@ -106,11 +123,45 @@
 
 আরেকটি এট্রিবিউট হল, `method`। যার মাধ্যমে আমরা সাধারণত ফর্ম সাবমিশনের প্রসেসটা নির্ধারণ করে থাকি। এই এট্রিবিউটের ভ্যালুগুলো মূলত একেকটি [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP) method। যার মাধ্যমে আমরা ব্রাউজারকে ওয়েবে আমাদের ডাটাগুলো এক জায়গা থেকে আরেক জায়গায় কিভাবে ট্রান্সফার হবে সেই নির্দেশনা দিয়ে থাকি।
 
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```html
+<form action="" method="">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
 এখানে আমরা সেই ভ্যালুগুলো থেকে ২টি ভ্যালু বা method [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) এবং [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) সম্পর্কে বিশেষভাবে জানার চেষ্টা করব। কারণ `method` এট্রিবিউটের ভ্যালু হিসেবে http method গুলোর মধ্যে এই ২টি method বা ভ্যালু অনুমোদিত আছে। তেমনি ব্রাউজারেও এই method দুটি বেশি ব্যবহৃত এবং প্রত্যাশিত হয়ে থাকে।
 
 ## GET Request/Method{#get-method}
 
-এটি ফর্ম সাবমিশন প্রক্রিয়ার ডিফল্ট পদ্ধতি। তাই আপনি যদি `method` এট্রিবিউট ব্যবহার না করেন, বা ব্যবহার করলেও কোন ভ্যালু সেট না করেন, অথবা ভ্যালু হিসেবে **GET** ই সেট করেন, যেমনঃ `method="GET"`; সবগুলোর ক্ষেত্রে প্রতিক্রিয়া একইরকম হবে।
+এটি ফর্ম সাবমিশন প্রক্রিয়ার ডিফল্ট পদ্ধতি। তাই আপনি যদি `method` এট্রিবিউট ব্যবহার না করেন, বা ব্যবহার করলেও কোন ভ্যালু সেট না করেন, অথবা ভ্যালু হিসেবে **GET** ই সেট করেন, যেমনঃ `method="GET"`; সবগুলোর ক্ষেত্রে প্রতিক্রিয়া একইরকম হবে। উল্লেখ্য, GET আপনি lowercase অর্থাৎ get ও লিখতে পারেন।
+
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```html
+<form action="" method="GET">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
 
 কি সেই প্রতিক্রিয়া? সেটি হল, **GET Method** এর সাহায্যে ‍যখন কোন ডাটা ট্রান্সফার করা হয়, তখন সেই ডাটা কন্টেন্টগুলো ব্রাউজার **URL** বারে প্রদর্শিত হয়। যেমনঃ আমরা যদি আমাদের তৈরি করা ইনপুট ফিল্ডে কোন ডাটা প্রদান করে সাবমিট করি তাহলে সেই ডাটার বিস্তারিত তথ্য আমরা ব্রাউজারের এড্রেস বারে দেখতে পাব। প্রমাণঃ
 
@@ -122,11 +173,12 @@
 
 ![output-on-get-method](/public/get-method-output-on-url.png "GET method output on the URL")
 
-আউটপুটের ? প্রশ্নবোধক চিহ্নের পরবর্তী অংশগুলো দেখুন। আমরা সেখানে `inputValue=This+is+an+input.` এমন আউটপুট দেখতে পাচ্ছি। `inputValue` এই ডাটাটা এসেছে ফর্মের ইনপুট এলিমেন্টের `name` এট্রিবিউট থেকে। মনে আছে? ভুলে গেলে এইচটিএমএল কোডটা আবার চেক করুন। এরপরে আমরা দেখতে পাচ্ছি ইকুয়াল সাইন = এবং শেষে আমাদের ইনপুট দেয়া ডাটা।
 
-যদি আপনার মনে প্রশ্ন জাগে, + বা যোগচিহ্ন কেন ভ্যালুর ভিতরে। আমরা তো কোন যোগচিহ্ন দেইনি। উত্তর হল, **URL** এর ভেতর স্পেস অনুমোদিত নয়। কিন্তু আমরা তো ডাটাগুলো স্পেস দিয়ে বিন্যাস করে তারপর সাবমিট করেছি। ফলে সেই স্পেসগুলো যোগচিহ্ন দ্বারা পরিবর্তিত হয়েছে।
+আউটপুটের '?' প্রশ্নবোধক চিহ্নের পরবর্তী অংশগুলো দেখুন। আমরা সেখানে `inputValue=This+is+an+input.` এমন আউটপুট দেখতে পাচ্ছি। `inputValue` এই ডাটাটা এসেছে ফর্মের ইনপুট এলিমেন্টের `name` এট্রিবিউট থেকে। মনে আছে? ভুলে গেলে এইচটিএমএল কোডটা আবার চেক করুন। এরপরে আমরা দেখতে পাচ্ছি ইকুয়াল সাইন '=' এবং শেষে আমাদের ইনপুট দেয়া ডাটা।
 
-এইটা ডিফল্ট ভ্যালু হওয়ার অর্থ কিন্তু এই নয় যে, সবসময় আপনি এটাই ব্যবহার করবেন। বরং ডাটা ট্রান্সফারকালীন এই মেথড ব্যবহারে সমস্যা হওয়ার সমূহ সম্ভাবনা আছে। এরমধ্যে বিশেষভাবে বললে এই মেথডের সাহায্যে ডাটা ট্রান্সফার করলে ডাটার সিকিউরিটি বা নিরাপত্তা লংঘনের ঝুঁকি অনেক বেশি থাকে। এছাড়াও এসকিউএল ইনজেকশনসহ ডাটা চুরির বিভিন্ন মাধ্যম ব্যবহার করে দুষ্টপ্রকৃতির লোকেরা বা হ্যাকাররা আপনার ডাটার এক্সেস পেয়ে যেতে পারে। তাই এই মেথড ভেবেচিন্তে ঠিক তখনই ব্যবহার করা উচিত যখন আপনার [ফর্ম ডাটাগুলোর কোন সাইড ইফেক্ট](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent) নাই।
+যদি আপনার মনে প্রশ্ন জাগে, '+' বা যোগচিহ্ন কেন ভ্যালুর ভিতরে। আমরা তো কোন যোগচিহ্ন দেইনি। উত্তর হল, **URL** এর ভেতর স্পেস অনুমোদিত নয়। কিন্তু আমরা তো ডাটাগুলো স্পেস দিয়ে বিন্যাস করে তারপর সাবমিট করেছি। ফলে সেই স্পেসগুলো যোগচিহ্ন দ্বারা পরিবর্তিত হয়েছে।
+
+এখন, এই **GET Method**-এ GET ভ্যালুটি ডিফল্ট ভ্যালু হওয়ার অর্থ কিন্তু এই নয় যে, সবসময় আপনি এটাই ব্যবহার করবেন। বরং ডাটা ট্রান্সফারকালীন এই মেথড ব্যবহারে সমস্যা হওয়ার সমূহ সম্ভাবনা আছে। এরমধ্যে বিশেষভাবে বললে এই মেথডের সাহায্যে ডাটা ট্রান্সফার করলে ডাটার সিকিউরিটি বা নিরাপত্তা লংঘনের ঝুঁকি অনেক বেশি থাকে। এছাড়াও এসকিউএল ইনজেকশনসহ ডাটা চুরির বিভিন্ন মাধ্যম ব্যবহার করে দুষ্টপ্রকৃতির লোকেরা বা হ্যাকাররা আপনার ডাটার এক্সেস পেয়ে যেতে পারে। তাই এই মেথড ভেবেচিন্তে ঠিক তখনই ব্যবহার করা উচিত যখন আপনার [ফর্ম ডাটাগুলোর কোন সাইড ইফেক্ট](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent) নাই।
 
 তাহলে উপায়? চলুন দেখি।
 
@@ -134,9 +186,24 @@
 
 ডাটা ট্রান্সফার করার নিরাপদ এবং গ্রহণযোগ্য মেথড হল **POST Method**। কারণ এই মেথডে প্রেরিত ডাটাগুলো এইচটিএমএল হেডার এলিমেন্টের ভেতর সংরক্ষিত হয়ে [request body](https://developer.mozilla.org/en-US/docs/Web/API/Request/body) আকারে ট্রান্সফার হয়। ফলে ডাটার নিরাপত্তা ঝুঁকি অনেকাংশে কমে যায়। ফলে এই ডাটাগুলো কিন্তু ব্রাউজারের এড্রেস বারে আর প্রদর্শিত হয়না।
 
+```html
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
 এদুটি ছাড়াও ডাটা প্রেরণের আরো কিছু মেথড আছে। যেমনঃ **PUT, PATCH, DELETE**। মনে রাখবেন, এইচটিএমএল ফর্মের মাধ্যমে ডাটা ট্রান্সফার করলে শুধুমাত্র **GET** এবং **POST** এই দুটি মেথড ব্যবহার করতে পারবেন। কারণ, এদুটি এইচটিএমএল অনুমোদিত ভ্যালু, আগেও বলেছি।
 
-**PUT, PATCH, DELETE** মেথডগুলো এইচটিএমএল অনুমোদিত ভ্যালু নয়। তাই ব্রাউজার একটি এইচটিএমএল ফর্মের মেথড এট্রিবিউটের ক্ষেত্রে ন্যাটিভভাবে শুধুমাত্র **GET** এবং **POST** মেথডকেই চেনে। অন্য মেথডগুলো সাধারণত [**AJAX call**](https://stackoverflow.com/questions/33074877/why-a-browser-only-supports-get-and-post-http-methods) এর ক্ষেত্রে সাপোর্টেড। তাই সেগুলোর সাপোর্ট ফর্মের ভ্যালুতে পেতে বা ব্রাউজারে এক্সেস করতে গেলে হিডেন ইনপুট এলিমেন্ট ব্যবহার করে সেখানে মেথডগুলো প্রদান করা হয়।
+**PUT, PATCH, DELETE** মেথডগুলো এইচটিএমএল অনুমোদিত ভ্যালু নয়। তাই ব্রাউজার একটি এইচটিএমএল ফর্মের মেথড এট্রিবিউটের ক্ষেত্রে সহজাতভাবে শুধুমাত্র **GET** এবং **POST** মেথডকেই চেনে। অন্য মেথডগুলো সাধারণত [**AJAX call**](https://stackoverflow.com/questions/33074877/why-a-browser-only-supports-get-and-post-http-methods) এর ক্ষেত্রে সাপোর্টেড। তাই সেগুলোর সাপোর্ট ফর্মের ভ্যালুতে পেতে বা ব্রাউজারে এক্সেস করতে গেলে হিডেন ইনপুট এলিমেন্ট ব্যবহার করে সেখানে মেথডগুলো প্রদান করা হয়।
 
 ## PUT, PATCH, DELETE Method{#put-patch-delete-method}
 
@@ -151,6 +218,25 @@
 **DELETE Method** সার্ভারে থাকা কোন রিসোর্স ডিলিট করতে ব্যবহৃত হয়। এখানে [সংক্ষিপ্ত পরিচিতি](https://dev.to/qbentil/http-methods-get-post-put-patch-delete-1fhi) তুলে ধরা হয়েছে। বিস্তারিত জানতে গুগল করুন।
 
 **নোটঃ** এইচটিএমএল ফর্মের মেথড এট্রিবিউটের ভ্যালু হিসেবে উপরোক্ত সমস্ত মেথড বা রিকুয়েস্টগুলো দুইভাবে লেখা যায়। ক্যাপিটাল লেটার বা বড় অক্ষরে, স্মল লেটার বা ছোট অক্ষরে। অর্থাৎ ভ্যালুগুলো কেইস-সেন্সিটিভ নয়। আমরা এই ক্লাসে ক্যাপিটাল লেটারে লিখব।
+যেহেতু, PUT, PATCH, DELETE মেথডগুলো এইচটিএমএল অনুমোদিত ভ্যালু নয় এবং ব্রাউজার চেনে না বা Read করতে পারে না। তাই ব্রাউজারকে চিনিয়ে দেয়ার জন্য একটি এইচটিএমএল ফর্মের ভিতরে হিডেন ভ্যালুসহ একটি Input ফিল্ড নিয়ে সেখানে PUT, PATCH, DELETE প্রয়োজনমত যেকোন একটি বসিয়ে কাজ করতে হয়।
+
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```html
+<form action="" method="POST">
+  <input type="hidden" name="PUT/PATCH/DELETE">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
 
 ## Form Data Retrieval
 
@@ -158,9 +244,63 @@
 
 একই ফাইলে এইচটিএমএল এবং পিএইচপি লেখার ক্ষেত্রে সাধারণত সবাই প্রথমে `<?php ?>` ট্যাগের ভেতরে পিএইচপি কোডগুলো লেখে, অতঃপর এইচটিএমএল সিন্ট্যাক্সগুলো নিচে লেখে। আপনিও এভাবে লিখতে পারেন।
 
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```php
+<?php
+
+//All php code goes here.
+
+?>
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+
+  <body></body>
+</html>
+```
+
 সহজে বোঝা এবং উপস্থাপনের সুবিধার্থে আমরা অবশ্য এইচটিএমএল সিন্ট্যাক্সের পাশাপাশি পিএইচপি কোড লিখে যাব।
 
-তাহলে চলুন শুরু করা যাক। আমরা ফর্ম এলিমেন্টের ক্লোজিং ট্যাগের পর `</form>` পিএইচপি কোড লেখা শুরু করছি।
+তাহলে চলুন শুরু করা যাক। আমরা ফর্ম এলিমেন্টের ক্লোজিং ট্যাগ অর্থাৎ `</form>`-এর পর পিএইচপি কোড লেখা শুরু করছি।
+
+নিম্নোক্ত কোড লক্ষ্য করুন:
+
+```html
+<form action="" method="POST">
+  <input type="hidden" name="PUT/PATCH/DELETE">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input
+      type="text"
+      name="inputValue"
+      id="inputValue"
+      class="form-control"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<?php
+
+//All php code goes here.
+
+?>
+
+```
 
 ফর্মের মাধ্যমে প্রেরিত ডাটাগুলো উদ্ধার করার জন্য আমরা পিএইচপির কিছু বিল্ট-ইন ফিচার ব্যবহার করব। পিএইচপির ভাষায় একে [**superglobal variables**](https://www.php.net/manual/en/language.variables.superglobals.php#refsect1-language.variables.superglobals-description) বলে। চলুন আমাদের ক্লাস সম্পর্কিত variable গুলো নিয়ে জানি।
 
