@@ -104,12 +104,7 @@
 <form action="/one.php">
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -129,12 +124,7 @@
 <form action="" method="">
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -152,12 +142,7 @@
 <form action="" method="GET">
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -172,7 +157,6 @@
 প্রাপ্ত আউটপুটঃ
 
 ![output-on-get-method](/public/get-method-output-on-url.png "GET method output on the URL")
-
 
 আউটপুটের '?' প্রশ্নবোধক চিহ্নের পরবর্তী অংশগুলো দেখুন। আমরা সেখানে `inputValue=This+is+an+input.` এমন আউটপুট দেখতে পাচ্ছি। `inputValue` এই ডাটাটা এসেছে ফর্মের ইনপুট এলিমেন্টের `name` এট্রিবিউট থেকে। মনে আছে? ভুলে গেলে এইচটিএমএল কোডটা আবার চেক করুন। এরপরে আমরা দেখতে পাচ্ছি ইকুয়াল সাইন '=' এবং শেষে আমাদের ইনপুট দেয়া ডাটা।
 
@@ -190,12 +174,7 @@
 <form action="" method="POST">
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -225,15 +204,10 @@
 
 ```html
 <form action="" method="POST">
-  <input type="hidden" name="PUT/PATCH/DELETE">
+  <input type="hidden" name="PUT/PATCH/DELETE" />
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -254,6 +228,7 @@
 
 ?>
 ```
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -281,33 +256,46 @@
 
 ```html
 <form action="" method="POST">
-  <input type="hidden" name="PUT/PATCH/DELETE">
+  <input type="hidden" name="PUT/PATCH/DELETE" />
   <div class="form-group">
     <label for="inputValue">Enter Value:</label>
-    <input
-      type="text"
-      name="inputValue"
-      id="inputValue"
-      class="form-control"
-    />
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
 
 <?php
 
 //All php code goes here.
 
 ?>
-
 ```
 
 ফর্মের মাধ্যমে প্রেরিত ডাটাগুলো উদ্ধার করার জন্য আমরা পিএইচপির কিছু বিল্ট-ইন ফিচার ব্যবহার করব। পিএইচপির ভাষায় একে [**superglobal variables**](https://www.php.net/manual/en/language.variables.superglobals.php#refsect1-language.variables.superglobals-description) বলে। চলুন আমাদের ক্লাস সম্পর্কিত variable গুলো নিয়ে জানি।
 
 ## $\_GET — HTTP GET variables
 
-[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-ভ্যালু আকারে সেট করা থাকে। যেখানে এইচটিএমএল এলিমেন্টভেদে `name` এট্রিবিউটের মধ্যে দেয়া ভ্যালুটা key হিসেবে সার্ভ হয় এবং এলিমেন্টে ইনপুট দেয়া ভ্যালুটা ঐ key এর ভ্যালু হিসেবে সার্ভ হয়। যেমনঃ আমাদের ফর্মটির ইনপুট এলিমেন্টের `name` এট্রিবিউটে ভ্যালু আছে `inputValue`। এটাকে যদি আমরা `var_dump()` করি, উদাহরণঃ
+[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-ভ্যালু আকারে সেট করা থাকে।
+
+যেখানে এইচটিএমএল এলিমেন্টভেদে `name` এট্রিবিউটের মধ্যে দেয়া ভ্যালুটা key হিসেবে সার্ভ হয় এবং এলিমেন্টে ইনপুট দেয়া ভ্যালুটা ঐ key এর ভ্যালু হিসেবে সার্ভ হয়। যেমনঃ আমাদের ফর্মটির ইনপুট এলিমেন্টের `name` এট্রিবিউটে ভ্যালু আছে `inputValue`। এইচটিএমএলঃ
+
+```html
+<input type="text" name="inputValue" id="inputValue" class="form-control" />
+```
+
+এই এলিমেন্ট ফিল্ডে ইনপুট দেয়া ভ্যালুটা আমরা পিএইচপির `$_GET` অ্যাসোসিয়েটিভ অ্যারে সদৃশ ভ্যারিয়েবলের সাহায্যে এক্সেস করতে পারি। সেক্ষেত্রে ফর্মের মেথড এট্রিবিউটে ভ্যালু হিসেবে অবশ্যই **GET** রিকুয়েস্ট ব্যবহার করতে হবে। এইচটিএমএলঃ
+
+```html
+<form action="" method="GET">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+এটাকে যদি আমরা `var_dump()` করি, উদাহরণঃ
 
 ```php
 // display submitted value
@@ -316,13 +304,13 @@
 ?>
 ```
 
-তাহলে আউটপুট পাব NULL। কারণ আমরা ইনপুট হিসেবে কোন ভ্যালু প্রদান করিনি। কিন্তু যদি আমরা ভ্যালু প্রদান করি যেমনঃ `I'm giving an input.`, তাহলে কি দেখতে পাব? উদাহরণ দেখিঃ
+তাহলে এইমুুুহুর্তে আউটপুট পাব NULL। কারণ আমরা ইনপুট হিসেবে কোন ভ্যালু প্রদান করিনি। কিন্তু যদি আমরা ভ্যালু প্রদান করি যেমনঃ `I'm giving an input.`, তাহলে কি দেখতে পাব? উদাহরণ দেখিঃ
 
 ```
 string(20) "I'm giving an input."
 ```
 
-এমনিভাবে **GET** মেথডের ক্ষেত্রে আমরা **URL** এড্রেস বারে ? প্রশ্নবোধক চিহ্নের পর কোন একটি নাম দিয়ে (যেমনঃ `name`) = সমান চিহ্ন দিয়ে অতঃপর যদি ভ্যালু সেট করি (যেমনঃ `Learn Form Manipulation`) তখনও অ্যাসোসিয়েটিভ অ্যারের key হিসেবে name সার্ভ হবে এবং ভ্যালু হিসেবে Learn Form Manipulation সার্ভ হবে।
+এমনিভাবে এই মেথডের ক্ষেত্রে আমরা **URL** এড্রেস বারে ? প্রশ্নবোধক চিহ্নের পর কোন একটি নাম দিয়ে (যেমনঃ `name`) = সমান চিহ্ন দিয়ে অতঃপর যদি ভ্যালু সেট করি (যেমনঃ `Learn Form Manipulation`) তখনও অ্যাসোসিয়েটিভ অ্যারের key হিসেবে name সার্ভ হবে এবং ভ্যালু হিসেবে Learn Form Manipulation সার্ভ হবে।
 
 URL parameter পরিবর্তনের নমুনাঃ _http://localhost:3000/php/index.php?name=Learn Form Manipulation_।
 প্রাপ্ত ফলাফলঃ
@@ -331,7 +319,6 @@ URL parameter পরিবর্তনের নমুনাঃ _http://localhos
 string(23) "Learn Form Manipulation"
 ```
 
-**নোটঃ** এই ভ্যারিয়েবলটির কার্যকারিতা পেতে হলে এইচটিএমএল ফর্মের মেথড এট্রিবিউটে অবশ্যই **GET** রিকুয়েস্ট ব্যবহার করতে হবে।
-
 ## $\_POST — HTTP POST variables
 
+$_GET অ্যাসোসিয়েটিভ অ্যারের মত [`$_POST`](https://www.php.net/manual/en/reserved.variables.post.php) ও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ পূর্ব-নির্ধারিত ভ্যারিয়েবল বা সুপারগ্লোবাল।
