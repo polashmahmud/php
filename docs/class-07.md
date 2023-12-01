@@ -150,6 +150,8 @@
 
 **DELETE Method** সার্ভারে থাকা কোন রিসোর্স ডিলিট করতে ব্যবহৃত হয়। এখানে [সংক্ষিপ্ত পরিচিতি](https://dev.to/qbentil/http-methods-get-post-put-patch-delete-1fhi) তুলে ধরা হয়েছে। বিস্তারিত জানতে গুগল করুন।
 
+**নোটঃ** এইচটিএমএল ফর্মের মেথড এট্রিবিউটের ভ্যালু হিসেবে উপরোক্ত সমস্ত মেথড বা রিকুয়েস্টগুলো দুইভাবে লেখা যায়। ক্যাপিটাল লেটার বা বড় অক্ষরে, স্মল লেটার বা ছোট অক্ষরে। অর্থাৎ ভ্যালুগুলো কেইস-সেন্সিটিভ নয়। আমরা এই ক্লাসে ক্যাপিটাল লেটারে লিখব।
+
 ## Form Data Retrieval
 
 ফর্ম সাবমিট করে আমরা তো ডাটাগুলো পাঠাতে সক্ষম হয়েছি, তাইনা। এবার আমরা প্রেরিত ডাটাগুলো পিএইচপির সাহায্যে উদ্ধার করার প্রক্রিয়া জানব।
@@ -164,7 +166,7 @@
 
 ## $\_GET — HTTP GET variables
 
-[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-ভ্যালু আকারে সেট করা থাকে। যেখানে এলিমেন্টভেদে `name` এট্রিবিউটের মধ্যে দেয়া ভ্যালুটা key হিসেবে সার্ভ হয় এবং এলিমেন্টে ইনপুট দেয়া ভ্যালুটা অ্যারের ভ্যালু হিসেবে সার্ভ হয়। যেমনঃ আমাদের ফর্মটির ইনপুট এলিমেন্টের `name` এট্রিবিউটে ভ্যালু আছে `inputValue`। এটাকে যদি আমরা `var_dump()` করি, উদাহরণঃ
+[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-ভ্যালু আকারে সেট করা থাকে। যেখানে এইচটিএমএল এলিমেন্টভেদে `name` এট্রিবিউটের মধ্যে দেয়া ভ্যালুটা key হিসেবে সার্ভ হয় এবং এলিমেন্টে ইনপুট দেয়া ভ্যালুটা ঐ key এর ভ্যালু হিসেবে সার্ভ হয়। যেমনঃ আমাদের ফর্মটির ইনপুট এলিমেন্টের `name` এট্রিবিউটে ভ্যালু আছে `inputValue`। এটাকে যদি আমরা `var_dump()` করি, উদাহরণঃ
 
 ```php
 // display submitted value
@@ -181,9 +183,14 @@ string(20) "I'm giving an input."
 
 এমনিভাবে **GET** মেথডের ক্ষেত্রে আমরা **URL** এড্রেস বারে ? প্রশ্নবোধক চিহ্নের পর কোন একটি নাম দিয়ে (যেমনঃ `name`) = সমান চিহ্ন দিয়ে অতঃপর যদি ভ্যালু সেট করি (যেমনঃ `Learn Form Manipulation`) তখনও অ্যাসোসিয়েটিভ অ্যারের key হিসেবে name সার্ভ হবে এবং ভ্যালু হিসেবে Learn Form Manipulation সার্ভ হবে।
 
-URL parameter পরিবর্তনের নমুনাঃ `http://localhost:3000/php/index.php?name=Learn Form Manipulation`।
+URL parameter পরিবর্তনের নমুনাঃ _http://localhost:3000/php/index.php?name=Learn Form Manipulation_।
 প্রাপ্ত ফলাফলঃ
 
 ```
 string(23) "Learn Form Manipulation"
 ```
+
+**নোটঃ** এই ভ্যারিয়েবলটির কার্যকারিতা পেতে হলে এইচটিএমএল ফর্মের মেথড এট্রিবিউটে অবশ্যই **GET** রিকুয়েস্ট ব্যবহার করতে হবে।
+
+## $\_POST — HTTP POST variables
+
