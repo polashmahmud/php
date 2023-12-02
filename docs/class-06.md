@@ -874,6 +874,33 @@ Array
 )
 ```
 
+## array_merge()
+
+এই ফাংশনের মাধ্যমে আমরা একাধিক অ্যারেকে একটি অ্যারেতে মার্জ করতে পারি। এই ফাংশনের প্রথম প্যারামিটার হচ্ছে মার্জ করতে চাওয়া অ্যারে এবং দ্বিতীয় প্যারামিটার হচ্ছে মার্জ করার অ্যারে।
+
+```php
+<?php
+$fruits = array('banana', 'apple', 'orange');
+$vegetables = array('carrot', 'collard', 'pea');
+
+$foods = array_merge($fruits, $vegetables);
+
+print_r($foods);
+```
+
+আউটপুট:
+
+```php
+Array
+(
+    [0] => banana
+    [1] => apple
+    [2] => orange
+    [3] => carrot
+    [4] => collard
+    [5] => pea
+)
+```
 ## array_merge_recursive()
 
 [`array_merge_recursive()`](https://www.php.net/manual/en/function.array-merge-recursive.php) ফাংশনটি এই লিস্টের পরবর্তী ফাংশন [`array_merge()`](/class-06.html#array-merge) এর সুপারসেটের মত বিহেভ করে।
@@ -904,33 +931,6 @@ Array
 
 **ডেভলপমেন্ট প্রক্রিয়াধীন...............**
 
-## array_merge()
-
-এই ফাংশনের মাধ্যমে আমরা একাধিক অ্যারেকে একটি অ্যারেতে মার্জ করতে পারি। এই ফাংশনের প্রথম প্যারামিটার হচ্ছে মার্জ করতে চাওয়া অ্যারে এবং দ্বিতীয় প্যারামিটার হচ্ছে মার্জ করার অ্যারে।
-
-```php
-<?php
-$fruits = array('banana', 'apple', 'orange');
-$vegetables = array('carrot', 'collard', 'pea');
-
-$foods = array_merge($fruits, $vegetables);
-
-print_r($foods);
-```
-
-আউটপুট:
-
-```php
-Array
-(
-    [0] => banana
-    [1] => apple
-    [2] => orange
-    [3] => carrot
-    [4] => collard
-    [5] => pea
-)
-```
 
 ## array_multisort()
 
