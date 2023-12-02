@@ -273,9 +273,9 @@
 
 ফর্মের মাধ্যমে প্রেরিত ডাটাগুলো উদ্ধার করার জন্য আমরা পিএইচপির কিছু বিল্ট-ইন ফিচার ব্যবহার করব। পিএইচপির ভাষায় একে [**superglobal variables**](https://www.php.net/manual/en/language.variables.superglobals.php#refsect1-language.variables.superglobals-description) বলে। চলুন আমাদের ক্লাস সম্পর্কিত variable গুলো নিয়ে জানি।
 
-## $\_GET — HTTP GET variables
+## $\_GET — HTTP GET{#GET-HTTP-GET}
 
-[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-ভ্যালু আকারে সেট করা থাকে।
+[`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php) পিএইচপির একটি **Predefined Variable**। একে [**Superglobal**](https://www.php.net/manual/en/language.variables.superglobals.php) ভ্যারিয়েবলও বলা হয়। এটি একটি অ্যাসোসিয়েটিভ অ্যারে। যার মধ্যে কারেন্ট স্ক্রিপ্টের **URL parameter** বা অন্য ভাষায় **query string** এর মাধ্যমে প্রেরিত ডাটাগুলো key-value আকারে সেট করা থাকে।
 
 যেখানে এইচটিএমএল এলিমেন্টভেদে `name` এট্রিবিউটের মধ্যে দেয়া ভ্যালুটা key হিসেবে সার্ভ হয় এবং এলিমেন্টে ইনপুট দেয়া ভ্যালুটা ঐ key এর ভ্যালু হিসেবে সার্ভ হয়। যেমনঃ আমাদের ফর্মটির ইনপুট এলিমেন্টের `name` এট্রিবিউটে ভ্যালু আছে `inputValue`। এইচটিএমএলঃ
 
@@ -319,6 +319,84 @@ URL parameter পরিবর্তনের নমুনাঃ _http://localhos
 string(23) "Learn Form Manipulation"
 ```
 
-## $\_POST — HTTP POST variables
+## $\_POST — HTTP POST{#POST-HTTP-POST}
 
-$_GET অ্যাসোসিয়েটিভ অ্যারের মত [`$_POST`](https://www.php.net/manual/en/reserved.variables.post.php) ও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ পূর্ব-নির্ধারিত ভ্যারিয়েবল বা সুপারগ্লোবাল।
+$_GET অ্যাসোসিয়েটিভ অ্যারের মত [$\_POST](https://www.php.net/manual/en/reserved.variables.post.php) ও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ পূর্ব-নির্ধারিত ভ্যারিয়েবল বা সুপারগ্লোবাল।
+
+এই ভ্যারিয়েবলের সাহায্যে ফর্মের মাধ্যমে প্রেরিত ডাটা এক্সেস করতে হলে মেথড এট্রিবিউট হিসেবে **POST** সেট করতে হবে। এইচটিএমএলঃ
+
+```html
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+ডাটাগুলো যখন **HTTP POST** মেথডের সাহায্যে ট্রান্সফার হয়, তখন ফর্ম এলিমেন্টে [`enctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#enctype) এট্রিবিউটটি এভেলেবল হয়। এই এট্রিবিউটের মাধ্যমে প্রেরিত ডাটার টাইপ নির্ধারণ করে দেয়া যায়। যাকে **HTTP Content-Type** ও বলতে পারি। এট্রিবিউটটির ভ্যালু হিসেবে `application/x-www-form-urlencoded` অথবা `multipart/form-data` দিয়ে যে ডাটাগুলো প্রেরিত হয়, **$\_POST** অ্যাসোসিয়েটিভ অ্যারে সদৃশ ভ্যারিয়েবলে সেই ডাটাগুলো ঠিক $\_GET ভ্যারিয়েবলের মত key-value আকারে স্টোর হয় এবং সেভাবে তাকে এক্সেসও করা যায়। উদাহরণঃ
+
+```php
+// display submitted value
+<?php
+  var_dump($_POST['inputValue'])
+?>
+```
+
+ইনপুট ফিল্ডে কোন ইনপুট না দেয়া অবস্থায় `NULL` আউটপুট পাব। যদি কোন ডাটা ইনপুট দেই, যেমনঃ `This is a POST Input`, তখন কি আউটপুট পাব দেখিঃ
+
+```
+string(20) "This is a POST Input"
+```
+
+## $\_REQUEST — HTTP Request{#REQUEST-HTTP-Request}
+
+$\_GET এবং $\_POST এর মতই এটাও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ সুপার গ্লোবাল ভ্যারিয়েবল। $\_GET, $\_POST এবং [$\_COOKIE](https://www.php.net/manual/en/reserved.variables.cookies.php) সর্বমোট এই তিনটি ভ্যারিয়েবলের কন্টেন্ট বা ডাটা এক্সেস করতে [$\_REQUEST](https://www.php.net/manual/en/reserved.variables.request.php) গ্লোবাল ভ্যারিয়েবলটি ব্যবহার করা যেতে পারে।
+
+যেহেতু ফর্মে এই মুহুর্তে আমরা POST মেথড ব্যবহার করছি। প্রমাণঃ
+
+```html
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="inputValue">Enter Value:</label>
+    <input type="text" name="inputValue" id="inputValue" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+ইনপুট ফিল্ডে একটি ডাটা ইনপুট দিয়ে আমরা সেটা $\_REQUEST ভ্যারিয়েবলের মাধ্যমে এক্সেস করার চেষ্টা করি। উদাহরণঃ
+
+```php
+// display submitted value
+<?php
+  var_dump($_REQUEST['inputValue'])
+?>
+```
+
+আমাদের ইনপুটঃ `This is a Request Input`। আউটপুটঃ
+
+```
+string(23) "This is a Request Input"
+```
+
+এই ভ্যারিয়েবলের ক্ষেত্রে ফর্ম মেথড GET বা POST যেকোনোটি হতে পারে।
+
+## ‍সার্ভার রিকুয়েস্ট মেথড বের করা
+
+আপনার এপ্লিকেশন সার্ভারের সাথে কোন HTTP Method এর সাহায্যে ডাটা ট্রান্সফার করছে সেটা জানার প্রয়োজন হলে আমাদের আরো একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ সুপার-গ্লোবাল ভ্যারিয়েবলের সাহায্য নিতে হয়। তার নাম, [`$_SERVER`](https://www.php.net/manual/en/reserved.variables.server.php)।
+
+কোন মেথডে ডাটা ট্রান্সফার হচ্ছে জানতে **$\_SERVER** অ্যারেতে অ্যাসোসিয়েটিভ অ্যারের ডাটা এক্সেস করার পদ্ধতি এপ্লাই করতে হবে। key হিসেবে পিএইচপির আগে থেকে নির্ধারণ করা একটি key `REQUEST_METHOD` প্রদান করতে হবে। যেমনঃ
+
+```php
+<?php
+  var_dump($_SERVER['REQUEST_METHOD'])
+?>
+```
+
+যেহেতু আমাদের ফর্মে এইমুহুর্তে ডাটা ট্রান্সফার হচ্ছে POST মেথডে, তাই আমরা ভ্যালু হিসেবে সেটাই দেখতে পাব। উদাহরণঃ
+
+```
+string(4) "POST"
+```
