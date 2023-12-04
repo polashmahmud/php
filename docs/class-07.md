@@ -400,3 +400,52 @@ string(23) "This is a Request Input"
 ```
 string(4) "POST"
 ```
+
+এবার আসুন আমরা উপরোক্ত শিক্ষাকে কাজে লাগিয়ে আমাদের দেয়া ইনপুটগুলোকে DOM Manipulation এর সাহায্যে এইচটিএমএল পেইজে দেখানোর চেষ্টা করি।
+
+## htmlspecialchars() Function
+
+তার আগে আমরা একটি ফাংশন সম্পর্কে জানি। ফাংশনটির নামঃ [`htmlspecialchars()`](https://www.php.net/manual/en/function.htmlspecialchars)। এটি একটি স্ট্রিং সম্পর্কিত ফাংশন। এর কাজ হল, এইচটিএমএলের ভেতর যে সকল ক্যারেক্টারগুলো স্পেশাল হিসেবে বিবেচিত, যেমনঃ `< > / '' "" &` ইত্যাদি; যেগুলো এইচটিএমএলের সিনট্যাক্স ক্যারেক্টার হিসেবেও ধর্তব্য সেগুলোকে এইচটিএমএল entity তে কনভার্ট করা। ফলে কখনো যদি আপনার এমন প্রয়োজন হয় যে, এইচটিএমএল কোড ব্রাউজার সরাসরি পার্স না করে বরং স্ট্রিং আকারে রিটার্ন করবে তখন এই ফাংশনটি ব্যবহার করতে পারেন।
+
+যেমন ধরুন আপনার টেক্সট আকারে এইচটিএমএল কোড দেখানোর প্রয়োজন হল। এখন এইচটিএমএল কোড স্ট্রিং আকারে লিখে যদি কোন ভ্যারিয়েবলে স্টোর করি এবং `echo` দিয়ে সেটা প্রিন্ট করি তাহলে কি আমাদের প্রয়োজন পূর্ণ হবে? চলুন দেখিঃ
+
+```php
+<?php
+  $new = "<a href='test'>Test</a>";
+
+  // browser will execute the code and treat it like HTML code
+  echo $new;
+?>
+```
+
+আউটপুটঃ
+
+![HTML-Code-Execution-Output](/public/html-special-chars-execution.png "HTML anchor tag got executed")
+
+দেখতে পাচ্ছি, আমাদের উদ্দেশ্য পূরণ হয়নি। বরং ব্রাউজার কোডটাকে এইচটিএমএল হিসেবে বিবেচনা করে এক্সিকিউট করে ফেলেছে। এবার `htmlspecialchars()` ফাংশন ব্যবহার করে দেখি আমাদের উদ্দেশ্য পূরণ হয় কিনা। উদাহরণঃ
+
+```php
+<?php
+  $new = htmlspecialchars("<a href='test'>Test</a>");
+
+  echo $new; // &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
+?>
+```
+
+Terminal আউটপুটঃ
+
+```
+&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
+```
+
+Browser আউটপুটঃ
+
+```
+<a href='test'>Test</a>
+```
+
+প্রমাণঃ
+
+![HTML-Special-Chars-Executed](/public/html-special-chars-executed-success.png "HTML code to string conversion success")
+
+ইনপুট ফিল্ড থেকে প্রাপ্ত ডাটাগুলোর ক্ষেত্রে এখন থেকে আমরা এই ফাংশনটি ব্যবহার করব।
