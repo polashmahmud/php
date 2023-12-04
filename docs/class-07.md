@@ -420,7 +420,7 @@ string(4) "POST"
 
 আউটপুটঃ
 
-![HTML-Code-Execution-Output](html-special-chars-execution.png "HTML anchor tag got executed")
+![HTML-Code-Execution-Output](/public/html-special-chars-execution.png "HTML anchor tag got executed")
 
 দেখতে পাচ্ছি, আমাদের উদ্দেশ্য পূরণ হয়নি। বরং ব্রাউজার কোডটাকে এইচটিএমএল হিসেবে বিবেচনা করে এক্সিকিউট করে ফেলেছে। এবার `htmlspecialchars()` ফাংশন ব্যবহার করে দেখি আমাদের উদ্দেশ্য পূরণ হয় কিনা। উদাহরণঃ
 
@@ -446,6 +446,6 @@ Browser আউটপুটঃ
 
 প্রমাণঃ
 
-![HTML-Special-Chars-Executed](html-special-chars-executed-success.png "HTML code to string conversion success")
+![HTML-Special-Chars-Executed](/public/html-special-chars-executed-success.png "HTML code to string conversion success")
 
 ইনপুট ফিল্ড থেকে প্রাপ্ত ডাটাগুলোর ক্ষেত্রে এখন থেকে আমরা এই ফাংশনটি ব্যবহার করব।
