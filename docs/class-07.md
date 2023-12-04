@@ -271,7 +271,7 @@
 ?>
 ```
 
-ফর্মের মাধ্যমে প্রেরিত ডাটাগুলো উদ্ধার করার জন্য আমরা পিএইচপির কিছু বিল্ট-ইন ফিচার ব্যবহার করব। পিএইচপির ভাষায় একে [**superglobal variables**](https://www.php.net/manual/en/language.variables.superglobals.php#refsect1-language.variables.superglobals-description) বলে। চলুন আমাদের ক্লাস সম্পর্কিত variable গুলো নিয়ে জানি।
+ফর্মের মাধ্যমে প্রেরিত ডাটাগুলো উদ্ধার করার জন্য আমরা পিএইচপির কিছু বিল্ট-ইন ফিচার ব্যবহার করব। পিএইচপির ভাষায় একে [**superglobal variables**](https://www.php.net/manual/en/language.variables.superglobals.php#refsect1-language.variables.superglobals-description) বলে। চলুন আমাদের ক্লাস সম্পর্কিত variable গুলো সম্পর্কে জানি।
 
 ## $\_GET — HTTP GET{#GET-HTTP-GET}
 
@@ -310,18 +310,18 @@
 string(20) "I'm giving an input."
 ```
 
-এমনিভাবে এই মেথডের ক্ষেত্রে আমরা **URL** এড্রেস বারে ? প্রশ্নবোধক চিহ্নের পর কোন একটি নাম দিয়ে (যেমনঃ `name`) = সমান চিহ্ন দিয়ে অতঃপর যদি ভ্যালু সেট করি (যেমনঃ `Learn Form Manipulation`) তখনও অ্যাসোসিয়েটিভ অ্যারের key হিসেবে name সার্ভ হবে এবং ভ্যালু হিসেবে Learn Form Manipulation সার্ভ হবে।
+এমনিভাবে এই মেথডের ক্ষেত্রে আমরা **URL** এড্রেস বারে '?' প্রশ্নবোধক চিহ্নের পর কোন একটি নাম দিয়ে (যেমনঃ `name`) অতঃপর '=' সমান চিহ্ন দিয়ে যদি কোন ভ্যালু সেট করি (যেমনঃ `Learn-Form-Manipulation`) তখনও অ্যাসোসিয়েটিভ অ্যারের key হিসেবে name সার্ভ হবে এবং ভ্যালু হিসেবে Learn-Form-Manipulation সার্ভ হবে।
 
-URL parameter পরিবর্তনের নমুনাঃ _http://localhost:3000/php/index.php?name=Learn Form Manipulation_।
+URL parameter পরিবর্তনের নমুনাঃ _http://localhost:3000/php/index.php?name=Learn-Form-Manipulation_। উল্লেখ্য, পূর্বেই বলেছি যে URL এর ভেতর স্পেস অনুমোদিত নয়। তাই আমরা ডাটা বা ভ্যালুর স্পেসগুলো '-' হাইফেন দিয়ে ফিল করে দিয়েছি। চাইলে অন্য কোন চিহ্ন দিয়েও করা যেতে পারে। যেমনটি পূর্বের এক উদাহরণে আমাদের সাবমিট করা ভ্যালুর স্পেসগুলো ব্রাউজারের URL এড্রেস বারে যোগচিহ্ন দ্বারা পরিবর্তিত হয়েছে।
 প্রাপ্ত ফলাফলঃ
 
 ```
-string(23) "Learn Form Manipulation"
+string(23) "Learn-Form-Manipulation"
 ```
 
 ## $\_POST — HTTP POST{#POST-HTTP-POST}
 
-$_GET অ্যাসোসিয়েটিভ অ্যারের মত [$\_POST](https://www.php.net/manual/en/reserved.variables.post.php) ও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ পূর্ব-নির্ধারিত ভ্যারিয়েবল বা সুপারগ্লোবাল।
+$_GET অ্যাসোসিয়েটিভ অ্যারের মত [$\_POST](https://www.php.net/manual/en/reserved.variables.post.php) ও একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ পূর্ব-নির্ধারিত ভ্যারিয়েবল বা সুপারগ্লোবাল ভ্যারিয়েবল।
 
 এই ভ্যারিয়েবলের সাহায্যে ফর্মের মাধ্যমে প্রেরিত ডাটা এক্সেস করতে হলে মেথড এট্রিবিউট হিসেবে **POST** সেট করতে হবে। এইচটিএমএলঃ
 
@@ -340,7 +340,7 @@ $_GET অ্যাসোসিয়েটিভ অ্যারের মত [$\_P
 ```php
 // display submitted value
 <?php
-  var_dump($_POST['inputValue'])
+  var_dump($_POST['inputValue']);
 ?>
 ```
 
@@ -371,7 +371,7 @@ $\_GET এবং $\_POST এর মতই এটাও একটি অ্যা
 ```php
 // display submitted value
 <?php
-  var_dump($_REQUEST['inputValue'])
+  var_dump($_REQUEST['inputValue']);
 ?>
 ```
 
@@ -383,7 +383,7 @@ string(23) "This is a Request Input"
 
 এই ভ্যারিয়েবলের ক্ষেত্রে ফর্ম মেথড GET বা POST যেকোনোটি হতে পারে।
 
-## ‍HTTP ডাটা ট্রান্সফার মেথড দেখা{#find-http-transfer-method}
+## ‍সার্ভার রিকুয়েস্ট মেথড বের করা
 
 আপনার এপ্লিকেশন সার্ভারের সাথে কোন HTTP Method এর সাহায্যে ডাটা ট্রান্সফার করছে সেটা জানার প্রয়োজন হলে আমাদের আরো একটি অ্যাসোসিয়েটিভ অ্যারে সদৃশ সুপার-গ্লোবাল ভ্যারিয়েবলের সাহায্য নিতে হয়। তার নাম, [`$_SERVER`](https://www.php.net/manual/en/reserved.variables.server.php)।
 
