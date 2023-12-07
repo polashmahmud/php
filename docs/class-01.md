@@ -6,7 +6,7 @@
 
 অতএব, **PHP** একটি বহুল ব‍্যবহৃত ওপেন সোর্স ল‍্যাংগুয়েজ। [পিএইচপি ডেভলপমেন্ট টিম](https://php.net/credits/), [জেন্ড টেকনোলজি](https://www.zend.com/) এবং [পিএইচপি ফাউন্ডেশন](https://thephp.foundation/) — যাদেরকে একসাথে **PHP Group** নামে অভিহিত করা হয় তারা বর্তমানে এই ভাষাটির রক্ষণাবেক্ষণ, রিসার্চ এন্ড ডেভলপমেন্টসহ যাবতীয় উন্নয়নমূলক কর্মকান্ড করে থাকেন। **PHP’র** বর্তমান ভার্সন 8.2। **PHP** নিয়ে আরো বিস্তারিত জানতে [**PHP Wiki**](https://en.wikipedia.org/wiki/PHP) পড়ুন।
 
-ফ্রন্ডএন্ড ওয়েবের অবিচ্ছেদ্য অংশ JavaScript এর মত **PHPও** একটি Dynamically Typed Language। যার অর্থ, **PHPতে** ভ্যারিয়েবল ডিক্লেয়ার করতে হলে কোন ধরণের ডাটা টাইপ প্রদান করার প্রয়োজন পড়ে না। রানটাইমে **PHP** Interpreter ভ্যারিয়েবলের ভ্যালু বুঝে ডাটা টাইপ নিজে থেকেই সেট করে দেয়। যদিও ডেভলপাররা চাইলে নিজে থেকেও সেট করে দিতে পারে।
+ফ্রন্ট-এন্ড ওয়েবের অবিচ্ছেদ্য অংশ JavaScript এর মত **PHPও** একটি Dynamically Typed Language। যার অর্থ, **PHPতে** ভ্যারিয়েবল ডিক্লেয়ার করতে হলে কোন ধরণের ডাটা টাইপ প্রদান করার প্রয়োজন পড়ে না। রানটাইমে **PHP** Interpreter ভ্যারিয়েবলের ভ্যালু বুঝে ডাটা টাইপ নিজে থেকেই সেট করে দেয়। যদিও ডেভলপাররা চাইলে নিজে থেকেও সেট করে দিতে পারে।
 
 **PHP** দিয়ে যেমনিভাবে ডাইনামিক ওয়েবসাইট, স্ট্যাটিক ওয়েবসাইট বা ওয়েব এপ্লিকেশন তৈরি করা যায়। তেমনিভাবে ডাটাবেস ম্যানেজমেন্টও করা যায়। পাশাপাশি HTML, CSS, JavaScript বা XML ইত্যাদির ভেতর খুব ফ্লেক্সিবলি **PHP** কোড লিখে একটি সার্ভারের সাহায্যে রান করে যেকোন ধরণের ছোট থেকে ছোট, বড় থেকে বড় এপ্লিকেশন তৈরি করা সম্ভব।
 
@@ -161,7 +161,7 @@ echo "This string spans
 multiple lines. The newlines will be
 output as well";
 
-echo "This string spans\nmultiple lines. The newlines will be\output as well.";
+echo "This string spans\nmultiple lines. The newlines will be\noutput as well.";
 ```
 
 **নোট:–** echo statement দুইভাবে লেখা যায়। এক. `echo` তথা ব্রাকেট বা parenthesis () ছাড়া। দুই. ব্রাকেট বা parenthesis () সহ, `echo()`। দুটোই ভ্যালিড। তবে ব্রাকেট ছাড়াই বেশি ব্যবহার হয়।
@@ -972,17 +972,17 @@ ANOTHER_NOWDOC;
 >>echo "He drank some $juice juice.".PHP_EOL;
 >>// Unintended. "s" is a valid character for a variable name, so this refers to $juices, not $juice.
 >>echo "He drank some juice made of $juices.";
->>// Explicitly specify the end of the variable name by enclosing the r/eference in braces.
+>>// Explicitly specify the end of the variable name by enclosing the reference in braces.
 >>echo "He drank some juice made of {$juice}s.";
 >>```
 >>
->> একইভাবে *array index* বা *object property*-ও *parse* করা সম্ভব। যখন আমরা *array or object* সম্পর্কে জানব, তখন সেখানে ‍উদাহরন দেখব।
+>> একইভাবে *array index* বা *object property*-ও *parse* করা সম্ভব। যখন আমরা *array or object* সম্পর্কে জানব, তখন সেখানে ‍উদাহরণ দেখব।
 >
 > ### Complex (curly) syntax
 >
 > *Complex syntax* মানে এই নয় যে এর *syntax* কঠিন। বরং এই *syntax*-এর সাহায্যে `string` ডাটার ভেতরে *complex expressions* লেখা যায়।
 >
->> এই *syntax*-য়েও `string` ডাটার ভেতরে *scalar variable* (শুধুমাত্র একটি ভ্যালু ধারণ করে এমন ভ্যারিয়েবল), *array element or object property* লিখে তা *parse* করা যায়। তবে এর বিশেষত্ব হল, যে *expression*-গুলো `string` ডাটার বাইরে সাধারণত লেখা হয় তা এই *syntax*-এর সাহায্যে — তথা `{}` কার্লি ব্রেসের মধ্যে দিয়ে — `string` ডাটার ভেতরেও লেখা সম্ভব।
+>> এই *syntax*-এও `string` ডাটার ভেতরে *scalar variable* (শুধুমাত্র একটি ভ্যালু ধারণ করে এমন ভ্যারিয়েবল), *array element or object property* লিখে তা *parse* করা যায়। তবে এর বিশেষত্ব হল, যে *expression*-গুলো `string` ডাটার বাইরে সাধারণত লেখা হয় তা এই *syntax*-এর সাহায্যে — তথা `{}` কার্লি ব্রেসের মধ্যে দিয়ে — `string` ডাটার ভেতরেও লেখা সম্ভব।
 >>
 >> `{}` কার্লি ব্রেসগুলোকে *escape* করা যায় না। তাই **PHP** যখন *opening curly brace* (`{`)-র সাথে সাথেই `$` (ডলার সাইন) দেখে তখন সেটাকে সে *Complex syntax* হিসেবে বিবেচনা করে।
 >>
@@ -1053,7 +1053,7 @@ ANOTHER_NOWDOC;
 >>>```
 >> এখন `string` ভ্যালুগুলোকে আমরা `array` এর মতই এক্সেস করতে পারি। এমতাবস্থায় আপনার যদি ইচ্ছা জাগে যে আপনি প্রথমে একটা *empty string* Initialize করবেন তারপর *empty index operator* দিয়ে ভ্যালু সেট/এক্সেস করবেন; কি হবে? **PHP 7.1.0** এবং পরবর্তী ভার্সনগুলো আপনাকে *fatal error* দিবে। আগের ভার্সনগুলো আপনার ইচ্ছার মূল্যায়ন করে `string`-কে বিহাইন্ড দা সিন `array`-তে কনভার্ট করে নিত।
 
-##### চলেন কিছু উদাহরণ দেখি:– {#some-string-examples}
+##### চলুন কিছু উদাহরণ দেখি:– {#some-string-examples}
 
 ```php
 <?php
@@ -1313,7 +1313,7 @@ define("__FOO__", "something");
 >> */
 >>```
 
-3. `Unix shell-style` (Perl style) এর comment। `#` হ্যাশ সাইন দিয়ে করতে হয়। এটিও সিংগল লাইন কমেন্ট বা *"one-line" comment* এর মত কাজ করে।
+3. `Unix shell-style` (Perl style) এর comment। `#` হ্যাশ সাইন দিয়ে করতে হয়। এটিও সিংগেল লাইন কমেন্ট বা *"one-line" comment* এর মত কাজ করে।
 >
 >```php
 ><?php
