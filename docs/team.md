@@ -61,7 +61,7 @@ const members = [
     links: [
       { icon: 'github', link: 'https://github.com/Rasel2f' },
     ]
-  },
+  }
 ]
 </script>
 
