@@ -50,7 +50,17 @@ const members = [
     links: [
       { icon: 'github', link: 'https://github.com/Rasel2f' },
     ]
-  }
+  },
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/95936171?v=4',
+    name: 'কাজী মোঃ ফয়সাল ',
+    title: 'স্বেচ্ছাসেবক',
+    links: [
+      { icon: 'github', link: 'https://github.com/kmfoysal06' },
+      { icon: 'facebook', link: 'https://www.facebook.com/kazimd.foysal.01' },
+      { icon: 'x', link: 'https://twitter.com/kmfoysal06' }
+    ]
+  },
 ]
 </script>
 
