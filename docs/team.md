@@ -33,17 +33,6 @@ const members = [
   },
 
   {
-    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
-    name: 'তানভীর আব্দুল্লাহ তোহা',
-    title: 'স্বেচ্ছাসেবক',
-    links: [
-      { icon: 'github', link: 'https://github.com/TohaTanvir' },
-      { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
-      { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
-     ]
-  },
-  
-  {
     avatar: 'https://avatars.githubusercontent.com/u/95936171?v=4',
     name: 'কাজী মোঃ ফয়সাল ',
     title: 'স্বেচ্ছাসেবক',
@@ -61,7 +50,18 @@ const members = [
     links: [
       { icon: 'github', link: 'https://github.com/Rasel2f' },
     ]
-  }
+  },
+
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
+    name: 'তানভীর আব্দুল্লাহ তোহা',
+    title: 'স্বেচ্ছাসেবক',
+    links: [
+      { icon: 'github', link: 'https://github.com/TohaTanvir' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
+      { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
+    ]
+  },  
 ]
 </script>
 
