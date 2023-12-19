@@ -63,13 +63,14 @@ const members = [
     ]
   },
   {
-    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
-    name: 'তানভীর আব্দুল্লাহ তোহা',
+    avatar: 'https://avatars.githubusercontent.com/u/67571769?v=4',
+    name: 'কাওছার আলম ইভেন',
     title: 'সহকারী সম্পাদক',
     links: [
-      { icon: 'github', link: 'https://github.com/TohaTanvir' },
-      { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
-      { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
+      { icon: 'github', link: 'https://github.com/KawsarAlamEven' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/kawsaralameven/' },
+      { icon: 'facebook', link: 'https://www.facebook.com/kawsaralameeven/' },
+      { icon: 'x', link: 'https://twitter.com/KawsarAlam_Even' }
     ]
   },   
 ]
