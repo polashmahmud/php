@@ -1,4 +1,4 @@
-# পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
+ va# পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
 
 আজকের ক্লাসে পুরো ফর্মের প্রসেস গুলা দেখবো। ফর্মের ভীতরে যা যা থাকে যেমন Text input, Radio Buttons,Multi-checkbox ,  Date Picker, Time Picker, Multi selection Dropdown ( এজন্য আমার একটা প্লাগিন ইউজ করবো jquery এর ), Multi-checkbox কিভাবে কাজ করে, Select Dropdown টা কিভাবে কাজ করে এসব দেখাবো।
 
@@ -313,7 +313,7 @@ echo '<div class="mb-6">';
 <!-- Text input -->
         <div class="md-4">
             <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-            <input type="text" id="name" value="sawad" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
+            <input type="text" id="name" value="<?php echo $name ?>" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
         </div>
 ```
 
