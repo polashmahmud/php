@@ -239,7 +239,7 @@ Note:: multiple select ব্যবহারের করলে এর ক্ষ
 Method এর মধ্যে POST নিবো আর আমরা যেহেতু একই পেজে কোড রান করবো সেজন্য action=”#” লিখবো ।
 
 ```html
-<form action="#" method="post">
+<form action="#" method="POST">
 ```
 
 ## $_SERVER
