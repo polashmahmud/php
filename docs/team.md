@@ -53,7 +53,7 @@ const members = [
   },
 
   {
-    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/67571769?v=4',
     name: 'তানভীর আব্দুল্লাহ তোহা',
     title: 'স্বেচ্ছাসেবক',
     links: [
@@ -61,7 +61,17 @@ const members = [
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
       { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
     ]
-  },  
+  },
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/87535510?s=96&v=4',
+    name: 'তানভীর আব্দুল্লাহ তোহা',
+    title: 'সহকারী সম্পাদক',
+    links: [
+      { icon: 'github', link: 'https://github.com/TohaTanvir' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/tohatanvir/' },
+      { icon: 'facebook', link: 'https://www.facebook.com/tohatanvir' },
+    ]
+  },   
 ]
 </script>
 
