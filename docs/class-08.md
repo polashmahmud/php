@@ -249,7 +249,7 @@ Method এর মধ্যে POST নিবো আর আমরা যেহে
 ```php
 <?php
     //  Check if the form is submited
-     if$_SERVER['REQUEST_METHOD'] === 'POST'){
+     if($_SERVER['REQUEST_METHOD'] === 'POST'){
        echo'hi';
      }
 ?>
