@@ -262,6 +262,8 @@ Method এর মধ্যে POST নিবো আর আমরা যেহে
 এখন আমরা isset এর মাধ্যমে Text input এর name চেক দিবো
 
 ```php
+$name = '';
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
  $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
  echo $name;
@@ -282,39 +284,49 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 এবার php এর মধ্যে ফরমের special character গুলোর তৈরি  করবো ।
 
 ```php
-$name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
-$gender = isset($_POST['gender']) ? htmlspecialchars($_POST['gender']) : '';
-$subscribe = isset($_POST["subscribe"]) ? $_POST["subscribe"] : [];
-$datepicker = isset($_POST['datepicker']) ? htmlspecialchars($_POST['datepicker']) : '';
-$timepicker = isset($_POST['timepicker']) ? htmlspecialchars($_POST['timepicker']) : '';
-$options = isset($_POST['options']) ? $_POST['options'] : [];
-$country = isset($_POST['country']) ? htmlspecialchars($_POST['country']) : '';
+$name = '';
+$gender = '';
+$subscribe = [];
+$datepicker  = '';
+$timepicker = '';
+$options = [];
+$country = '';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+    $gender = isset($_POST['gender']) ? htmlspecialchars($_POST['gender']) : '';
+    $subscribe = isset($_POST["subscribe"]) ? $_POST["subscribe"] : [];
+    $datepicker = isset($_POST['datepicker']) ? htmlspecialchars($_POST['datepicker']) : '';
+    $timepicker = isset($_POST['timepicker']) ? htmlspecialchars($_POST['timepicker']) : '';
+    $options = isset($_POST['options']) ? $_POST['options'] : [];
+    $country = isset($_POST['country']) ? htmlspecialchars($_POST['country']) : '';
+}
 ```
 
 special character গুলোকে সুন্দর করে প্রিন্ট করার জন্য লিখবো
 
 ```php
 echo '<div class="mb-6">';
-       echo '<ul>';
-       echo '<li><strong>Name:</strong> '.$name.'</li>' ;
-       echo '<li><strong>Gender:</strong> '.$gender.'</li>' ;
-       echo '<li><strong>Subscribe:</strong> '.implode(', ', $subscribe).'</li>' ;
-       echo '<li><strong>Datepicker:</strong> '.$datepicker.'</li>' ;
-       echo '<li><strong>Timepicker:</strong> '.$timepicker.'</li>' ;
-       echo '<li><strong>Options:</strong> '. implode(',',$options).'</li>' ;
-       echo '<li><strong>Country:</strong> '.$country.'</li>' ;
-       echo '</ul>';
-       echo '</div>';
+echo '<ul>';
+echo '<li><strong>Name:</strong> '.$name.'</li>' ;
+echo '<li><strong>Gender:</strong> '.$gender.'</li>' ;
+echo '<li><strong>Subscribe:</strong> '.implode(', ', $subscribe).'</li>' ;
+echo '<li><strong>Datepicker:</strong> '.$datepicker.'</li>' ;
+echo '<li><strong>Timepicker:</strong> '.$timepicker.'</li>' ;
+echo '<li><strong>Options:</strong> '. implode(',',$options).'</li>' ;
+echo '<li><strong>Country:</strong> '.$country.'</li>' ;
+echo '</ul>';
+echo '</div>';
 ```
 
 আমরা যদি এখন চাই আমরা যে ফর্ম টা submit করবো submit এর যে value গুলা আসে সেগুলা relapse বা রিমুভ হবে না । তার জন্য আমাদের বিভিন্ন ফর্মের মধ্যে ইনপুট section এর মধ্যে value নামে priority  নিতে হবে । এই value এর মধ্যে যাই নিবো তাই দেখাবে। 
 
 ```php
 <!-- Text input -->
-        <div class="md-4">
-            <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-            <input type="text" id="name" value="<?php echo $name ?>" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
-        </div>
+ <div class="md-4">
+     <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+     <input type="text" id="name" value="<?php echo $name ?>" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
+ </div>
 ```
 
 আউটপুটঃ
