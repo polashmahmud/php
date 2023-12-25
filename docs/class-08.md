@@ -1,4 +1,4 @@
- # পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
+# পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
 
 আজকের ক্লাসে পুরো ফর্মের প্রসেস গুলা দেখবো। ফর্মের ভীতরে যা যা থাকে যেমন Text input, Radio Buttons,Multi-checkbox ,  Date Picker, Time Picker, Multi selection Dropdown ( এজন্য আমার একটা প্লাগিন ইউজ করবো jquery এর ), Multi-checkbox কিভাবে কাজ করে, Select Dropdown টা কিভাবে কাজ করে এসব দেখাবো।
 
@@ -257,7 +257,7 @@ Method এর মধ্যে POST নিবো আর আমরা যেহে
 
 আউটপুটঃ
 
-![input-data-sample-page](/public/class-8.part-1.png "Input Data Sample Page")
+![input-data-sample-page](/public/class-8-part-1.png "Input Data Sample Page")
 
 এখন আমরা isset এর মাধ্যমে Text input এর name চেক দিবো
 
@@ -331,7 +331,7 @@ echo '</div>';
 
 আউটপুটঃ
 
-![input-data-sample-page](/public/class-8.part-2.png "Input Data Sample Page")
+![input-data-sample-page](/public/class-8-part-2.png "Input Data Sample Page")
 
 এখন আমরা ভালুর মধ্যে php ব্লক নিতে পারি। php  ব্লকের মধ্যে name variable টা প্রিন্ট করে দিতে পারি।
 
@@ -390,7 +390,7 @@ Multiselect ফর্মের জন্য in_array এর মাধ্যম�
 </select>
 ```
 
-Dropdownফর্মের জন্য কিভাবে php declare করতে হবে নিচে দেখানো হলো ।
+Dropdown ফর্মের জন্য কিভাবে php declare করতে হবে নিচে দেখানো হলো ।
 
 ```php
 <select id="country" name="country" class="mt-1 p-2 w-full border rounded-md">
@@ -427,4 +427,4 @@ Multi-checkbox ফর্মের জন্য php declare করা হলো �
 
 আউটপুটঃ
 
-![input-data-sample-page](/public/class-8.part-4.png "Input Data Sample Page")
+![input-data-sample-page](/public/class-8-part-4.png "Input Data Sample Page")
