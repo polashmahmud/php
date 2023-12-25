@@ -1,10 +1,10 @@
- va# পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
+ # পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
 
 আজকের ক্লাসে পুরো ফর্মের প্রসেস গুলা দেখবো। ফর্মের ভীতরে যা যা থাকে যেমন Text input, Radio Buttons,Multi-checkbox ,  Date Picker, Time Picker, Multi selection Dropdown ( এজন্য আমার একটা প্লাগিন ইউজ করবো jquery এর ), Multi-checkbox কিভাবে কাজ করে, Select Dropdown টা কিভাবে কাজ করে এসব দেখাবো।
 
 প্রথমে আমরা ফর্মের ডিজাইন করবো। ডিজাইন করার জন্য আসলে আমার tailwind css ইউস করবো আপনারা চাইলে বুড ষ্টাপ ইউস করেও ডিজাইন করতে পারেন।
 
-## ## Initial Setup
+## Initial Setup
 
 ১. ডিজাইনের জন্য আমরা tailwind css cdn ইউস করবো 
 
