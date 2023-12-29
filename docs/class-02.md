@@ -722,3 +722,5 @@ echo rand(1, 100);
 ```
 
 ## PHP Operator
+
+[Edit This Page](https://github.com/polashmahmud/php/edit/main/docs/class-02.md)

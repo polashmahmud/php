@@ -428,3 +428,6 @@ Multi-checkbox ফর্মের জন্য php declare করা হলো �
 আউটপুটঃ
 
 ![input-data-sample-page](/public/class-8-part-3.png "Input Data Sample Page")
+
+
+[Edit This Page](https://github.com/polashmahmud/php/edit/main/docs/class-08.md)

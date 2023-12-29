@@ -1319,3 +1319,6 @@ define("__FOO__", "something");
 ><?php
 >echo 'One Final Test'; # This is a one-line shell-style comment
 >```
+
+
+[Edit This Page](https://github.com/polashmahmud/php/edit/main/docs/class-01.md)
