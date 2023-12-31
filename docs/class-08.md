@@ -1,18 +1,19 @@
 # পিএইচপি দিয়ে HTML ফর্ম ডাটার Advance ম্যানিপুলেশন
 
-আজকের ক্লাসে পুরো ফর্মের প্রসেস গুলা দেখবো। ফর্মের ভীতরে যা যা থাকে যেমন Text input, Radio Buttons,Multi-checkbox ,  Date Picker, Time Picker, Multi selection Dropdown ( এজন্য আমার একটা প্লাগিন ইউজ করবো jquery এর ), Multi-checkbox কিভাবে কাজ করে, Select Dropdown টা কিভাবে কাজ করে এসব দেখাবো।
+আজকের ক্লাসে পুরো ফর্ম ডাটার পিএইচপি ম্যানিপুলেশন প্রসেস গুলা দেখবো। ফর্মের ভিতরে যা যা থাকে যেমন- Text input, Radio Buttons, Checkbox, Multi-checkbox, Date Picker, Time Picker, Multi selection Dropdown, Single selection Dropdown ইত্যাদি নিয়ে একটি উদাহণ ফর্ম তৈরি করবো। এজন্য আমরা jQuery ভিত্তিক একটি 
+লাইব্রেরি(Select2)-কে প্লাগিন হিসেবে ব্যবহার করবো। Multi-checkbox, Select Dropdown ইত্যাদি কিভাবে কাজ করে সেগুলো দেখবো।
 
-প্রথমে আমরা ফর্মের ডিজাইন করবো। ডিজাইন করার জন্য আসলে আমার tailwind css ইউস করবো আপনারা চাইলে বুড ষ্টাপ ইউস করেও ডিজাইন করতে পারেন।
+প্রথমে আমরা ফর্মের ডিজাইন করবো। ডিজাইন করার জন্য আসলে আমরা tailwind css ব্যবহার করবো। আপনারা চাইলে [Bootstrap](https://getbootstrap.com/) ব্যবহার করেও ডিজাইন করতে পারেন।
 
 ## Initial Setup
 
-১. ডিজাইনের জন্য আমরা tailwind css cdn ইউস করবো 
+১. ডিজাইনের জন্য আমরা tailwind css cdn ইউস করবো। 
 
 ২. প্রথমে একটি folder এর ভীতরে `index.php` নামে একটা ফাইল তৈরি করে এর ভিতরে একটি বেসিক HTML স্ট্রাকচার নিব এবং [localhost](http://localhost) এ রান করে নিবো ।
 
-কিভাবে রান করতে হয় তা পূর্বের ক্লাস এ দেখানো হয়েছে
+কিভাবে রান করতে হয় তা পূর্বের ক্লাস এ দেখানো হয়েছে। 
 
-Tailwindcss website এ 
+বেসিক HTML স্ট্রাকচার:
 
 ```html
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ Tailwindcss website এ
 
 ## প্রাথমিক এইচটিএমএল ফর্ম{#build-first-html-form}
 
-আমাদের index.php ফাইলের body সেকশনে একটি এইচটিএমএল এর ভীতর Text input, Radio Buttons এবং Multi-checkbox ফর্ম তৈরি করি যেখানে প্রাথমিক ভাবে বিভিন্ন রকম value প্রদান করবো । 
+আমাদের index.php ফাইলের body সেকশনে একটি এইচটিএমএল ফর্ম তৈরি করা হলো যার ভিতরে Text input, Radio Buttons এবং Multi-checkbox ফিল্ডগুলো থাকবে প্রাথমিক ভাবে বিভিন্ন রকম value প্রদান করার জন্য। 
 
 ```html
 <!DOCTYPE html>
@@ -67,56 +68,56 @@ Tailwindcss website এ
 </head>
 <body class="bg-gray-200 p-6">
     <div class="max-w-md mx-auto bg-white p-8 border rounded-md shadow-md">
-    <h2 class="text-2xl font-semibold md-4">Example From</h2>
+        <h2 class="text-2xl font-semibold md-4">Example From</h2>
+        
     
-
-    <form action="">
-        <!-- Text input -->
-        <div class="md-4">
-            <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
-            <input type="text" id="name" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
-        </div>
-
-        <!-- Radio Buttons -->
-        <div class="md-4">
-            <label for="gender" class="block text-sm font-medium text-gray-600">Gender</label>
-            <div class="mt-1 space-x-4">
-                <label for="inline-flex items-center">
-                    <input type="radio" name="gender" value="male" class="from-radio text-indigo-600">
-                    <span class="ml-2">Male</span>
-                </label>
-                <label for="inline-flex items-center">
-                    <input type="radio" name="gender" value="female" class="from-radio text-indigo-600">
-                    <span class="ml-2">Female</span>
-                </label>
+        <form action="">
+            <!-- Text input -->
+            <div class="md-4">
+                <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+                <input type="text" id="name" name="name" class="mt-1 p-2 w-2 w-full border rounded-md">
             </div>
-        </div>
-
-       <!-- Multi-checkbox -->
-          <div class="mb-4">
-            <label for="subscribe"  class="block text-sm font-medium text-gray-600">Subscribe to Newsletter</label>
-            <div class="space-y-2">
-                <label class="inline-flex items-center">
-                    <input type="checkbox" name="subscribe[]" value="checkbox1" class="form-checkbox text-indigo-600">
-                    <span class="ml-2">Checkbox 1</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="checkbox" name="subscribe[]" value="checkbox2" class="form-checkbox text-indigo-600">
-                    <span class="ml-2">Checkbox 2</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="checkbox" name="subscribe[]" value="checkbox3" class="form-checkbox text-indigo-600">
-                    <span class="ml-2">Checkbox 3</span>
-                </label>
+    
+            <!-- Radio Buttons -->
+            <div class="md-4">
+                <label for="gender" class="block text-sm font-medium text-gray-600">Gender</label>
+                <div class="mt-1 space-x-4">
+                    <label for="inline-flex items-center">
+                        <input type="radio" name="gender" value="male" class="from-radio text-indigo-600">
+                        <span class="ml-2">Male</span>
+                    </label>
+                    <label for="inline-flex items-center">
+                        <input type="radio" name="gender" value="female" class="from-radio text-indigo-600">
+                        <span class="ml-2">Female</span>
+                    </label>
+                </div>
             </div>
-        </div>
-    </form>
-</div>   
+
+            <!-- Multi-checkbox -->
+              <div class="mb-4">
+                <label for="subscribe"  class="block text-sm font-medium text-gray-600">Subscribe to Newsletter</label>
+                <div class="space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="subscribe[]" value="checkbox1" class="form-checkbox text-indigo-600">
+                        <span class="ml-2">Checkbox 1</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="subscribe[]" value="checkbox2" class="form-checkbox text-indigo-600">
+                        <span class="ml-2">Checkbox 2</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="subscribe[]" value="checkbox3" class="form-checkbox text-indigo-600">
+                        <span class="ml-2">Checkbox 3</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>   
 </body>
 </html>
 ```
 
-এরপর এইচটিএমএল এর ভিতর আমরা date picker ফর্ম নিবো ।
+এরপর এইচটিএমএল এর ভিতর আমরা date picker ফিল্ড নিবো ।
 
 ```html
 <!-- Date Picker -->
@@ -126,35 +127,38 @@ Tailwindcss website এ
 </div>
 ```
 
-এখানে date picker ব্যবহারের জন্য আমাদের jquery দরকার । এর জন্য head section এ  [jquery cdn](https://releases.jquery.com/) নিয়ে এসে বসাতে হবে ।
+এখানে date picker ব্যবহারের জন্য আমাদের jquery নির্ভরতা দরকার হবে। এজন্য পূর্বের ন‍্যায় এইচটিএমএলের ইনিশিয়াল টেমপ্লেট-এর head সেকশনে [jquery cdn](https://releases.jquery.com/) টা লিংক করে দিবো।
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 ```
 
-এরপর head section এ jquery cdn এর নিচে  [flatpicker cdn](https://flatpickr.js.org/getting-started/) নিয়ে এসে বসাতে হবে ।
+এরপর head section এ jquery cdn এর নিচে  [flatpicker cdn](https://flatpickr.js.org/getting-started/) লিংক করে দিবো।
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 ```
 
-এখন সবার শেষ এ body section close tag এর উপর এ datepicker এর জন্য flatpickr দিয়ে javascript  Call করতে হবে ।
+এখন, সবশেষে body section-এর close tag-এর উপরে datepicker যথাযথ কাজ করার জন্য flatpickr ইনিশিয়ালাইজ করে নিতে javascript  Call করতে হবে।
 
 ```html
-<script>
-    // Initialize Flatpickr for the date and time pickers
-    flatpickr("#datepicker", {
-        enableTime: false,
-        dateFormat: "Y-m-d",
-    });
-</script>
+//all codes are above as regular
+    <script>
+        // Initialize Flatpickr for the date and time pickers
+        flatpickr("#datepicker", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+        });
+    </script>
+</body>
+</html>
 ```
 
 Note::  https://flatpickr.js.org/examples/  এই documentation এর মাধ্যম Date Format ব্যবহারের সকল তথ্য জানা যাবে ।
 
-এরপর এইচটিএমএল [f](https://flatpickr.js.org/getting-started/)orm section এর  ভিতর time picker ফর্ম নিবো ।
+এরপর এইচটিএমএল form section এর ভিতর time picker ফিল্ড নিবো।
 
 ```html
 <!-- Time Picker -->
@@ -164,21 +168,32 @@ Note::  https://flatpickr.js.org/examples/  এই documentation এর মা�
 </div>
 ```
 
-এখন আবার timepicker এর জন্য flatpickr দিয়ে javascript  Call করতে হবে ।
+এখন, পূর্বের datepicker-এর ন‍্যায় আবার timepicker যথাযথ কাজ করার জন্য flatpickr ইনিশিয়ালাইজ করে নিতে javascript  Call করতে হবে। তবে এবার পূর্বের code-এর নিচে বসালেই হবে।
+
+উদাহরণ:
 
 ```html
-<script>
-    flatpickr("#timepicker",{
-    enableTime: true,
-    noCalendar: true,
-    dateFormat: "H:i",
-    });
-</script>
+//all codes are above as regular
+    <script>
+         // Initialize Flatpickr for the date and time pickers
+        flatpickr("#datepicker", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+        });
+
+        flatpickr("#timepicker",{
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        });
+    </script>
+</body>
+</html>
 ```
 
-Note::  https://www.php.net/manual/en/datetime.format.php এই documentation এর মাধ্যম Time Format এর কোন টা কিভাবে লিখতে হবে কি লিখলে আউটপুট কি হবে ব্যবহারের সকল তথ্য জানা যাবে । 
+Note::  https://www.php.net/manual/en/datetime.format.php এই documentation-এর মাধ্যমে Time Format-এর কোনটা কিভাবে লিখতে হবে, কি লিখলে আউটপুট কি হবে ইত্যাদি ব্যবহারের সকল তথ্য জানা যাবে। 
 
-এখন আবার এইচটিএমএল [f](https://flatpickr.js.org/getting-started/)orm section এর  ভিতর ****Multi select**** ফর্ম নিবো 
+এখন, আবার এইচটিএমএল form section-এর ভিতরে Multiple Option সিলেক্ট করার জন্য ****Multi select**** ফিল্ড নিবো।
 
 ```html
 <!-- Multiselect Dropdown using Select2 -->
@@ -195,15 +210,15 @@ Note::  https://www.php.net/manual/en/datetime.format.php এই documentation �
     </div>
 ```
 
-Note:: multiple select ব্যবহারের করলে এর ক্ষেত্রে [ ]  যেমনঃ options[]  এই চিহ্ন ব্যবহার করতে হবে ।
+Note: Multiple select ব্যবহার করার ক্ষেত্রে array চিহ্ন '[ ]' যেমনঃ options[] ব্যবহার করতে হবে।
 
-এরপর head section এ   [select2 cdn](https://select2.org/getting-started/installation) নিয়ে এসে flatpicker cd এর উপর বসাতে হবে ।
+এরপর head section-এ [select2 cdn](https://select2.org/getting-started/installation) নিয়ে এসে flatpicker cdn-এর উপর বসাতে হবে।
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 ```
 
-এখন ****Multi select****  active  করার জন্য js এর কিছু code  বসাতে হবে
+এখন ****Multi select**** active করার জন্য Select2 ইনিশিয়ালাইজ করে নিতে js-এর কিছু code বসাতে হবে। যা পূর্বের script code-এর ভিতরে বসালেই হবে।
 
 ```html
 
