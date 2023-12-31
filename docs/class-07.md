@@ -449,3 +449,6 @@ Browser আউটপুটঃ
 ![HTML-Special-Chars-Executed](/public/html-special-chars-executed-success.png "HTML code to string conversion success")
 
 ইনপুট ফিল্ড থেকে প্রাপ্ত ডাটাগুলোর ক্ষেত্রে এখন থেকে আমরা এই ফাংশনটি ব্যবহার করব।
+
+
+[Edit This Page](https://github.com/polashmahmud/php/edit/main/docs/class-07.md)

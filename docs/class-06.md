@@ -1486,3 +1486,5 @@ echo $randomNumber;
 ```php
 7
 ```
+
+[Edit This Page](https://github.com/polashmahmud/php/edit/main/docs/class-06.md)
