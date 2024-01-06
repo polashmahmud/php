@@ -38,6 +38,7 @@ const members = [
     title: 'স্বেচ্ছাসেবক',
     links: [
       { icon: 'github', link: 'https://github.com/kmfoysal06' },
+      { icon: 'linkedin', link: 'https://linkedin.com/in/kmfoysal06' },
       { icon: 'facebook', link: 'https://www.facebook.com/kazimd.foysal.01' },
       { icon: 'x', link: 'https://twitter.com/kmfoysal06' }
     ]
