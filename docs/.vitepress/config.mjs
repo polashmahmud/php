@@ -27,6 +27,7 @@ export default defineConfig({
           { text: "অষ্টম ক্লাস", link: "/class-08" },
           { text: "নবম ক্লাস", link: "/class-09" },
           { text: "দশম ক্লাস", link: "/class-10" },
+          { text: "একাদশ ক্লাস", link: "/class-11" },
         ],
       },
     ],
