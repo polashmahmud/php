@@ -1,0 +1,1119 @@
+# Carbon ব্যবহার করে পিএইচপি তারিখ ও সময় ফরম্যাটিং করা শিখুন (ক্লাস - ১২) 
+
+## carbon install
+
+carbon আপনি দুই ভাবে ইসন্টল করতে পারবেন। এক হচ্ছে ম‍্যানুয়ালি আর আরেকটা হচ্ছে কম্পোজার ব‍্যবহার করে। আপনি যদি কার্বনের সাইটে আসেন তাহলে আপনি দুই ভাবে ইন্সটল করার পদ্ধতি পাবেন। আমি এখানে কম্পোজার ব‍্যবহার করে ইন্সটল করবো। আপনি যদি কম্পোজার ব‍্যবহার করে ইন্সটল করতে চান তাহলে আপনার কম্পোজার ইন্সটল করা থাকতে হবে। 
+
+## কম্পোজার ব‍্যবহার করে ইন্সটল করা
+
+আপনার কম্পোজার ইন্সটল করা থাকলে আপনি নিচের কমান্ড দিয়ে কার্বন ইন্সটল করতে পারেন। 
+
+```bash
+composer require nesbot/carbon
+```
+
+আপনি যদি কম্পোজার ব‍্যবহার করে ইন্সটল করতে না চান তাহলে আপনি কার্বনের সাইট থেকে ঘুরে আসতে পারেন।
+
+## কার্বন ব্যবহার করা
+
+আমরা কার্বন ব্যবহার করে তারিখ ও সময় ফরম্যাটিং করবো। আমরা যদি কার্বন ব্যবহার করে তারিখ ও সময় ফরম্যাটিং করতে চাই তাহলে আমাদের প্রথমে কার্বন ক্লাস টা ইনক্লুড করতে হবে। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    echo Carbon::now();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-21 12:00:00
+```
+
+## Creating
+
+```php
+    require_once "vendor/autoload.php";
+
+    $c = new Carbon();
+```
+
+আমরা যদি এখাবে একটা অবজেক্ট ক্রিয়েট করতে চাই তাহলে আমরা দেখবো যে আমাদের একটা ইরর দিচ্ছে এবং বলছে আমাদের নেম প্লেস দেওয়া নাই। এখন আমরা যদি নেম প্লেস দেই তাহলে আমরা দেখবো যে আমাদের কার্বন ক্লাস টা ইনক্লুড করা হয়েছে। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon();
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-21 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+এখন আমরা দেখতে পাচ্ছি যে আমাদের ইরর দিচ্ছে না কিন্তু আমাদের নতুন একটা অবজেক্ট ক্রিয়েট হয়ে গিয়েছে। এবং এই অবজেক্টে আমরা দেখতে পাচ্ছি যে ডিফল্ট ভাবে অনেক কিছুই ডেট টাইম রিলেটেড জিনিসপত্র আমাদের জন‍্য দেওয়া হয়েছে। যেমন তারিখ, টাইম, টাইম জোন, টাইমস্ট্যাম্প ইত্যাদি।
+
+আমরা চাইলে এভাবে new কিওয়ার্ড ব্যবহার না করে static ওয়েতেও একটা অবজেক্ট ক্রিয়েট করতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-21 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+আপনারা দেখতে পাচ্ছেন আমাদের আউটপুটে কোনই পরিবর্তন আসে নাই। কিন্তু static ম‍্যাথডটা ইউজার ফ্রেন্ডলি।
+
+আরেকটা স্টাটিক ম‍্যাথড আছে today() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা আজকের তারিখ পেতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::today();
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-21 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+এখন আপনি now() এবং today() এর মাঝে যদি পার্থক‍্য দেখেন তাহলে খুব একটা পার্থক‍্য পাবেন না। শুধু মাত্র টাইমটাই পার্থক‍্য দেখতে পাবেন। 
+
+আরেকটা আছে tomorrow() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা আগামীকালের তারিখ পেতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::tomorrow();
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-22 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+আরেকটা আছে yesterday() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা গতকালের তারিখ পেতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::yesterday();
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-20 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+আপনি চাইলে create() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::create(2021, 7, 22);
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-22 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+## create() ম‍্যাথডের সিনট্যাক্স
+
+```php
+    Carbon::create($year, $month, $day, $hour, $minute, $second, $tz);
+```
+
+আপনি চাইলে createFromDate() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::createFromDate(2021, 7, 22);
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-22 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+## createFromDate() ম‍্যাথডের সিনট্যাক্স
+
+```php
+    Carbon::createFromDate($year, $month, $day, $tz);
+```
+
+আপনি চাইলে createFromTime() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::createFromTime(12, 0, 0);
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-21 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+## createFromTime() ম‍্যাথডের সিনট্যাক্স
+
+```php
+    Carbon::createFromTime($hour, $minute, $second, $tz);
+```
+
+আপনি চাইলে createFromTimestamp() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::createFromTimestamp(1626872400);
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-21 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+## createFromTimestamp() ম‍্যাথডের সিনট্যাক্স
+
+```php
+    Carbon::createFromTimestamp($timestamp, $tz);
+```
+
+আপনি চাইলে হিউমেন রিডেবল ফরম‍্যাটকেও তারিখে রূপান্তর করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2008-01-01 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "Asia/Dhaka"
+}
+```
+
+আপনি চাইলে + এবং - অপারেটর ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('+2 days');
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-23 12:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "UTC"
+}
+```
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('-6 days 12 hours');
+    
+    var_dump($c);
+?>
+```
+
+**আউটপুট**
+
+```bash
+object(Carbon\Carbon)#1 (3) {
+  ["date"]=>
+  string(26) "2021-07-15 00:00:00.000000"
+  ["timezone_type"]=>
+  int(3)
+  ["timezone"]=>
+  string(13) "UTC"
+}
+```
+
+## formation
+
+আমরা এখন দেখবো আমরা কতো সুন্দর করে তারিখকে ফরম‍্যাট করতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->toDateString();;
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-21
+```
+
+আমরা যদি আরেকটা দেখি
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->toDateTimeString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-21 12:00:00
+```
+
+আমরা যদি আরেকটা দেখি
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->toRssString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+Wed, 21 Jul 2021 12:00:00 +0000
+```
+
+আমরা যদি আরেকটা দেখি
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->toAtomString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-21T12:00:00+00:00
+```
+
+তাহলে আমরা দেখতে পাচ্ছি যে আমরা চাইলে অনেক কিছুই ব‍্যবহার করে আমাদের মতো করে ফরম‍্যাট করতে পারি। সবথেকে বেশি ব্যবহার হয় এই ফরম‍্যাট ম‍্যাথড। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->format('l jS \\of F Y h:i:s A');
+?>
+```
+
+**আউটপুট**
+
+```bash
+Wednesday 21st of July 2021 12:00:00 PM
+```
+
+আরেকটা বেশি ব‍্যবহৃত হয় তা হচ্ছে হিউমেন রিডেবল ফরম‍্যাট। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->diffForHumans();
+?>
+```
+
+**আউটপুট**
+
+```bash
+13 years ago
+```
+
+## Getters
+
+কার্বনে অনেক ইউজপুল গেটার আছে। আমরা যদি কার্বনের গেটার গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->year;
+    echo $c->month;
+    echo $c->day;
+    echo $c->hour;
+    echo $c->minute;
+    echo $c->second;
+    echo $c->timestamp;
+    echo $c->timezone;
+    echo $c->timezoneName;
+?>
+```
+
+**আউটপুট**
+
+```bash
+2008
+1
+1
+12
+0
+0
+1199164800
+Asia/Dhaka
+Asia/Dhaka
+```
+
+আপনি চাইলে dayOfWeek গেটার ব‍্যবহার করে কোন দিনের তারিখ পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->dayOfWeek;
+?>
+```
+
+**আউটপুট**
+
+```bash
+2
+```
+
+আপনি চাইলে dayOfYear গেটার ব‍্যবহার করে কোন দিনের তারিখ পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->dayOfYear;
+?>
+```
+
+**আউটপুট**
+
+```bash
+1
+```
+
+আপনি চাইলে weekOfMonth গেটার ব‍্যবহার করে কোন সপ্তাহের তারিখ পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->weekOfMonth;
+?>
+```
+
+**আউটপুট**
+
+```bash
+1
+```
+
+আপনি চাইলে weekOfYear গেটার ব‍্যবহার করে কোন সপ্তাহের তারিখ পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->weekOfYear;
+?>
+```
+
+**আউটপুট**
+
+```bash
+1
+```
+
+আপনি চাইলে daysInMonth গেটার ব‍্যবহার করে কোন মাসের দিন পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('last day of January 2008', 'Asia/Dhaka');
+    
+    echo $c->daysInMonth;
+?>
+```
+
+**আউটপুট**
+
+```bash
+31
+```
+
+আপনি চাইলে formatLocalized গেটার ব‍্যবহার করে কোন মাসের দিন পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->formatLocalized('%A %d %B %Y');
+?>
+```
+
+**আউটপুট**
+
+```bash
+Wednesday 21 July 2021
+```
+
+আপনি চাইলে খুব সহজে age গেটার ব‍্যবহার করে কোন মাসের দিন পেতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = new Carbon('01/01/2000');
+    
+    echo $c->age;
+?>
+```
+
+**আউটপুট**
+
+```bash
+21
+```
+
+## Setters
+
+কার্বনে অনেক ইউজপুল সেটার আছে। আমরা যদি কার্বনের সেটার গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    $c->year = 2021;
+    $c->month = 7;
+    $c->day = 22;
+    $c->hour = 12;
+    $c->minute = 0;
+    $c->second = 0;
+    $c->timestamp = 1626872400;
+    $c->timezone = 'Asia/Dhaka';
+    $c->timezoneName = 'Asia/Dhaka';
+    
+    echo $c->toDateTimeString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-22 12:00:00
+```
+
+## timezone
+
+কার্বনে অনেক ইউজপুল টাইমজোন আছে। আমরা যদি কার্বনের টাইমজোন গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->tzName;
+    echo $c->tz;
+?>
+```
+
+**আউটপুট**
+
+```bash
+Asia/Dhaka
+Asia/Dhaka
+```
+
+আপনি চাইলে টাইমজোন চেঞ্জ করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    $c->tz = 'Asia/Dhaka';
+    
+    echo $c->tzName;
+    echo $c->tz;
+?>
+```
+
+**আউটপুট**
+
+```bash
+Asia/Dhaka
+Asia/Dhaka
+```
+
+আপনি চাইলে সরাসরি টাইমজোন চেঞ্জ করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now('Asia/Dhaka');
+    
+    echo $c->tzName;
+    echo $c->tz;
+?>
+```
+
+**আউটপুট**
+
+```bash
+Asia/Dhaka
+Asia/Dhaka
+```
+
+আপনি চাইলে তারিখের সাথে টাইম জোন পাঠিয়ে দিতে পারবেন
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::createFromDate(2021, 7, 22, 20, 10, 10, 'Asia/Dhaka');
+
+    echo $c->toDateTimeString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-22 20:10:10
+```
+
+আপনি setTimeZone() ম‍্যাথড ব‍্যবহার করেও টাইমজোন চেঞ্জ করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now()->setTimeZone('Asia/Dhaka');
+    
+    echo $c->tzName;
+?>
+```
+
+**আউটপুট**
+
+```bash
+Asia/Dhaka
+```
+
+## Manipulating
+
+কার্বনে অনেক ইউজপুল ম‍্যানিপুলেট আছে। আমরা যদি কার্বনের ম‍্যানিপুলেট গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    
+    echo $c->addYears(5)->toDateTimeString();
+    echo $c->subYears(5)->toDateTimeString();
+    echo $c->addMonths(5)->toDateTimeString();
+    echo $c->subMonths(5)->toDateTimeString();
+    echo $c->addDays(5)->toDateTimeString();
+    echo $c->subDays(5)->toDateTimeString();
+    echo $c->addWeeks(5)->toDateTimeString();
+    echo $c->subWeeks(5)->toDateTimeString();
+    echo $c->addHours(5)->toDateTimeString();
+    echo $c->subHours(5)->toDateTimeString();
+    echo $c->addMinutes(5)->toDateTimeString();
+    echo $c->subMinutes(5)->toDateTimeString();
+    echo $c->addSeconds(5)->toDateTimeString();
+    echo $c->subSeconds(5)->toDateTimeString();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2026-07-21 12:00:00
+2021-07-21 12:00:00
+2021-12-21 12:00:00
+2021-07-21 12:00:00
+2021-07-26 12:00:00
+2021-07-21 12:00:00
+2021-08-25 12:00:00
+2021-07-21 12:00:00
+2021-07-21 17:00:00
+2021-07-21 12:00:00
+2021-07-21 12:05:00
+2021-07-21 12:00:00
+2021-07-21 12:00:05
+2021-07-21 12:00:00
+```
+
+## Comparisons
+
+কার্বনে অনেক ইউজপুল কম্প‍্যারিসন আছে। আমরা যদি কার্বনের কম্প‍্যারিসন গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c1 = Carbon::now();
+    $c2 = Carbon::now('+2 days');
+    
+    echo $c1->eq($c2); // Equal
+    echo $c1->ne($c2); // Not Equal
+    echo $c1->gt($c2); // Greater Than
+    echo $c1->gte($c2); // Greater Than or Equal
+    echo $c1->lt($c2); // Less Than
+    echo $c1->lte($c2); // Less Than or Equal
+?>
+```
+
+**আউটপুট**
+
+```bash
+000001
+```
+
+## Difference
+
+কার্বনে অনেক ইউজপুল ডিফারেন্স আছে। আমরা যদি কার্বনের ডিফারেন্স গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c1 = Carbon::now();
+    $c2 = Carbon::now('+2 days');
+    
+    echo $c1->diffInYears($c2);
+    echo $c1->diffInMonths($c2);
+    echo $c1->diffInDays($c2);
+    echo $c1->diffInWeeks($c2);
+    echo $c1->diffInHours($c2);
+    echo $c1->diffInMinutes($c2);
+    echo $c1->diffInSeconds($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+0
+0
+2
+0
+48
+2880
+172800
+```
+
+আপনি চাইলে ডিফারেন্স এর সাথে কিছু কাস্টমাইজেশন করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c1 = Carbon::now();
+    $c2 = Carbon::now('+2 days');
+    
+    echo $c1->diffForHumans($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+2 days from now
+```
+
+আপনি চাইলে একজন মানুষ কতো বছর বয়স তা খুব সহজেই বাহির করতে পারেন
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c1 = new Carbon('01/01/2000');
+    $c2 = new Carbon('01/01/2021');
+    
+    echo "আমার বয়স " . $c1->diffInYears($c2) . " বছর";
+?>
+```
+
+**আউটপুট**
+
+```bash
+আমার বয়স 21 বছর
+```
+
+আপনি চাইলে parse() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ পার্স করতে পারেন। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    $c2 = Carbon::parse('+2 weeks');
+    
+    echo $c->diffForHumans($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+2 weeks from now
+```
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    $c2 = Carbon::parse('+2 weeks');
+    
+    echo $c->diffInWeekays($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+10
+```
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    $c2 = Carbon::parse('+2 weeks');
+    
+    echo $c->diffInWeekenddays($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+4
+```
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::now();
+    $c2 = Carbon::parse('+2 weeks');
+    
+    echo $c->diffInWeeks($c2);
+?>
+```
+
+**আউটপুট**
+
+```bash
+2
+```
+
+আমরা parse() ম‍্যাথড এর মাধ্যমে কোন তারিখ পার্স করতে পারি। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::parse('2021-07-22 12:00:00');
+    
+    echo $c->diffForHumans();
+?>
+```
+
+**আউটপুট**
+
+```bash
+1 day from now
+```
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::parse('+ 2 weeks');
+    
+    echo $c->diffForHumans();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2 weeks from now
+```
+
+## modifiers
+
+কার্বনে অনেক ইউজপুল মডিফায়ার আছে। আমরা যদি কার্বনের মডিফায়ার গুলো দেখতে চাই তাহলে আমরা দেখতে পারি নিচের কোড গুলো। 
+
+```php
+<?php
+    require_once "vendor/autoload.php";
+    use Carbon\Carbon;
+
+    $c = Carbon::parse('2021-07-22 12:00:00');
+    
+    echo $c->startOfDay();
+    echo $c->endOfDay();
+    echo $c->startOfMonth();
+    echo $c->endOfMonth();
+    echo $c->startOfYear();
+    echo $c->endOfYear();
+    echo $c->startOfDecade();
+    echo $c->endOfDecade();
+    echo $c->startOfCentury();
+    echo $c->endOfCentury();
+    echo $c->startOfWeek();
+    echo $c->endOfWeek();
+?>
+```
+
+**আউটপুট**
+
+```bash
+2021-07-22 00:00:00
+2021-07-22 23:59:59
+2021-07-01 00:00:00
+2021-07-31 23:59:59
+2021-01-01 00:00:00
+2021-12-31 23:59:59
+2020-01-01 00:00:00
+2029-12-31 23:59:59
+2000-01-01 00:00:00
+2099-12-31 23:59:59
+2021-07-18 00:00:00
+2021-07-24 23:59:59
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
