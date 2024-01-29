@@ -500,60 +500,211 @@ mktime(hour, minute, second, month, day, year)
 29-01-2024 09:15:00
 ```
 
-## কিছু উদাহরণ দেখা যাক
+## নির্ধারিত রেঞ্জের ভেতর তারিখ/সময় প্রদর্শন
+
+আমরা ইতিপূর্বে জেনেছি `strtotime()` ফাংশনটির সেকেন্ড প্যারামিটারে _baseTimestamp_ প্রদান করার সুযোগ আছে। সেটা ব্যবহার করে আমরা একটি নির্ধারিত _startdate_ থেকে নিয়ে নির্ধারিত একটি _enddate_ তথা একটি পূর্বনির্ধারিত রেঞ্জের ভেতরকার সময়/তারিখ ধারাবাহিকভাবে প্রদর্শন করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-$startdate = strtotime("Saturday");
-$enddate = strtotime("+6 weeks", $startdate);
+    // Output: 1706810400 converts to 02-02-2024
+    $startdate = strtotime("Friday");
+    // Output: 1707415200 converts to 09-02-2024
+    $enddate = strtotime("+1 week", $startdate);
 
-while ($startdate < $enddate) {
-  echo date("M d", $startdate) . "<br>";
-  $startdate = strtotime("+1 week", $startdate);
-}
-?>
+    echo $startdate . "\n" . $enddate . "\n";
+    echo date("d-m-Y", $startdate) . "\n" . date("d-m-Y", $enddate) . "\n";
+
+    while ($startdate < $enddate) {
+        echo date("M d Y", $startdate) . "\n";
+
+        // baseTimestamp provided to the second parameter
+        // of strtotime() function
+        $startdate = strtotime("+1 day", $startdate);
+    }
 ```
 
-## আমরা চাইলে দুইটা তারিখের মাঝে কতো দিন বাকি আছে তা বাহির করতে পারি
+আউটপুটঃ
 
-```php
-<?php
-    $date1 = strtotime("2021-07-21");
-    $date2 = strtotime("2021-07-28");
-    $diff = $date2 - $date1;
-    echo "Difference between two dates: " . floor($diff / (60*60*24)) . " Days";
-?>
+```
+1706810400
+1707415200
+02-02-2024
+09-02-2024
+Feb 02 2024
+Feb 03 2024
+Feb 04 2024
+Feb 05 2024
+Feb 06 2024
+Feb 07 2024
+Feb 08 2024
 ```
 
-## আমরা চাইলে দুইটা তারিখের মাঝে কতো ঘন্টা বাকি আছে তা বাহির করতে পারি
+সপ্তাহের রেঞ্জ প্রদর্শন, যেমনঃ
 
 ```php
 <?php
-    $date1 = strtotime("2021-07-21 12:00:00");
-    $date2 = strtotime("2021-07-21 18:00:00");
-    $diff = $date2 - $date1;
-    echo "Difference between two dates: " . floor($diff / (60*60)) . " Hours";
-?>
+    // Output: 1706918400 converts to 03-02-2024
+    $startdate = strtotime("Saturday");
+    // Output: 1710547200 converts to 16-03-2024
+    $enddate = strtotime("+6 weeks", $startdate);
+
+    echo $startdate . "\n" . $enddate . "\n";
+    echo date("d-m-Y", $startdate) . "\n" . date("d-m-Y", $enddate) . "\n";
+
+    while ($startdate < $enddate) {
+        echo date("M d Y", $startdate) . "\n";
+        $startdate = strtotime("+1 week", $startdate);
+    }
+
 ```
 
-## আমরা চাইলে দুইটা তারিখের মাঝে কতো মিনিট বাকি আছে তা বাহির করতে পারি
+আউটপুটঃ
+
+```
+1706918400
+1710547200
+03-02-2024
+16-03-2024
+Feb 03 2024
+Feb 10 2024
+Feb 17 2024
+Feb 24 2024
+Mar 02 2024
+Mar 09 2024
+```
+
+## দুটি তারিখের ভেতর দিনের পার্থক্য পরিমাপ
+
+নির্ধারিত দুটি তারিখের ভেতরে কত দিনের পার্থক্য আছে তা জানার প্রয়োজন হলে আমরা নিন্মোক্ত উপায়ে তা বের করতে পারি। যেমনঃ
+
+```php
+    // Output: 1708473600 converts to 21-02-2024
+    $startdate = strtotime("2024-02-21");
+
+    // Output: 1711584000 converts to 28-03-2024
+    $enddate = strtotime("2024-03-28");
+
+    // Output: 3110400 converts to 06-02-1970. Why?
+    // Remember Unix epoch time is 01-01-1970?
+    // So the counting starts from 00:00:00 01-01-1970
+    // Since the difference between two dates is 36 Days
+    // So the output is one month and 6 days of another month.
+    // Try to understand by doing simple math
+    $diff = $enddate - $startdate;
+
+    echo $startdate . "\n" . $enddate . "\n" . $diff . "\n";
+    echo date("d-m-Y", $startdate) . "\n" . date("d-m-Y", $enddate) . "\n" . date("d-m-Y", $diff) . "\n";
+    echo "Difference between two dates: " . floor($diff / (60 * 60 * 24)) . " Days";
+```
+
+আউটপুটঃ
+
+```
+1708473600
+1711584000
+3110400
+21-02-2024
+28-03-2024
+06-02-1970
+Difference between two dates: 36 Days
+```
+
+## দুটি তারিখের ভেতর ঘন্টার পার্থক্য পরিমাপ
+
+আবার, দুটি নির্ধারিত তারিখের ভেতরে কত ঘন্টার পার্থক্য আছে তা জানার জন্য আমরা নিন্মোক্ত উপায় ব্যবহার করতে পারি। যেমনঃ
 
 ```php
 <?php
-    $date1 = strtotime("2021-07-21 12:00:00");
-    $date2 = strtotime("2021-07-21 12:30:00");
-    $diff = $date2 - $date1;
+    // Output: 1708516800 converts to 21-02-2024
+    $startdate = strtotime("2024-02-21 12:00:00");
+
+    // Output: 1708624800 converts to 22-02-2024
+    $enddate = strtotime("2024-02-22 18:00:00");
+
+    // Output: 108000 converts to 02-01-1970. Why?
+    // Find previous comment
+    $diff = $enddate - $startdate;
+
+    echo $startdate . "\n" . $enddate . "\n" . $diff . "\n";
+    echo date("d-m-Y", $startdate) . "\n" . date("d-m-Y", $enddate) . "\n" . date("d-m-Y", $diff) . "\n";
+    echo "Difference between two dates: " . floor($diff / (60 * 60)) . " Hours";
+```
+
+আউটপুটঃ
+
+```
+1708516800
+1708624800
+108000
+21-02-2024
+22-02-2024
+02-01-1970
+Difference between two dates: 30 Hours
+```
+
+## দুটি তারিখের মিনিটের পার্থক্য পরিমাপ
+
+একইরকমভাবে, দুটি নির্ধারিত তারিখের ভেতরে কত মিনিটের পার্থক্য আছে তা পরিমাপ করতে আমরা নিন্মোক্ত উপায় ব্যবহার করতে পারি। যেমনঃ
+
+```php
+<?php
+    // Output: 1708516800 converts to 21-02-2024 12:00:00
+    $startdate = strtotime("2024-02-21 12:00:00");
+
+    // Output: 1708605000 converts to 22-02-2024 12:30:00
+    $enddate = strtotime("2024-02-22 12:30:00");
+
+    // Output: 88200 converts to 02-01-1970 00:30:00. Why?
+    // Find previous comment
+    $diff = $enddate - $startdate;
+
+    echo $startdate . "\n" . $enddate . "\n" . $diff . "\n";
+    echo date("d-m-Y H:i:s", $startdate) . "\n" . date("d-m-Y H:i:s", $enddate) . "\n" . date("d-m-Y H:i:s", $diff) . "\n";
     echo "Difference between two dates: " . floor($diff / (60)) . " Minutes";
-?>
 ```
 
-## আমরা চাইলে দুইটা তারিখের মাঝে কতো সেকেন্ড বাকি আছে তা বাহির করতে পারি
+আউটপুটঃ
+
+```
+1708516800
+1708605000
+88200
+21-02-2024 12:00:00
+22-02-2024 12:30:00
+02-01-1970 00:30:00
+Difference between two dates: 1470 Minutes
+```
+
+## দুটি তারিখের সেকেন্ডের পার্থক্য পরিমাপ
 
 ```php
 <?php
-    $date1 = strtotime("2021-07-21 12:00:00");
-    $date2 = strtotime("2021-07-21 12:00:30");
-    $diff = $date2 - $date1;
+    // Output: 1708516800 converts to 21-02-2024 12:00:00
+    $startdate = strtotime("2024-02-21 12:00:00");
+
+    // Output: 1708603230 converts to 22-02-2024 12:00:30
+    $enddate = strtotime("2024-02-22 12:00:30");
+
+    // Output: 86430 converts to 02-01-1970 00:00:30. Why?
+    // Find previous comment
+    $diff = $enddate - $startdate;
+
+    echo $startdate . "\n" . $enddate . "\n" . $diff . "\n";
+    echo date("d-m-Y H:i:s", $startdate) . "\n" . date("d-m-Y H:i:s", $enddate) . "\n" . date("d-m-Y H:i:s", $diff) . "\n";
     echo "Difference between two dates: " . floor($diff) . " Seconds";
-?>
+
 ```
+
+আউটপুটঃ
+
+```
+1708516800
+1708603230
+86430
+21-02-2024 12:00:00
+22-02-2024 12:00:30
+02-01-1970 00:00:30
+Difference between two dates: 86430 Seconds
+```
+
+ক্লাস ম্যাটেরিয়াল সম্পন্ন। ভবিষ্যতে প্রয়োজন অনুসারে আরো কন্টেন্ট এবং ম্যাটেরিয়াল যোগ হতে পারে।
