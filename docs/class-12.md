@@ -498,7 +498,7 @@ Wednesday 21st of July 2021 12:00:00 PM
 **আউটপুট**
 
 ```bash
-13 years ago
+16 years ago
 ```
 
 ## Getters
@@ -972,7 +972,7 @@ Asia/Dhaka
 **আউটপুট**
 
 ```bash
-2 weeks from now
+2 weeks before
 ```
 
 ```php
@@ -1045,7 +1045,7 @@ Asia/Dhaka
 **আউটপুট**
 
 ```bash
-1 day from now
+2 years ago
 ```
 
 ```php
@@ -1062,7 +1062,7 @@ Asia/Dhaka
 **আউটপুট**
 
 ```bash
-2 weeks from now
+1 week from now
 ```
 
 ## modifiers
