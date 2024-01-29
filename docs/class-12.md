@@ -392,7 +392,7 @@ object(Carbon\Carbon)#1 (3) {
 
     $c = Carbon::now();
     
-    echo $c->toDateString();;
+    echo $c->toDateString();
 ?>
 ```
 
