@@ -63,49 +63,94 @@ _Carbon_ ব্যবহার করতে আমাদেরকে প্র�
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
 
-    echo Carbon::now();
+require_once("vendor/autoload.php");
+
+// import Carbon class using namespace with autoloader
+use Carbon\Carbon;
+
+// print the now() static method of Carbon class
+// using fully qualified name
+echo Carbon::now();
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21 12:00:00
+```
+Output at the time of writing:
+2024-01-29 16:02:42
 ```
 
-## Creating
+## Carbon Class দিয়ে অবজেক্ট তৈরি
+
+এবার আমরা _Carbon Class_ দিয়ে অবজেক্ট তৈরি করে পরবর্তীতে সেটা বিভিন্নভাবে বিভিন্ন প্রয়োজনে ব্যবহার করার চেষ্টা করব। উদাহরণঃ
 
 ```php
-    require_once "vendor/autoload.php";
-
-    $c = new Carbon();
+// create an instance of Carbon class
+$c = new Carbon();
 ```
 
-আমরা যদি এখাবে একটা অবজেক্ট ক্রিয়েট করতে চাই তাহলে আমরা দেখবো যে আমাদের একটা ইরর দিচ্ছে এবং বলছে আমাদের নেম প্লেস দেওয়া নাই। এখন আমরা যদি নেম প্লেস দেই তাহলে আমরা দেখবো যে আমাদের কার্বন ক্লাস টা ইনক্লুড করা হয়েছে।
+**খেয়াল রাখতে হবে**, _Carbon Class_ দিয়ে কোন অবজেক্ট তৈরি করতে হলে প্রথমে অবশ্যই `autoload.php` ফাইলটি অন্তর্ভুক্ত করতে হবে। অতঃপর যথাযথ নেমস্পেস ব্যবহার করতে হবে। এগুলো ছাড়া স্বাভাবিকভাবে কোন একটা অবজেক্ট তৈরি করতে গেলে আমরা এই মর্মে একটি **_PHP Fatal error_** পাব যে আমাদের _Carbon Class_ টি _not found_। ২টি প্রক্রিয়া সঠিকভাবে সম্পন্ন করে `var_dump()` করলে আমরা যথাযথ আউটপুট দেখতে পাব। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = new Carbon();
+$c = new Carbon();
 
-    var_dump($c);
-?>
+var_dump($c);
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
+```
+object(Carbon\Carbon)#2 (19) {
+  ["endOfTime":protected]=>
+  bool(false)
+  ["startOfTime":protected]=>
+  bool(false)
+  ["constructedObjectId":protected]=>
+  string(32) "00000000000000020000000000000000"
+  ["localMonthsOverflow":protected]=>
+  NULL
+  ["localYearsOverflow":protected]=>
+  NULL
+  ["localStrictModeEnabled":protected]=>
+  NULL
+  ["localHumanDiffOptions":protected]=>
+  NULL
+  ["localToStringFormat":protected]=>
+  NULL
+  ["localSerializer":protected]=>
+  NULL
+  ["localMacros":protected]=>
+  NULL
+  ["localGenericMacros":protected]=>
+  NULL
+  ["localFormatFunction":protected]=>
+  NULL
+  ["localTranslator":protected]=>
+  NULL
+  ["dumpProperties":protected]=>
+  array(3) {
+    [0]=>
+    string(4) "date"
+    [1]=>
+    string(13) "timezone_type"
+    [2]=>
+    string(8) "timezone"
+  }
+  ["dumpLocale":protected]=>
+  NULL
+  ["dumpDateProperties":protected]=>
+  NULL
   ["date"]=>
-  string(26) "2021-07-21 12:00:00.000000"
+  string(26) "2024-01-29 18:25:03.821603"
   ["timezone_type"]=>
   int(3)
   ["timezone"]=>
-  string(13) "Asia/Dhaka"
+  string(3) "UTC"
 }
 ```
 
