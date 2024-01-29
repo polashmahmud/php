@@ -63,16 +63,21 @@ _Carbon_ ব্যবহার করতে আমাদেরকে প্র�
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
 
-    echo Carbon::now();
+require_once("vendor/autoload.php");
+
+// import Carbon class using namespace with autoloader
+use Carbon\Carbon;
+
+// print the Carbon class instance
+echo Carbon::now();
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21 12:00:00
+```
+Output at the time of writing:
+2024-01-29 16:02:42
 ```
 
 ## Creating
