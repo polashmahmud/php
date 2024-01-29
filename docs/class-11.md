@@ -500,18 +500,43 @@ mktime(hour, minute, second, month, day, year)
 29-01-2024 09:15:00
 ```
 
-## কিছু উদাহরণ দেখা যাক
+## নির্ধারিত রেঞ্জের ভেতর তারিখ/সময় প্রদর্শন
+
+আমরা ইতিপূর্বে জেনেছি `strtotime()` ফাংশনটির সেকেন্ড প্যারামিটারে _baseTimestamp_ প্রদান করার সুযোগ আছে। সেটা ব্যবহার করে আমরা একটি নির্ধারিত _startdate_ থেকে নিয়ে নির্ধারিত একটি _enddate_ তথা একটি পূর্বনির্ধারিত রেঞ্জের ভেতরকার সময়/তারিখ ধারাবাহিকভাবে প্রদর্শন করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-$startdate = strtotime("Saturday");
-$enddate = strtotime("+6 weeks", $startdate);
+    // Output: 1706810400 converts to 02-02-2024
+    $startdate = strtotime("Friday");
+    // Output: 1707415200 converts to 09-02-2024
+    $enddate = strtotime("+1 week", $startdate);
 
-while ($startdate < $enddate) {
-  echo date("M d", $startdate) . "<br>";
-  $startdate = strtotime("+1 week", $startdate);
-}
-?>
+    echo $startdate . "\n" . $enddate . "\n";
+    echo date("d-m-Y", $startdate) . "\n" . date("d-m-Y", $enddate) . "\n";
+
+    while ($startdate < $enddate) {
+        echo date("M d Y", $startdate) . "\n";
+
+        // baseTimestamp provided to the second parameter
+        // of strtotime() function
+        $startdate = strtotime("+1 day", $startdate);
+    }
+```
+
+আউটপুটঃ
+
+```
+1706810400
+1707415200
+02-02-2024
+09-02-2024
+Feb 02 2024
+Feb 03 2024
+Feb 04 2024
+Feb 05 2024
+Feb 06 2024
+Feb 07 2024
+Feb 08 2024
 ```
 
 ## আমরা চাইলে দুইটা তারিখের মাঝে কতো দিন বাকি আছে তা বাহির করতে পারি
