@@ -500,6 +500,10 @@ Output at the time of writing:
 
 আমাদের ডেটটাইমকে ইচ্ছামাফিক বিভিন্ন ফরম্যাটে প্রিন্ট এবং প্রদর্শনের জন্য _Carbon_ খুবই ব্যবহারযোগ্য বেশকিছু মেথড প্রদান করেছে। যেগুলো খুবই হ্যান্ডফুল _Carbon_ ক্লাস মেথড। এখন আমরা এই মেথডগুলোর সাহায্যে কত সুন্দর করে আমাদের ডেটটাইমকে ফরম‍্যাট করতে পারি তাই দেখব।
 
+### toDateString() মেথড
+
+প্রথমে আমরা ব্যবহার করব `toDateString()` মেথড। এই মেথডের সাহায্যে আমরা আমাদের ডেটকে স্ট্রিং ডাটা টাইপে রূপান্তর করে প্রিন্ট করতে পারি। উদাহরণঃ
+
 ```php
 <?php
 require_once "vendor/autoload.php";
@@ -507,33 +511,38 @@ use Carbon\Carbon;
 
 $c = Carbon::now();
 
-echo $c->toDateString();
+echo "Output at the time of writing:\n" . $c->toDateString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21
+```
+Output at the time of writing:
+2024-01-30
 ```
 
-আমরা যদি আরেকটা দেখি
+### toDateTimeString() মেথড
+
+আর যদি ডেটের সাথে টাইমকেও স্ট্রিংয়ে রূপান্তর করার ইচ্ছা হয়, তাহলে আমরা `toDateTimeString()` মেথড ব্যবহার করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toDateTimeString();
-?>
+echo "Output at the time of writing:\n" . $c->toDateTimeString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21 12:00:00
 ```
+Output at the time of writing:
+2024-01-30 02:09:50
+```
+
+যেহেতু আমরা কোন টাইমজোন সেট করি নাই, তাই ডিফল্ট ইউটিসি টাইমজোনে আউটপুট দেখতে পাচ্ছি।
 
 আমরা যদি আরেকটা দেখি
 
