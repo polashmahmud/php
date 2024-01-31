@@ -55,7 +55,7 @@ composer install
 
 আর যদি _Composer_ ব‍্যবহার করে ইন্সটল করতে না চান তাহলে ডকুমেন্টেশন/ম্যানুয়াল পড়ুন।
 
-## Carbon এর ব্যবহার পদ্ধতি
+## Carbon এর ব্যবহার পদ্ধতি{#use-of-carbon}
 
 _Carbon_ ব্যবহার করতে আমাদেরকে প্রথমে `autoload.php` নামক একটি ফাইল যা **vendor** নামক ফোল্ডারের অভ্যন্তরে আছে তাকে ফাইল আপলোডার ফাংশনের সাহায্যে ইমপোর্ট করতে হবে। অতঃপর `use` ব্যবহার করে `Carbon\Carbon` এই নেমস্পেসটি ব্যবহার করে _Carbon_ ক্লাসটি অন্তর্ভুক্ত করতে হবে।
 
@@ -70,7 +70,6 @@ require_once("vendor/autoload.php");
 use Carbon\Carbon;
 
 // print the now() static method of Carbon class
-// using fully qualified name
 echo Carbon::now();
 ```
 
@@ -156,7 +155,7 @@ object(Carbon\Carbon)#2 (19) {
 
 আমরা দেখতে পাচ্ছি কোন এররবিহীন `$c` নামক ভ্যারিয়েবলে নতুন একটা অবজেক্ট ক্রিয়েট হয়েছে। `var_dump()` করে এই অবজেক্টের যাবতীয় তথ্য আমরা দেখতে পাচ্ছি। তারিখ, টাইম, টাইম জোন, টাইমস্ট্যাম্প ইত্যাদিসহ ডেটটাইম রিলেটেড বহু তথ্য _Carbon Class_ ডিফল্টভাবে আমাদেরকে প্রদান করেছে।
 
-আমরা চাইলে এভাবে new কিওয়ার্ড ব্যবহার না করে static ওয়েতেও একটা অবজেক্ট ক্রিয়েট করতে পারি।
+এবার আমরা চাইলে এভাবে `new` কিওয়ার্ড অতঃপর _Carbon Class_ কল করে কোন অবজেক্ট ক্রিয়েট না করে সরাসরি _Carbon Class_ এর static মেথড কল করে অবজেক্ট ক্রিয়েট করতে পারি। পূর্বের মত `var_dump()` করে নিশ্চিত হতে পারি দুটি প্রক্রিয়া একইরকম আউটপুট প্রদান করে কিনা। উদাহরণঃ
 
 ```php
 <?php
@@ -166,306 +165,318 @@ object(Carbon\Carbon)#2 (19) {
     $c = Carbon::now();
 
     var_dump($c);
-?>
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
+```
+object(Carbon\Carbon)#2 (19) {
+  ["endOfTime":protected]=>
+  bool(false)
+  ["startOfTime":protected]=>
+  bool(false)
+  ["constructedObjectId":protected]=>
+  string(32) "00000000000000020000000000000000"
+  ["localMonthsOverflow":protected]=>
+  NULL
+  ["localYearsOverflow":protected]=>
+  NULL
+  ["localStrictModeEnabled":protected]=>
+  NULL
+  ["localHumanDiffOptions":protected]=>
+  NULL
+  ["localToStringFormat":protected]=>
+  NULL
+  ["localSerializer":protected]=>
+  NULL
+  ["localMacros":protected]=>
+  NULL
+  ["localGenericMacros":protected]=>
+  NULL
+  ["localFormatFunction":protected]=>
+  NULL
+  ["localTranslator":protected]=>
+  NULL
+  ["dumpProperties":protected]=>
+  array(3) {
+    [0]=>
+    string(4) "date"
+    [1]=>
+    string(13) "timezone_type"
+    [2]=>
+    string(8) "timezone"
+  }
+  ["dumpLocale":protected]=>
+  NULL
+  ["dumpDateProperties":protected]=>
+  NULL
   ["date"]=>
-  string(26) "2021-07-21 12:00:00.000000"
+  string(26) "2024-01-30 13:44:19.950076"
   ["timezone_type"]=>
   int(3)
   ["timezone"]=>
-  string(13) "Asia/Dhaka"
+  string(3) "UTC"
 }
 ```
 
-আপনারা দেখতে পাচ্ছেন আমাদের আউটপুটে কোনই পরিবর্তন আসে নাই। কিন্তু static ম‍্যাথডটা ইউজার ফ্রেন্ডলি।
+শুধুমাত্র সময়ের পরিবর্তন ছাড়া বাকি আউটপুটগুলো খেয়াল করলে দেখবেন সবগুলো একইরকম। তারমানে আমাদের আউটপুটে কোনই পরিবর্তন আসে নাই। অন্যদিকে _static_ মেথড ব্যবহার করা `new` কিওয়ার্ড দিয়ে ক্লাস _instance_ তৈরি করে অতঃপর তার মেথড কল করা থেকে যেমনিভাবে সহজ, তেমনিভাবে _Self Explanatory_ and _User Friendly_।
 
-আরেকটা স্টাটিক ম‍্যাথড আছে today() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা আজকের তারিখ পেতে পারি।
+## Carbon দিয়ে সময়/তারিখ প্রদর্শন
+
+_Carbon_ এর [`Carbon::now()`](https://carbon.nesbot.com/docs/) _static_ মেথড ব্যবহার করে আমরা একইসাথে হালনাগাদ সময় এবং তারিখ পেতে পারি। ইতিপূর্বে আমরা এর [উদাহরণ](#use-of-carbon) দেখে এসেছি। এর পাশাপাশি আরেকটা _static_ মেথড হল, [`Carbon::today()`](https://carbon.nesbot.com/docs/) মেথড। এই মেথডটি ব্যবহার করে আমরা শুধুমাত্র আজকের তারিখ পেতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::today();
+$c = Carbon::today();
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-21 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output at the time of writing:
+2024-01-31 00:00:00
 ```
 
-এখন আপনি now() এবং today() এর মাঝে যদি পার্থক‍্য দেখেন তাহলে খুব একটা পার্থক‍্য পাবেন না। শুধু মাত্র টাইমটাই পার্থক‍্য দেখতে পাবেন।
-
-আরেকটা আছে tomorrow() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা আগামীকালের তারিখ পেতে পারি।
+তেমনিভাবে আরেকটি _static_ মেথড হল, [`Carbon::tomorrow()`](https://carbon.nesbot.com/docs/) মেথড। নাম দেখেই আন্দাজ করা যায় এই মেথড ব্যবহার করে আমরা আগামীকালের তারিখ পেতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::tomorrow();
+$c = Carbon::tomorrow();
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-22 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output at the time of writing:
+2024-02-01 00:00:00
 ```
 
-আরেকটা আছে yesterday() ম‍্যাথড। এই ম‍্যাথড টা ব্যবহার করে আমরা গতকালের তারিখ পেতে পারি।
+একইভাবে আছে [`Carbon::yesterday()`](https://carbon.nesbot.com/docs/) _static_ মেথড। এই মেথড ব্যবহার করে গতকালের তারিখ পাওয়া সম্ভব।
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::yesterday();
+$c = Carbon::yesterday();
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-20 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output at the time of writing:
+2024-01-30 00:00:00
 ```
 
-আপনি চাইলে create() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন।
+## Carbon দিয়ে কাস্টম সময়/তারিখ তৈরি
 
-```php
-<?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+_Carbon_ দিয়ে কাস্টম সময়/তারিখ তৈরি করতে চাইলে আমাদেরকে [`Carbon::create()`](https://carbon.nesbot.com/docs/) _static_ মেথডটি ব‍্যবহার করতে হবে। এই মেথডের মাধ্যমে প্রদত্ত প্যারামিটারের ভিত্তিতে নিজস্ব পছন্দমতো সময়/তারিখ তৈরি করা সম্ভব।
 
-    $c = Carbon::create(2021, 7, 22);
+### create() _static_ মেথডের সিনট্যাক্স
 
-    var_dump($c);
-?>
-```
+**create()** _static_ মেথডের মধ্যে আমরা ৭টি আর্গুমেন্ট পাস করতে পারব। ধারাবাহিকতা বজায় রেখে এই আর্গুমেন্টগুলো পাস করতে হবে। ধারাবাহিকভাবে আর্গুমেন্টগুলোর লিস্টঃ
 
-**আউটপুট**
-
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-22 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
-```
-
-## create() ম‍্যাথডের সিনট্যাক্স
+1. **$year** বা বছরের ভ্যালু
+2. **$month** বা মাসের ভ্যালু
+3. **$day** বা দিনের ভ্যালু
+4. **$hour** বা ঘণ্টার ভ্যালু
+5. **$minute** বা মিনিটের ভ্যালু
+6. **$second** বা সেকেন্ডের ভ্যালু
+7. **$tz** বা টাইমজোন (সময়ভিত্তিক অঞ্চলের) ভ্যালু
 
 ```php
     Carbon::create($year, $month, $day, $hour, $minute, $second, $tz);
 ```
 
-আপনি চাইলে createFromDate() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন।
+উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::createFromDate(2021, 7, 22);
+$c = Carbon::create(2024, 02, 23);
 
-    var_dump($c);
-?>
+echo "Output: " . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-22 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output: 2024-02-23 20:30:40
 ```
 
-## createFromDate() ম‍্যাথডের সিনট্যাক্স
+### create() মেথড সদৃশ গুরুত্বপূর্ণ মেথডসমূহ
+
+**create()** _static_ মেথডের সদৃশ আরো কিছু মেথড আছে যার সাহায্যে আমরা কাস্টম সময় বা তারিখ চাইলে তৈরি করতে পারি। তন্মধ্যে একটি হল, [`Carbon::createFromDate()`](https://carbon.nesbot.com/docs/) _static_ মেথড। এই মেথডটি ব‍্যবহার করে আমরা শুধুমাত্র যেকোন তারিখ তৈরি করতে পারব; এটি `Carbon::today()` _static_ মেথডের মত কাজ করে। ফলে এই মেথডটি ব্যবহার করলে আমরা যে সময়টি পাব সেটি হবে হালনাগাদ সময়; যেমনটা আমরা _static_ `Carbon::now()` মেথড কল করে পেয়ে থাকি।
+
+### createFromDate() মেথডের সিনট্যাক্স
+
+**createFromDate()** _static_ মেথডের মধ্যে আমরা ৪টি আর্গুমেন্ট পাস করতে পারব। যা অবশ্য বোধগম্যও বটে। ধারাবাহিকতা বজায় রেখে এই আর্গুমেন্টগুলো পাস করতে হবে। ধারাবাহিকভাবে আর্গুমেন্টগুলোর লিস্টঃ
+
+1. **$year** বা বছরের ভ্যালু
+2. **$month** বা মাসের ভ্যালু
+3. **$day** বা দিনের ভ্যালু
+4. **$tz** বা টাইমসেট/টাইমজোন (সময়ভিত্তিক অঞ্চলের) ভ্যালু
 
 ```php
     Carbon::createFromDate($year, $month, $day, $tz);
 ```
 
-আপনি চাইলে createFromTime() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন।
+উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::createFromTime(12, 0, 0);
+$c = Carbon::createFromDate(2024, 02, 23);
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-21 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output at the time of writing:
+2024-02-23 02:55:41
 ```
 
-## createFromTime() ম‍্যাথডের সিনট্যাক্স
+### createFromTime() মেথড
+
+একইভাবে আছে [`Carbon::createFromTime()`](https://carbon.nesbot.com/docs/) _static_ মেথড। এই মেথডের সাহায্যে আমরা শুধুমাত্র কোন সময় তৈরি করতে পারব। ফলে এটি `Carbon::now()` _static_ মেথডের মত কাজ করে। এই মেথডটি ব্যবহার করলে আমরা যে তারিখটি পাব সেটি হবে হালনাগাদ তারিখ; যেমনটা আমরা _static_ `Carbon::today()` মেথড কল করে পেয়ে থাকি।
+
+### createFromTime() মেথডের সিনট্যাক্স
+
+**createFromTime()** _static_ মেথডের মধ্যেও বোধগম্যভাবে আমরা ৪টি আর্গুমেন্ট পাস করতে পারব। ধারাবাহিকতা বজায় রেখে এই আর্গুমেন্টগুলো পাস করতে হবে। ধারাবাহিকভাবে আর্গুমেন্টগুলোর লিস্টঃ
+
+1. **$hour** বা ঘণ্টার ভ্যালু
+2. **$minute** বা মিনিটের ভ্যালু
+3. **$second** বা সেকেন্ডের ভ্যালু
+4. **$tz** বা টাইমসেট/টাইমজোন (সময়ভিত্তিক অঞ্চলের) ভ্যালু
 
 ```php
     Carbon::createFromTime($hour, $minute, $second, $tz);
 ```
 
-আপনি চাইলে createFromTimestamp() ম‍্যাথড ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন।
+উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::createFromTimestamp(1626872400);
+$c = Carbon::createFromTime(12, 0, 0);
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-21 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output at the time of writing:
+2024-01-31 20:30:40
 ```
 
-## createFromTimestamp() ম‍্যাথডের সিনট্যাক্স
+### createFromTimestamp() মেথড
+
+আরেকটি _static_ মেথড হল, [`Carbon::createFromTimestamp()`](https://carbon.nesbot.com/docs/) মেথড। এটি ব‍্যবহার করে আমাদের প্রদত্ত টাইমস্টাম্পের ভিত্তিতে কোন সময়/তারিখ তৈরি করতে পারব।
+
+### createFromTimestamp() ম‍্যাথডের সিনট্যাক্স
+
+**createFromTimestamp()** _static_ মেথডের মধ্যে আমরা শুধুমাত্র ২টি আর্গুমেন্ট পাস করতে পারব। ধারাবাহিকতা বজায় রেখে সেগুলো পাস করতে হবে। তার লিস্টঃ
+
+1. **$timestamp** বা টাইমস্টাম্পের ভ্যালু
+2. **$tz** বা টাইমসেট/টাইমজোন (সময়ভিত্তিক অঞ্চলের) ভ্যালু
 
 ```php
     Carbon::createFromTimestamp($timestamp, $tz);
 ```
 
-আপনি চাইলে হিউমেন রিডেবল ফরম‍্যাটকেও তারিখে রূপান্তর করতে পারেন।
+উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+$c = Carbon::createFromTimestamp(454654654);
 
-    var_dump($c);
-?>
+echo "Output: " . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2008-01-01 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "Asia/Dhaka"
-}
+```
+Output: 1984-05-29 04:57:34
 ```
 
-আপনি চাইলে + এবং - অপারেটর ব‍্যবহার করে কার্বন ক্লাস এর মাধ্যমে কোন তারিখ ক্রিয়েট করতে পারেন।
+## ইংরেজী বাক্য দিয়ে সময়/তারিখ তৈরি
+
+এবার আমরা দেখব কিভাবে আমরা আমাদের দৈনন্দিন সময়/তারিখ গণনা/হিসাব করার পদ্ধতিতে সময়/তারিখ তৈরি করতে পারি। তথা হিউমেন রিডেবল ফরম‍্যাটকেও তারিখ বা সময়ে রূপান্তর করতে পারি। কোন টাইমজোন আমরা পূর্ব থেকে সেট না করলে বাই ডিফল্ট ইউটিসি টাইমজোনে সময় এবং তারিখগুলো প্রদর্শিত হয়। আমরা নিজস্ব টাইমজোন সেট করে নিজের অঞ্চলের সময় এবং তারিখ অনুযায়ী আউটপুট পেতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = new Carbon('+2 days');
+$c = new Carbon('first day of January 2008', 'Asia/Dhaka');
 
-    var_dump($c);
-?>
+echo "Output: " . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-23 12:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "UTC"
-}
+```
+Output: 2008-01-01 00:00:00
+```
+
+আরো সুবিধা হল, আমরা `+` চিহ্ন ব্যবহার করে হালনাগাদ ডেটটাইমের সাথে কিছু ডেটটাইম যোগ করে নিতে পারি। আবার `-` চিহ্ন ব‍্যবহার করে হালনাগাদ ডেটটাইমের সাথে কিছু ডেটটাইম বিয়োগ করে ডেটটাইম তৈরি করতে পারি। উদাহরণঃ
+
+```php
+<?php
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
+
+$c = new Carbon('+2 days', 'Asia/Dhaka');
+
+echo "Output at the time of writing:\n" . $c;
+```
+
+আউটপুটঃ
+
+```
+Output at the time of writing:
+2024-02-02 09:35:41
 ```
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = new Carbon('-6 days 12 hours');
+$c = new Carbon('-2 days', 'Asia/Dhaka');
 
-    var_dump($c);
-?>
+echo "Output at the time of writing:\n" . $c;
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-object(Carbon\Carbon)#1 (3) {
-  ["date"]=>
-  string(26) "2021-07-15 00:00:00.000000"
-  ["timezone_type"]=>
-  int(3)
-  ["timezone"]=>
-  string(13) "UTC"
-}
+```
+Output at the time of writing:
+2024-01-29 09:36:02
 ```
 
 ## formation
