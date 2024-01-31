@@ -502,7 +502,7 @@ Output at the time of writing:
 
 ### toDateString() মেথড
 
-প্রথমে আমরা ব্যবহার করব `toDateString()` মেথড। এই মেথডের সাহায্যে আমরা আমাদের ডেটকে স্ট্রিং ডাটা টাইপে রূপান্তর করে প্রিন্ট করতে পারি। উদাহরণঃ
+প্রথমে আমরা ব্যবহার করব [`toDateString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। এই মেথডের সাহায্যে আমরা আমাদের ডেটকে স্ট্রিং ডাটা টাইপে রূপান্তর করে প্রিন্ট করতে পারি। উদাহরণঃ
 
 ```php
 <?php
@@ -523,7 +523,7 @@ Output at the time of writing:
 
 ### toDateTimeString() মেথড
 
-আর যদি ডেটের সাথে টাইমকেও স্ট্রিংয়ে রূপান্তর করার ইচ্ছা হয়, তাহলে আমরা `toDateTimeString()` মেথড ব্যবহার করতে পারি। উদাহরণঃ
+আর যদি ডেটের সাথে টাইমকেও স্ট্রিংয়ে রূপান্তর করার ইচ্ছা হয়, তাহলে আমরা [`toDateTimeString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড ব্যবহার করতে পারি। উদাহরণঃ
 
 ```php
 <?php
@@ -544,42 +544,46 @@ Output at the time of writing:
 
 যেহেতু আমরা কোন টাইমজোন সেট করি নাই, তাই ডিফল্ট ইউটিসি টাইমজোনে আউটপুট দেখতে পাচ্ছি।
 
-আমরা যদি আরেকটা দেখি
+### toRssString() মেথড
+
+আর টাইমজোন সহ কথায়, পাশাপাশি অংকে দিন, তার সাথে মাস, বছর, ঘন্টা, মিনিট এবং সেকেন্ড ইত্যাদি তথা একটি ডেটটাইমের পুরো বিবরণ যদি স্ট্রিং আকারে আমরা প্রিন্ট করতে চাই তাহলে [`toRssString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড ব্যবহার করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toRssString();
-?>
+echo "Output at the time of writing:\n" . $c->toRssString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-Wed, 21 Jul 2021 12:00:00 +0000
+```
+Output at the time of writing:
+Tue, 30 Jan 2024 07:11:05 +0600
 ```
 
-আমরা যদি আরেকটা দেখি
+### toAtomString() মেথড
+
+আমরা ডেটটাইমের ফরম্যাটটা যদি **International Atomic Time (TAI)** যেটা _subset of the **ISO 8601** standard_ এর অনুযায়ী করতে চাই তাহলে আমাদের ব্যবহার করতে হবে [`toAtomString`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toAtomString();
-?>
+echo "Output at the time of writing:\n" . $c->toAtomString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21T12:00:00+00:00
+```
+Output at the time of writing:
+2024-01-30T07:28:25+06:00
 ```
 
 তাহলে আমরা দেখতে পাচ্ছি যে আমরা চাইলে অনেক কিছুই ব‍্যবহার করে আমাদের মতো করে ফরম‍্যাট করতে পারি। সবথেকে বেশি ব্যবহার হয় এই ফরম‍্যাট ম‍্যাথড।
