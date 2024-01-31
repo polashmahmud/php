@@ -423,7 +423,7 @@ echo "Output: " . $c;
 Output: 1984-05-29 04:57:34
 ```
 
-## ইংরেজী বাক্য দিয়ে সময়/তারিখ তৈরি
+## Carbon এ ইংরেজী বাক্য দিয়ে সময়/তারিখ তৈরি
 
 এবার আমরা দেখব কিভাবে আমরা আমাদের দৈনন্দিন সময়/তারিখ গণনা/হিসাব করার পদ্ধতিতে সময়/তারিখ তৈরি করতে পারি। তথা হিউমেন রিডেবল ফরম‍্যাটকেও তারিখ বা সময়ে রূপান্তর করতে পারি। কোন টাইমজোন আমরা পূর্ব থেকে সেট না করলে বাই ডিফল্ট ইউটিসি টাইমজোনে সময় এবং তারিখগুলো প্রদর্শিত হয়। আমরা নিজস্ব টাইমজোন সেট করে নিজের অঞ্চলের সময় এবং তারিখ অনুযায়ী আউটপুট পেতে পারি। উদাহরণঃ
 
@@ -479,82 +479,111 @@ Output at the time of writing:
 2024-01-29 09:36:02
 ```
 
-## formation
+```php
+<?php
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-আমরা এখন দেখবো আমরা কতো সুন্দর করে তারিখকে ফরম‍্যাট করতে পারি।
+$c = new Carbon('-2 days 6 hours', 'Asia/Dhaka');
+
+echo "Output at the time of writing:\n" . $c;
+```
+
+আউটপুটঃ
+
+```
+Output at the time of writing:
+2024-01-30 01:25:48
+```
+
+## Carbon এর সাহায্যে ডেটটাইম ফরম্যাট
+
+আমাদের ডেটটাইমকে ইচ্ছামাফিক বিভিন্ন ফরম্যাটে প্রিন্ট এবং প্রদর্শনের জন্য _Carbon_ খুবই ব্যবহারযোগ্য বেশকিছু মেথড প্রদান করেছে। যেগুলো খুবই হ্যান্ডফুল _Carbon_ ক্লাস মেথড। এখন আমরা এই মেথডগুলোর সাহায্যে কত সুন্দর করে আমাদের ডেটটাইমকে ফরম‍্যাট করতে পারি তাই দেখব।
+
+### toDateString() মেথড
+
+প্রথমে আমরা ব্যবহার করব [`toDateString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। এই মেথডের সাহায্যে আমরা আমাদের ডেটকে স্ট্রিং ডাটা টাইপে রূপান্তর করে প্রিন্ট করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toDateString();
-?>
+echo "Output at the time of writing:\n" . $c->toDateString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21
+```
+Output at the time of writing:
+2024-01-30
 ```
 
-আমরা যদি আরেকটা দেখি
+### toDateTimeString() মেথড
+
+আর যদি ডেটের সাথে টাইমকেও স্ট্রিংয়ে রূপান্তর করার ইচ্ছা হয়, তাহলে আমরা [`toDateTimeString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড ব্যবহার করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toDateTimeString();
-?>
+echo "Output at the time of writing:\n" . $c->toDateTimeString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21 12:00:00
+```
+Output at the time of writing:
+2024-01-30 02:09:50
 ```
 
-আমরা যদি আরেকটা দেখি
+যেহেতু আমরা কোন টাইমজোন সেট করি নাই, তাই ডিফল্ট ইউটিসি টাইমজোনে আউটপুট দেখতে পাচ্ছি।
+
+### toRssString() মেথড
+
+আর টাইমজোন সহ কথায়, পাশাপাশি অংকে দিন, তার সাথে মাস, বছর, ঘন্টা, মিনিট এবং সেকেন্ড ইত্যাদি তথা একটি ডেটটাইমের পুরো বিবরণ যদি স্ট্রিং আকারে আমরা প্রিন্ট করতে চাই তাহলে [`toRssString()`](https://carbon.nesbot.com/docs/#api-formatting) মেথড ব্যবহার করতে পারি। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toRssString();
-?>
+echo "Output at the time of writing:\n" . $c->toRssString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-Wed, 21 Jul 2021 12:00:00 +0000
+```
+Output at the time of writing:
+Tue, 30 Jan 2024 07:11:05 +0600
 ```
 
-আমরা যদি আরেকটা দেখি
+### toAtomString() মেথড
+
+আমরা ডেটটাইমের ফরম্যাটটা যদি **International Atomic Time (TAI)** যেটা _subset of the **ISO 8601** standard_ এর অনুযায়ী করতে চাই তাহলে আমাদের ব্যবহার করতে হবে [`toAtomString`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। উদাহরণঃ
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->toAtomString();
-?>
+echo "Output at the time of writing:\n" . $c->toAtomString() . "\n";
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-2021-07-21T12:00:00+00:00
+```
+Output at the time of writing:
+2024-01-30T07:28:25+06:00
 ```
 
 তাহলে আমরা দেখতে পাচ্ছি যে আমরা চাইলে অনেক কিছুই ব‍্যবহার করে আমাদের মতো করে ফরম‍্যাট করতে পারি। সবথেকে বেশি ব্যবহার হয় এই ফরম‍্যাট ম‍্যাথড।
