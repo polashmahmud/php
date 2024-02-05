@@ -567,7 +567,7 @@ Tue, 30 Jan 2024 07:11:05 +0600
 
 ### toAtomString() মেথড
 
-আমরা ডেটটাইমের ফরম্যাটটা যদি **International Atomic Time (TAI)** যেটা _subset of the **ISO 8601** standard_ এর অনুযায়ী করতে চাই তাহলে আমাদের ব্যবহার করতে হবে [`toAtomString`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। উদাহরণঃ
+আমরা ডেটটাইমের ফরম্যাটটা যদি **International Atomic Time (TAI)** যেটা — _subset of the **ISO 8601** standard_ — এর অনুযায়ী করতে চাই তাহলে আমাদের ব্যবহার করতে হবে [`toAtomString`](https://carbon.nesbot.com/docs/#api-formatting) মেথড। উদাহরণঃ
 
 ```php
 <?php
@@ -586,43 +586,134 @@ Output at the time of writing:
 2024-01-30T07:28:25+06:00
 ```
 
-তাহলে আমরা দেখতে পাচ্ছি যে আমরা চাইলে অনেক কিছুই ব‍্যবহার করে আমাদের মতো করে ফরম‍্যাট করতে পারি। সবথেকে বেশি ব্যবহার হয় এই ফরম‍্যাট ম‍্যাথড।
+### format() মেথড
+
+_Carbon_ প্রদত্ত ডেটটাইম ফরম্যাট সংক্রান্ত যাবতীয় মেথডগুলোর মধ্যে সবচেয়ে বেশি ব্যবহৃত এবং কার্যবহ মেথড হল, [`format()`](https://carbon.nesbot.com/docs/#api-formatting)। এটি ডেটটাইম স্ট্রিং ফরম্যাট মেথডগুলোর _base_ মেথড। তাই বাকি সব মেথডগুলো এই মেথডটির উপর ভিত্তি করে তৈরিকৃত। ফলে আমরা চাইলে পিএইচপির বিল্ট-ইন ডেটটাইম ফরম্যাট আমাদের মতো করে `format()` মেথডের আর্গুমেন্টে ব‍্যবহার করে অনেক ভাবেই ফরম‍্যাট করতে পারি। তাই এই ফরম‍্যাট ম‍্যাথডটি সবথেকে বেশি ব্যবহার হয় ।
 
 ```php
 <?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+require_once "vendor/autoload.php";
+use Carbon\Carbon;
 
-    $c = Carbon::now();
+$c = Carbon::now();
 
-    echo $c->format('l jS \\of F Y h:i:s A');
-?>
+echo "Output at the time of writing:\n" . $c->format('l jS \\of F Y h:i:s A');
 ```
 
-**আউটপুট**
+আউটপুটঃ
 
-```bash
-Wednesday 21st of July 2021 12:00:00 PM
+```
+Output at the time of writing:
+Sunday 4th of February 2024 12:54:02 AM
 ```
 
-আরেকটা বেশি ব‍্যবহৃত হয় তা হচ্ছে হিউমেন রিডেবল ফরম‍্যাট।
+ফলে আমরা পছন্দসই হিউমেন রিডেবল ফরম‍্যাটে দিন-তারিখ ফরম্যাট করতে পারি এবং আউটপুট পেতে পারি।
 
-```php
-<?php
-    require_once "vendor/autoload.php";
-    use Carbon\Carbon;
+## হিউমেন রিডেবল ফরম‍্যাটে সময়ের পার্থক্য
 
-    $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+মানুষের বোধগম্য উপায়ে দিন-তারিখের পার্থক্য নির্ণয়ে _Carbon_ বেশকিছু মেথড ব্যবহার করে। এখানে আমরা সবথেকে বেশি ব‍্যবহৃত মেথডটির ব্যবহার দেখব।
 
-    echo $c->diffForHumans();
-?>
-```
+### diffForHumans() মেথড
 
-**আউটপুট**
+সবথেকে বেশি ব‍্যবহৃত যে মেথডটির ব্যবহার আমরা দেখব তা হল, [`diffForHumans()`](https://carbon.nesbot.com/docs/#api-humandiff) মেথড। এই মেথডটি ব্যবহার করতে হলে আমাদের প্রথমে _Carbon_ ক্লাস দিয়ে একটি অবজেক্ট তৈরি করে নিতে হবে। অতঃপর সেই অবজেক্টের উপর মেথডটিকে কল করতে হবে। অন্যথায় আমরা চাইলে কার্বন ডকুমেন্টেশন অনুসরণ করে [_verbose methods_](https://carbon.nesbot.com/docs/#api-humandiff) ব্যবহার করতে পারি। কয়েকটি উদাহরণঃ
 
-```bash
-16 years ago
-```
+1. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2028', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   3 years from now
+   ```
+
+2. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2021', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   3 years ago
+   ```
+
+3. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2022', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   2 years ago
+   ```
+
+4. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2023', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   1 year ago
+   ```
+
+5. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2024', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   1 month ago
+   ```
+
+আরো উদাহরণঃ
+
+6. ```php
+   <?php
+   require_once "vendor/autoload.php";
+   use Carbon\Carbon;
+
+   $c = new Carbon('first day of January 2008', 'Asia/Dhaka');
+
+   echo $c->diffForHumans();
+   ```
+
+   আউটপুটঃ
+
+   ```
+   16 years ago
+   ```
 
 ## Getters
 
