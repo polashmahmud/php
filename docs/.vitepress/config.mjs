@@ -9,15 +9,33 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "হোম পেজ", link: "/" },
-      { text: "ডকুমেন্টেশন", link: "/class-01" },
+      { text: "ডকুমেন্টেশন", link: "/getting-started/what-is-php" },
       { text: "টিম", link: "/team" },
     ],
 
     sidebar: [
       {
+        text: 'শুরু করার উপায়',
+        collapsed: false,
+        items: [
+          { text: 'PHP এর ইতিহাস', link: '/getting-started/what-is-php' },
+          { text: 'PHP ইনস্টলেশন', link: '/getting-started/install-php' },
+          { text: 'PHP Tags', link: '/getting-started/php-tags' },
+        ]
+      },
+      {
+        text: 'পিএইচপি মৌলিক',
+        collapsed: true,
+        items: [
+          { text: 'Variables', link: '/php-fundamentals/variables' },
+          { text: 'Type of data in PHP', link: '/php-fundamentals/types-of-data-in-php' },
+          { text: 'Constant', link: '/php-fundamentals/constant' },
+          { text: 'Comments', link: '/php-fundamentals/comments' },
+        ]
+      },
+      {
         text: "ক্লাস সমূহ",
         items: [
-          { text: "প্রথম ক্লাস", link: "/class-01" },
           { text: "দ্বিতীয় ক্লাস", link: "/class-02" },
           { text: "তৃতীয় ক্লাস", link: "/class-03" },
           { text: "চতুর্থ ক্লাস", link: "/class-04" },
