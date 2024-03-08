@@ -75,6 +75,17 @@ const members = [
       { icon: 'x', link: 'https://twitter.com/KawsarAlam_Even' }
     ]
   },
+
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/43921998?v=4',
+    name: 'মোঃ রোকনুজ্জামান',
+    title: 'সহকারী সম্পাদক',
+    links: [
+      { icon: 'github', link: 'https://github.com/iamrokon' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/md-rokonuzzaman-pk-b8788b135/' },
+      { icon: 'x', link: 'https://twitter.com/mdrokoncse' },
+    ]
+  },
 ]
 </script>
 

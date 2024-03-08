@@ -712,7 +712,7 @@ ANOTHER_NOWDOC;
 
 ### `string` ডাটা access and modification by character
 
-`string` ডাটাকে `array`-র মত ব্যবহার করা যায়। *array element*-গুলো এক্সেস করার জন্য *array indexing* যেমন 0 (শূণ্য) সংখ্যা দিয়ে শুরু হয় যাকে *zero-based offset* বলে, তেমনি `string` ডাটাতে থাকা *character*-গুলোর প্রতিটি *character*-কে এক একটি *array element* বিবেচনা করে *zero-based offset*-র সাহায্যে এক্সেস করা যায় এবং ভ্যালু পরিবর্তন করা যায়। *array element* এক্সেস করতে `[]` (ব্রাকেট নোটেশন) ব্যবহার হয়, তেমনি *string character* এক্সেস করতেও `[]` (ব্রাকেট নোটেশন) ব্যবহার হয়। যেমন:- `$str[42]`, যা `$str` ভ্যারিয়েবলে স্টোর করা `string` ডাটার ৪১তম ক্যারেক্টারকে এক্সেস করে।
+`string` ডাটাকে `array`-র মত ব্যবহার করা যায়। *array element*-গুলো এক্সেস করার জন্য *array indexing* যেমন 0 (শূণ্য) সংখ্যা দিয়ে শুরু হয় যাকে *zero-based offset* বলে, তেমনি `string` ডাটাতে থাকা *character*-গুলোর প্রতিটি *character*-কে এক একটি *array element* বিবেচনা করে *zero-based offset*-র সাহায্যে এক্সেস করা যায় এবং ভ্যালু পরিবর্তন করা যায়। *array element* এক্সেস করতে `[]` (ব্রাকেট নোটেশন) ব্যবহার হয়, তেমনি *string character* এক্সেস করতেও `[]` (ব্রাকেট নোটেশন) ব্যবহার হয়। যেমন:- `$str[42]`, যা `$str` ভ্যারিয়েবলে স্টোর করা `string` ডাটার ৪৩তম ক্যারেক্টারকে এক্সেস করে।
 
 `string` ভ্যালু এক্সেস করার বিকল্প উপায় হল [`substr()`](https://www.php.net/manual/en/function.substr.php) ফাংশন। তেমনি `string` ভ্যালু পরিবর্তন করার বিকল্প উপায় হল [`substr_replace()`](https://www.php.net/manual/en/function.substr-replace.php) ফাংশন। এই ফাংশন দুটির মাধ্যমে একের অধিক *character* এক্সেস বা পরিবর্তন করা যায়। ব্রাকেট নোটেশনে একবারে মাত্র একটি *character* এক্সেস বা পরিবর্তন করা যায়।
 
