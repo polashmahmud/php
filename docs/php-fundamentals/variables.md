@@ -52,7 +52,7 @@ $firstName = $name;
 echo $firstName; // Output: Polash
 ```
 
-আবার আপনি চাইলে একটা _Variable_ এর মান বা ভ্যালু হিসেবে অন‍্যকোন _Variable_ এসাইন করার পর  ২টি _Variable_ এর যেকোন একটি বা উভয়টির ভ্যালু পরিবর্তন করতে পারবেন। সেক্ষেত্রে একটির ভ্যালু পরিবর্তন করার কারণে অন্যটির ভ্যালু বা মানের কোন পরিবর্তন হবে না।
+আবার আপনি চাইলে একটা _Variable_ এর মান বা ভ্যালু হিসেবে অন‍্যকোন _Variable_ এসাইন করার পর  ২টি _Variable_ এর যেকোন একটি বা উভয়টির ভ্যালু পরিবর্তন করতে পারবেন। সেক্ষেত্রে একটির ভ্যালু পরিবর্তন করার কারণে অন্যটির ভ্যালু বা মানের কোন পরিবর্তন হবে না। একে বলে (assignment by value) ।
 
 ```php
 <?php
@@ -70,7 +70,7 @@ echo $name; // Output: Mahmud
 
 ### Assigned by reference variable টা কি?{#assigned-by-reference-variable}
 
-অবশ্য, যদি ১টি _Variable_ এর ভ্যালু পরিবর্তন করলে অন্যটির  ভ্যালুও আপনাআপনি পরিবর্তন হবে এমন সুবিধা আপনি চান, তখন _Variable_ এসাইন করার সময় পূর্বের _Variable_ নামের আগে একটি `&` (_ampersand_) চিহ্ন ব‍্যবহার করুন। এই প্রক্রিয়াকে [_assigned by reference_](https://www.php.net/manual/en/language.references.whatdo.php#language.references.whatdo.assign) বলে।
+অবশ্য, যদি ১টি _Variable_ এর ভ্যালু পরিবর্তন করলে অন্যটির  ভ্যালুও আপনাআপনি পরিবর্তন হবে এমন সুবিধা আপনি চান, তখন _Variable_ এসাইন করার সময় পূর্বের _Variable_ নামের আগে একটি `&` (_ampersand_) চিহ্ন ব‍্যবহার করুন। এই প্রক্রিয়াকে [_assigned by reference_](https://www.php.net/manual/en/language.references.whatdo.php#language.references.whatdo.assign) বলে। যেমন নিচের $bar ভ্যারিয়েবলে $foo ভ্যারিয়েবলের অ্যাড্রেস অ্যাসাইন করা হয়েছে & চিহ্নের মাধ্যমে। ফলে এরা র‍্যামের একই জায়গাকে নির্দেশ করছে। তাই এদের মধ্যে ১টি ভ্যারিয়েবলের ভ্যালু পরিবর্তন করলে অন্যটির ভ্যালুও আপনাআপনি পরিবর্তিত হয়ে যাবে।
 
 ```php
 <?php
