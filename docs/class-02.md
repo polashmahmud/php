@@ -302,7 +302,7 @@ $a = 50;
 $b = 4;
 $x = $a % $b;
 
-echo $x;    // outputs: 10
+echo $x;    // outputs: 2
 
 // modulo operation with expression
 $a = 7;
