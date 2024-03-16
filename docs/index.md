@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: চলুন শুরু করি
-      link: /class-01
+      link: /getting-started/what-is-php
   image:
     src: /logo-large.webp
     alt: PHPBasicCourse
