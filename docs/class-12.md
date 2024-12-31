@@ -69,7 +69,7 @@ require_once("vendor/autoload.php");
 // import Carbon class using namespace with autoloader
 use Carbon\Carbon;
 
-// print the now() static method of Carbon class
+// print the now() static method of Carbon class these are some example word for demo
 echo Carbon::now();
 ```
 
