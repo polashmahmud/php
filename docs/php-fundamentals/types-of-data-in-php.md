@@ -2,36 +2,30 @@
 
 ## Types of data in PHP
 
-**PHP-তে** আপনি _Variable_ এর মান বা ভ্যালু হিসেবে যে ডাটা প্রদান করবেন তাকে কয়েকটি টাইপে ভাগ করা হয়। এগুলো **PHP** এর ইন্টার্নাল ডাটা সিস্টেম। যেমন:–
+**PHP**-তে _Variable_ এর ভ্যালু হিসেবে প্রায় ১০ ধরণের (type) ডাটা প্রদান করার সুযোগ আছে। এছাড়াও ২টি *psuedo type* আছে। এগুলো **PHP** এর ইন্টার্নাল ডাটা সিস্টেম। এগুলোকে মোট ৩ ভাগে ভাগ করা যায়, ১. **Scalar Types**, ২. **Compound Types** ৩. **Special Types**। যেমনঃ–
 
--   `NULL`
+### 1. Scalar Types
 
+- `bool`
+- `int` (integer number বা পূর্ণসংখ্যা)
+- `float` (floating-point number বা ভগ্নসংখ্যা) একে _Doubles_ ও বলা হয়
+- `string`
 
--   `bool`
+### 2. Compound Types
+- `array`
+- `object`
+- [`callable`](https://www.php.net/manual/en/language.types.callable.php)
+- `iterable`
 
+### 3. Special Types
+- `resource`
+- `NULL`
 
--   `int` (integer number বা পূর্ণসংখ্যা)
+#### 4. Psuedo Types
+- `void`
+- `mixed`
 
-
--   `float` (floating-point number বা ভগ্নসংখ্যা)
-
-
--   `string`
-
-
--   `array`
-
-
--   `object`
-
-
--   [`callable`](https://www.php.net/manual/en/language.types.callable.php)
-
-
--   `resource`
-
-
-**PHP-র** পরিচিতিতে আগেই জেনেছেন, এটি একটি dynamically typed language, যার অর্থ; **PHP-তে** _Variable_ এর ধরণ বা টাইপ বলে দেয়ার প্রয়োজন পড়ে না। _Variable_ এর মান বা ভ্যালু দেখে _runtime-এ_ **PHP** dynamically নিজেই ডাটা টাইপ নির্ধারণ করে দেয়। অবশ্য [type declarations](https://www.php.net/manual/en/language.types.declarations.php) বা _[type casting](https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting)-র_ সাহায্যে আপনি চাইলে ডাটা টাইপটি সেট করে দিতে পারেন।
+**PHP-র** পরিচিতিতে আগেই জেনেছেন, এটি একটি dynamically typed language, যার অর্থ; **PHP-তে** _Variable_ এর ধরণ বা টাইপ বলে দেয়ার প্রয়োজন পড়ে না। _Variable_ এর ভ্যালু দেখে _runtime-এ_ **PHP** dynamically নিজেই ডাটা টাইপ নির্ধারণ করে নেয়। অবশ্য _[type declarations](https://www.php.net/manual/en/language.types.declarations.php)_ বা _[type casting](https://www.php.net/manual/en/language.types.type-juggling.php#language.types.typecasting)-র_ সাহায্যে আপনি চাইলে ডাটা টাইপটি সেট করে দিতে পারেন।
 
 ### Non-initialized variable concept
 
@@ -71,19 +65,19 @@ var_dump((array) $name);   // array(0) {}
 
 ### Variable সম্পর্কে তথ্য কিভাবে পাবেন?
 
-**PHP-তে** কিছু _**in-built function**_ আছে যেগুলো দিয়ে আমরা একটি _Variable_ সম্পর্কে তথ্য পেতে পারি। _Variable_ এর ধরণ/টাইপ ও ভ্যালু/মান দেখা এবং যাচাই করার জন‍্য সবচেয়ে বেশি ব‍্যবহৃত হয় [var_dump()](https://www.php.net/manual/en/function.var-dump.php) ফাংশনটি। আবার _Variable_ এর শুধুমাত্র ডাটা টাইপ জানতে [get_debug_type()](https://www.php.net/manual/en/function.get-debug-type.php) ফাংশনটি ব্যবহৃত হয়। _Variable_ এর ডাটা টাইপ নির্দিষ্ট কোন ধরণের কিনা তা যাচাই করার জন‍্য `is_type()` সিরিজের ফাংশনগুলো ব‍্যবহৃত হয়।
+**PHP-তে** কিছু _**in-built function**_ আছে যেগুলো দিয়ে আমরা একটি _Variable_ সম্পর্কে তথ্য পেতে পারি। _Variable_ এর ধরণ/টাইপ ও ভ্যালু/মান দেখা এবং যাচাই করার জন‍্য সবচেয়ে বেশি ব‍্যবহৃত হয় [var_dump()](https://www.php.net/manual/en/function.var-dump.php) ফাংশনটি। আবার _Variable_ এর শুধুমাত্র ডাটা টাইপ জানতে [gettype()](https://www.php.net/manual/en/function.gettype.php) ফাংশনটি ব্যবহৃত হয়। _Variable_ এর ডাটা টাইপ নির্দিষ্ট কোন ধরণের কিনা তা যাচাই করার জন‍্য `is_type()` সিরিজের ফাংশনগুলো ব‍্যবহৃত হয়।
 
 সেক্ষেত্রে `is_` এর পরে যে টাইপ সম্পর্কে জানতে চান তার keyword টা লিখুন, যেমন:– `is_string()`, `is_array()`, `is_int()` ইত্যাদি।
 
 ```php
 $a_bool = true;   // a bool
 $an_int = 12;     // an int
-$an_float = 5.05;  // a float
+$a_float = 5.05;  // a float
 $a_str  = "foo";  // a string
 $a_str2 = 'foo';  // a string
 
-echo get_debug_type($a_bool), "\n";
-echo get_debug_type($a_str), "\n";
+echo gettype($a_bool), "\n";
+echo gettype($a_str), "\n";
 
 // If this is an integer, increment it by four
 if (is_int($an_int)) {
