@@ -52,7 +52,7 @@ $firstName = $name;
 echo $firstName; // Output: Polash
 ```
 
-আবার আপনি চাইলে একটা _Variable_ এর মান বা ভ্যালু হিসেবে অন‍্যকোন _Variable_ এসাইন করার পর  ২টি _Variable_ এর যেকোন একটি বা উভয়টির ভ্যালু পরিবর্তন করতে পারবেন। সেক্ষেত্রে একটির ভ্যালু পরিবর্তন করার কারণে অন্যটির ভ্যালু বা মানের কোন পরিবর্তন হবে না। একে বলে (assignment by value) ।
+আবার আপনি চাইলে একটা _Variable_ এর মান বা ভ্যালু হিসেবে অন‍্যকোন _Variable_ এসাইন করার পর  ২টি _Variable_ এর যেকোন একটি বা উভয়টির ভ্যালু পরিবর্তন করতে পারবেন। সেক্ষেত্রে একটির ভ্যালু পরিবর্তন করার কারণে অন্যটির ভ্যালু বা মানের কোন পরিবর্তন হবে না। কারণ _Variable_ এর ভ্যালু হিসেবে অন‍্যকোন _Variable_ এসাইন করা হলে পিএইচপির ডিফল্ট বিহেভিয়ার অনুযায়ী ঐ _Variable_ এর ভ্যালু এসাইন হবে। একে  **Assigned** by value বলে।
 
 ```php
 <?php
@@ -115,7 +115,9 @@ $iRandomSeed         // Integer called “Random Seed”
 
 অবশ্য যখন কোন পাবলিক প্রজেক্ট বা ওপেন সোর্স প্রোগ্রামে কাজ করবেন তখন কিছু _recommended standards_ এবং _conventions_ আপনাকে ফলো করতে হবে, _for better code, for better product_। সেসকল _recommended conventions_ জানতে [**PHP-FIG এর ওয়েবসাইট**](https://www.php-fig.org/psr/) অনুসরণ করুন।
 
-**PHP-তে** dynamically variable নাম সেট করা যায়। আবার dynamically variable এর ভ্যালুকে এক্সেসও করা যায়। **PHP-র** ভাষায় এটাকে **_variable variable_** বলে। Dynamically variable নাম সেট করা:–
+### _Variable Variable_ এর পরিচয়
+
+**PHP-তে** dynamically variable নাম সেট করা যায়। আবার dynamically variable এর ভ্যালুকে এক্সেসও করা যায়। **PHP**-র ভাষায় এটাকে **_variable variable_** বলে। Dynamically variable নাম সেট করা:–
 
 ```php
 $greet = 'hello';
@@ -126,7 +128,7 @@ echo "$greet $hello";     // output: hello world
 echo "$greet {$$greet}";  // output: same as above
 ```
 
-Dynamically variable এর ভ্যালু এক্সেস করা:–
+Dynamically variable সেট করা ও ভ্যালু এক্সেস করাঃ–
 
 ```php
 $fname = 'Polash';
